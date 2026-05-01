@@ -1,0 +1,1062 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"/>
+<meta name="theme-color" content="#003865"/>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+<meta name="apple-mobile-web-app-title" content="EquipBook"/>
+<title>EquipBook — Engineering Solutions</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Outfit:wght@400;500;600;700&display=swap');
+:root{
+  --navy:#003865;--navy2:#00274d;--sky:#0072CE;
+  --g1:#1b5e20;--g2:#2e7d32;--a2:#e65100;--r1:#b71c1c;--r2:#c62828;
+  --bg:#eef1f5;--bdr:#d4dce6;--txt:#0a1628;--mut:#546e7a;
+  --rad:16px;--S:'Syne',sans-serif;--B:'Outfit',sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{height:100%;background:var(--bg);font-family:var(--B);color:var(--txt);overscroll-behavior:none}
+button{font-family:var(--B);cursor:pointer;border:none;transition:transform .1s,opacity .15s}
+button:active{transform:scale(.96);opacity:.8}
+input,select,textarea{font-family:var(--B);outline:none;border:1.5px solid var(--bdr);border-radius:10px;padding:10px 12px;font-size:14px;color:var(--txt);background:#fff;width:100%;transition:border-color .18s;box-sizing:border-box}
+input:focus,select:focus,textarea:focus{border-color:var(--sky)}
+select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='11' height='11' viewBox='0 0 24 24' fill='none' stroke='%23546e7a' stroke-width='2.5'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 11px center;padding-right:30px}
+::-webkit-scrollbar{width:0;height:0}
+label{font-size:11px;font-weight:700;color:var(--mut);text-transform:uppercase;letter-spacing:.8px;display:block;margin-bottom:5px}
+#app{max-width:430px;margin:0 auto;min-height:100vh;background:var(--bg)}
+#content{padding-bottom:84px}
+.tb{background:linear-gradient(135deg,var(--navy2) 0%,var(--navy) 55%,var(--sky) 100%);padding:calc(env(safe-area-inset-top,0px)+14px) 18px 15px;position:sticky;top:0;z-index:40}
+.tb-h{font-family:var(--S);font-size:21px;font-weight:800;color:#fff;letter-spacing:-.3px}
+.tb-s{font-size:12px;color:rgba(255,255,255,.55);margin-top:2px}
+.srch{background:rgba(255,255,255,.11);border:1px solid rgba(255,255,255,.18);border-radius:11px;color:#fff;padding:10px 14px;font-size:13px;width:100%;margin-top:10px}
+.srch::placeholder{color:rgba(255,255,255,.45)}.srch:focus{outline:none;border-color:rgba(255,255,255,.5)}
+#nav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:430px;background:#fff;border-top:1px solid var(--bdr);display:flex;padding:7px 0 calc(7px + env(safe-area-inset-bottom,0px));z-index:50;box-shadow:0 -2px 18px rgba(0,0,0,.08)}
+.nb{flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;background:none;border:none;padding:4px 0}
+.nb .ni{font-size:21px;line-height:1}.nb .nl{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:#9fb4c0}
+.nb.active .nl{color:var(--navy)}.nb .nd{width:4px;height:4px;border-radius:50%;background:var(--sky);margin-top:1px;visibility:hidden}.nb.active .nd{visibility:visible}
+.chip{display:inline-flex;align-items:center;gap:4px;border-radius:20px;padding:3px 9px;font-size:10px;font-weight:700;white-space:nowrap}
+.chip::before{content:'';width:5px;height:5px;border-radius:50%;flex-shrink:0}
+.c-av{background:#e8f5e9;color:#1b5e20}.c-av::before{background:#43a047}
+.c-bk{background:#fff3e0;color:#bf360c}.c-bk::before{background:#fb8c00}
+.c-co{background:#e3f2fd;color:#0d47a1}.c-co::before{background:#1e88e5}
+.c-os{background:#fce4ec;color:#880e4f}.c-os::before{background:#e91e63}
+.c-gd{background:#e8f5e9;color:#1b5e20}.c-gd::before{background:#43a047}
+.c-fr{background:#fff3e0;color:#bf360c}.c-fr::before{background:#fb8c00}
+.c-pr{background:#fce4ec;color:#880e4f}.c-pr::before{background:#e91e63}
+.ov{position:fixed;inset:0;background:rgba(5,18,38,.58);z-index:200;display:flex;align-items:flex-end;justify-content:center;animation:fi .18s ease}
+.sh{background:#fff;border-radius:22px 22px 0 0;width:100%;max-width:430px;max-height:94vh;overflow-y:auto;animation:su .23s cubic-bezier(.32,1,.24,1);padding-bottom:calc(20px + env(safe-area-inset-bottom,0px))}
+.sh-han{width:36px;height:4px;background:#cbd5e0;border-radius:2px;margin:11px auto 0}
+.sh-hdr{padding:13px 18px 0;display:flex;justify-content:space-between;align-items:center}
+.sh-ttl{font-family:var(--S);font-size:17px;font-weight:700}.sh-bd{padding:14px 18px}
+.btn-x{width:32px;height:32px;border-radius:50%;background:#f0f4f8;border:none;font-size:17px;color:var(--mut);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+@keyframes fi{from{opacity:0}to{opacity:1}}@keyframes su{from{transform:translateY(100%)}to{transform:translateY(0)}}
+.fg{display:grid;grid-template-columns:1fr 1fr;gap:11px}.ff{grid-column:1/-1}.fld{display:flex;flex-direction:column}
+.btn-p{background:var(--navy);color:#fff;border-radius:12px;padding:14px;font-size:14px;font-weight:700;width:100%;margin-top:14px;font-family:var(--S)}
+.btn-s{background:#f0f4f8;color:var(--txt);border-radius:12px;padding:12px;font-size:13px;font-weight:600;width:100%}
+.btn-ok{background:var(--g2);color:#fff;border-radius:12px;padding:12px;font-size:13px;font-weight:700;width:100%;font-family:var(--S)}
+.btn-w{background:var(--a2);color:#fff;border-radius:12px;padding:12px;font-size:13px;font-weight:700;width:100%;font-family:var(--S)}
+.btn-d{background:var(--r2);color:#fff;border-radius:12px;padding:12px;font-size:13px;font-weight:700;width:100%;font-family:var(--S)}
+.brow{display:flex;gap:9px;margin-top:10px}.brow>*{flex:1}
+#toast{position:fixed;top:20px;left:50%;transform:translateX(-50%) translateY(-90px);background:var(--navy);color:#fff;border-radius:12px;padding:11px 20px;font-size:13px;font-weight:600;z-index:9999;transition:transform .3s cubic-bezier(.32,1,.24,1);white-space:nowrap;box-shadow:0 4px 24px rgba(0,0,0,.25);pointer-events:none}
+#toast.show{transform:translateX(-50%) translateY(0)}
+#syncbar{position:fixed;top:0;left:50%;transform:translateX(-50%);width:100%;max-width:430px;z-index:999;background:var(--sky);color:#fff;font-size:12px;font-weight:700;padding:6px 16px;display:flex;align-items:center;gap:8px;justify-content:center;transition:transform .3s;transform:translateX(-50%) translateY(-40px)}
+#syncbar.show{transform:translateX(-50%) translateY(0)}
+.sg{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;padding:13px}
+.sb2{background:#fff;border-radius:14px;padding:13px 8px;text-align:center;border:1px solid var(--bdr)}
+.sn{font-family:var(--S);font-size:26px;font-weight:800;line-height:1}
+.sl{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.4px;color:var(--mut);margin-top:3px}
+.fp{padding:5px 13px;border-radius:20px;border:none;font-size:11px;font-weight:700;cursor:pointer;white-space:nowrap;flex-shrink:0}
+.uc{background:#fff;border:1px solid var(--bdr);border-radius:var(--rad);padding:14px;margin:0 12px 9px;cursor:pointer;display:flex;gap:12px;transition:background .12s}
+.uc:active{background:#f0f4f8}
+.db{width:44px;height:44px;border-radius:11px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-family:var(--S);font-size:9px;font-weight:800;text-align:center;line-height:1.3}
+.sec-lbl{font-size:10px;font-weight:700;color:var(--mut);text-transform:uppercase;letter-spacing:1px;margin:16px 16px 8px}
+/* auth */
+.aw{min-height:100vh;background:linear-gradient(160deg,var(--navy2) 0%,var(--navy) 50%,#005fab 100%);display:flex;flex-direction:column;align-items:center;padding:56px 24px 40px}
+.acard{background:#fff;border-radius:20px;padding:24px 22px;width:100%;max-width:380px;margin-top:28px;box-shadow:0 8px 40px rgba(0,0,0,.25)}
+.atab{display:flex;background:#f0f4f8;border-radius:12px;padding:4px;margin-bottom:18px}
+.atab button{flex:1;padding:9px;border-radius:9px;border:none;font-size:13px;font-weight:700;background:transparent;color:var(--mut)}
+.atab button.active{background:#fff;color:var(--navy);box-shadow:0 1px 4px rgba(0,0,0,.1)}
+/* loading */
+#loading{position:fixed;inset:0;background:var(--navy);z-index:9000;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff}
+@keyframes spin{to{transform:rotate(360deg)}}
+.spinner{width:36px;height:36px;border:3px solid rgba(255,255,255,.2);border-top-color:#fff;border-radius:50%;animation:spin .8s linear infinite;margin-top:20px}
+/* setup screen */
+#setup{position:fixed;inset:0;background:#0d1b2a;z-index:9500;overflow-y:auto;display:none;flex-direction:column;align-items:center;padding:36px 20px 40px}
+.setup-card{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:18px;padding:22px;width:100%;max-width:420px;margin-top:20px}
+.step-row{display:flex;gap:12px;margin-bottom:18px;align-items:flex-start}
+.step-num{width:28px;height:28px;border-radius:50%;background:var(--sky);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:13px;flex-shrink:0;color:#fff}
+.step-txt{font-size:13px;line-height:1.7;color:rgba(255,255,255,.8)}
+.step-txt code{background:rgba(255,255,255,.12);padding:2px 7px;border-radius:4px;font-size:11px;color:#7ecfff;word-break:break-all;display:inline-block}
+.setup-input{background:rgba(255,255,255,.08);border:1.5px solid rgba(255,255,255,.2);color:#fff;border-radius:10px;padding:12px 14px;font-size:13px;width:100%;margin-top:8px;font-family:var(--B)}
+.setup-input::placeholder{color:rgba(255,255,255,.35)}
+.setup-input:focus{outline:none;border-color:var(--sky)}
+</style>
+</head>
+<body>
+
+<!-- SETUP SCREEN: shown first time -->
+
+
+<!-- LOADING -->
+<div id="loading">
+  <div style="font-size:52px">⚙️</div>
+  <div style="font-family:'Syne',sans-serif;font-size:28px;font-weight:800;margin-top:12px;letter-spacing:-1px">EquipBook</div>
+  <div style="font-size:12px;color:rgba(255,255,255,.5);margin-top:5px">ENGINEERING SOLUTIONS · SA WATER</div>
+  <div class="spinner"></div>
+  <div id="ldmsg" style="font-size:12px;color:rgba(255,255,255,.4);margin-top:16px">Loading…</div>
+</div>
+
+<div id="syncbar"><div style="width:8px;height:8px;border-radius:50%;background:#fff;animation:spin .6s linear infinite;border:2px solid rgba(255,255,255,.3);border-top-color:#fff;flex-shrink:0"></div>Syncing changes…</div>
+<div id="app"></div>
+<div id="toast"></div>
+
+<script>
+'use strict';
+
+// ══════════════════════════════════════════════════
+//  CONFIG  — set after setup
+// ══════════════════════════════════════════════════
+let GAS_URL = 'https://script.google.com/macros/s/AKfycbw8gAPH88f4RDg-ehFi0hilFWg9OuN14UCHANug4gRno_zqEkN5da5N1t4mwx5T_Yab/exec';
+let LOCAL_MODE = false;
+const LS = 'eb6';
+let _syncTimer = null;
+let _dirtyQueue = [];  // pending writes when offline
+let _lastPull = 0;
+let _polling = null;
+
+// ══════════════════════════════════════════════════
+//  TAXONOMY
+// ══════════════════════════════════════════════════
+const DC={
+  Hydraulic: {abbr:'HYD',col:['#dbeafe','#1e3a8a'],cats:{'Pressure Logger':'PL','Flow Meter':'FM','Level Logger':'LL','Water Quality':'WQ','Data Logger':'DL','Pump Tester':'PT'}},
+  Civil:     {abbr:'CVL',col:['#fef9c3','#713f12'],cats:{'Compaction Gauge':'CP','Level Survey':'LS','Concrete Tester':'CT','Soil Test':'ST','GPS Survey':'GP'}},
+  Mechanical:{abbr:'MCH',col:['#f3e8ff','#4c1d95'],cats:{'Torque Wrench':'TQ','Vibration Meter':'VB','Pressure Gauge':'PG','Temperature Sensor':'TS','NDT Equipment':'ND'}},
+  Material:  {abbr:'MTL',col:['#dcfce7','#14532d'],cats:{'Thickness Gauge':'TG','Hardness Tester':'HT','Tensile Tester':'TT','Coating Thickness':'CK','Microscope':'MS'}},
+};
+const DEPTS=['Hydraulic','Civil','Mechanical','Material'];
+const CONDITIONS=['Good','Fair','Poor'];
+const POSITIONS=['Engineer','Senior Engineer','Principal Engineer','Project Manager','Technician','Graduate Engineer','Scientist','Team Leader'];
+const ISSUE_TYPES=['Malfunction','Damage','Calibration Needed','Battery Issue','Software Error','Missing Accessory','Other'];
+
+// ══════════════════════════════════════════════════
+//  STATE
+// ══════════════════════════════════════════════════
+const S={
+  units:{},bookings:{},issues:{},users:{},
+  currentUser:null,authTab:'login',view:'home',
+  iF:{q:'',dept:'All',cat:'All',status:'All'},
+  bF:{q:'',userId:'',df:'',dt:'',ret:false},
+};
+
+// ══════════════════════════════════════════════════
+//  SEED DATA
+// ══════════════════════════════════════════════════
+const SEED_UNITS={
+  'HYD-PL-001':{id:'HYD-PL-001',dept:'Hydraulic',cat:'Pressure Logger',brand:'Inflowmatix',model:'Pressure Logger Pro',sn:'IF-12243',location:'G29',station:'A1',condition:'Good',calDate:'2026-02-01',calInterval:12,status:'Available',notes:'',responsible:'',desc:'Digital pressure data logger for hydraulic networks. Max 20 bar. IP68. Bluetooth sync.',sop:'1. Charge unit fully.\n2. Pair via Bluetooth in InflowApp.\n3. Set logging interval (default 15 min).\n4. Install on pipe with saddle clamp ≥5D from fittings.\n5. Download data and charge before returning.'},
+  'HYD-PL-002':{id:'HYD-PL-002',dept:'Hydraulic',cat:'Pressure Logger',brand:'Inflowmatix',model:'Pressure Logger Pro',sn:'IF-12244',location:'G29',station:'A2',condition:'Good',calDate:'2026-01-15',calInterval:12,status:'Available',notes:'',responsible:'',desc:'Digital pressure data logger. Max 20 bar. IP68.',sop:'1. Charge unit fully.\n2. Pair via Bluetooth.\n3. Set logging interval.\n4. Install on pipe.\n5. Download data before returning.'},
+  'HYD-PL-003':{id:'HYD-PL-003',dept:'Hydraulic',cat:'Pressure Logger',brand:'Inflowmatix',model:'Pressure Logger Pro',sn:'IF-12245',location:'G29',station:'A3',condition:'Fair',calDate:'2025-11-01',calInterval:12,status:'Available',notes:'Battery drains faster than normal',responsible:'',desc:'Digital pressure data logger.',sop:'1. Charge unit fully.\n2. Pair via Bluetooth.\n3. Set logging interval.\n4. Install on pipe.\n5. Download data before returning.'},
+  'HYD-PL-004':{id:'HYD-PL-004',dept:'Hydraulic',cat:'Pressure Logger',brand:'Inflowmatix',model:'Pressure Logger Pro',sn:'IF-12246',location:'G29',station:'A4',condition:'Good',calDate:'2026-03-10',calInterval:12,status:'Available',notes:'',responsible:'',desc:'Digital pressure data logger.',sop:'1. Charge unit fully.\n2. Pair via Bluetooth.\n3. Set logging interval.\n4. Install on pipe.\n5. Download data before returning.'},
+  'HYD-FM-001':{id:'HYD-FM-001',dept:'Hydraulic',cat:'Flow Meter',brand:'Xylem',model:'Magnetic EM 2000',sn:'XY-22100',location:'G29',station:'B1',condition:'Good',calDate:'2026-02-20',calInterval:12,status:'Available',notes:'',responsible:'',desc:'Electromagnetic flow meter for full-pipe measurement.',sop:'1. Verify pipe is fully flowing.\n2. Install electrodes perpendicular to flow.\n3. Zero meter.\n4. Record in L/s or m³/h.'},
+  'HYD-FM-002':{id:'HYD-FM-002',dept:'Hydraulic',cat:'Flow Meter',brand:'Xylem',model:'Magnetic EM 2000',sn:'XY-22101',location:'G29',station:'B2',condition:'Poor',calDate:'2025-08-01',calInterval:6,status:'Available',notes:'Sensor readings intermittent',responsible:'',desc:'Electromagnetic flow meter.',sop:'1. Verify pipe is fully flowing.\n2. Install electrodes perpendicular to flow.\n3. Zero meter.\n4. Verify readings are stable.'},
+  'HYD-FM-003':{id:'HYD-FM-003',dept:'Hydraulic',cat:'Flow Meter',brand:'IXOM',model:'Ultrasonic Clamp-On',sn:'IX-33050',location:'G29',station:'B3',condition:'Good',calDate:'2026-01-01',calInterval:12,status:'Available',notes:'',responsible:'',desc:'Portable clamp-on ultrasonic flow meter.',sop:'1. Clean pipe surface.\n2. Apply coupling gel.\n3. Clamp transducers per spacing chart.\n4. Select pipe material and wall thickness.'},
+  'HYD-FM-004':{id:'HYD-FM-004',dept:'Hydraulic',cat:'Flow Meter',brand:'IXOM',model:'Ultrasonic Clamp-On',sn:'IX-33051',location:'G29',station:'B4',condition:'Good',calDate:'2026-04-01',calInterval:12,status:'Available',notes:'',responsible:'',desc:'Portable clamp-on ultrasonic flow meter.',sop:'1. Clean pipe surface.\n2. Apply coupling gel.\n3. Clamp transducers per spacing chart.\n4. Select pipe material and wall thickness.'},
+  'CVL-CP-001':{id:'CVL-CP-001',dept:'Civil',cat:'Compaction Gauge',brand:'CAT',model:'Nuclear Density Gauge',sn:'CAT-44001',location:'G29',station:'C1',condition:'Good',calDate:'2026-02-01',calInterval:12,status:'Available',notes:'Radiation licence required',responsible:'',desc:'Radioactive soil density and moisture gauge.',sop:'1. Verify radiation licence.\n2. Check source rod.\n3. Set source depth.\n4. Place on flat surface.\n5. Count minimum 1 minute.'},
+  'MCH-TQ-001':{id:'MCH-TQ-001',dept:'Mechanical',cat:'Torque Wrench',brand:'Fluke',model:'Torque Analyser 500',sn:'FL-55010',location:'G29',station:'D1',condition:'Good',calDate:'2026-01-10',calInterval:12,status:'Available',notes:'',responsible:'',desc:'Digital torque wrench analyser. Range 5–500 Nm.',sop:'1. Select socket size.\n2. Set target torque in Nm.\n3. Apply force slowly.\n4. Audible click at target.\n5. Export data via USB.'},
+  'MCH-TQ-002':{id:'MCH-TQ-002',dept:'Mechanical',cat:'Torque Wrench',brand:'Fluke',model:'Torque Analyser 500',sn:'FL-55011',location:'G29',station:'D2',condition:'Fair',calDate:'2025-10-01',calInterval:12,status:'Available',notes:'Display scratch — functional',responsible:'',desc:'Digital torque wrench analyser.',sop:'1. Select socket size.\n2. Set target torque in Nm.\n3. Apply force slowly.\n4. Audible click at target.\n5. Export data via USB.'},
+  'MCH-TQ-003':{id:'MCH-TQ-003',dept:'Mechanical',cat:'Torque Wrench',brand:'Fluke',model:'Torque Analyser 500',sn:'FL-55012',location:'G29',station:'D3',condition:'Good',calDate:'2026-03-20',calInterval:12,status:'Available',notes:'',responsible:'',desc:'Digital torque wrench analyser.',sop:'1. Select socket size.\n2. Set target torque in Nm.\n3. Apply force slowly.\n4. Audible click at target.\n5. Export data via USB.'},
+  'MTL-TG-001':{id:'MTL-TG-001',dept:'Material',cat:'Thickness Gauge',brand:'Olympus',model:'38DL Plus UT',sn:'OL-66200',location:'G29',station:'E1',condition:'Good',calDate:'2026-02-15',calInterval:12,status:'Available',notes:'',responsible:'',desc:'Ultrasonic thickness gauge. Accuracy ±0.1 mm.',sop:'1. Calibrate on reference block.\n2. Apply couplant gel.\n3. Press probe perpendicularly.\n4. Read in mm.\n5. Clean probe after use.'},
+  'MTL-TG-002':{id:'MTL-TG-002',dept:'Material',cat:'Thickness Gauge',brand:'Olympus',model:'38DL Plus UT',sn:'OL-66201',location:'G29',station:'E2',condition:'Good',calDate:'2025-12-01',calInterval:12,status:'Available',notes:'',responsible:'',desc:'Ultrasonic thickness gauge.',sop:'1. Calibrate on reference block.\n2. Apply couplant gel.\n3. Press probe perpendicularly.\n4. Read in mm.\n5. Clean probe after use.'},
+};
+
+// ══════════════════════════════════════════════════
+//  GOOGLE APPS SCRIPT  SYNC
+//  Works from any browser, any URL, no CORS issues.
+//  Data stored in Google Sheets — visible to all users.
+//  Polling every 8 seconds keeps all devices in sync.
+// ══════════════════════════════════════════════════
+async function gasRead(){
+  const r = await fetch(GAS_URL, {method:'GET', cache:'no-store'});
+  if(!r.ok) throw new Error('HTTP '+r.status);
+  const txt = await r.text();
+  return JSON.parse(txt||'{}');
+}
+
+async function gasWrite(data){
+  // Apps Script doPost via no-cors — we use a form POST
+  await fetch(GAS_URL, {
+    method:'POST',
+    headers:{'Content-Type':'application/json'},
+    body: JSON.stringify(data),
+    mode:'no-cors'  // no-cors: response is opaque but write still succeeds
+  });
+}
+
+async function pullData(){
+  try{
+    const d = await gasRead();
+    if(d && typeof d==='object' && Object.keys(d).length>0){
+      S.units    = d.units    || S.units;
+      S.bookings = d.bookings || {};
+      S.issues   = d.issues   || {};
+      S.users    = d.users    || S.users;
+    } else if(!Object.keys(S.units).length){
+      // First run — push seed data
+      S.units = {...SEED_UNITS};
+      await pushData();
+    }
+    saveLS();
+    _lastPull = Date.now();
+    return true;
+  }catch(e){
+    console.warn('Pull failed:', e.message);
+    return false;
+  }
+}
+
+async function pushData(){
+  if(LOCAL_MODE) return;
+  const data = {units:S.units,bookings:S.bookings,issues:S.issues,users:S.users};
+  showSyncBar(true);
+  try{
+    await gasWrite(data);
+    showSyncBar(false);
+    saveLS();
+  }catch(e){
+    showSyncBar(false);
+    console.warn('Push failed:', e.message);
+    // queue for retry
+    _dirtyQueue.push(data);
+  }
+}
+
+function startPolling(){
+  if(_polling) clearInterval(_polling);
+  _polling = setInterval(async ()=>{
+    if(LOCAL_MODE) return;
+    // Auth removed — no login screen guard needed
+    // Never re-render while user is actively typing in any field
+    const a = document.activeElement;
+    if(a && (a.tagName==='INPUT' || a.tagName==='TEXTAREA' || a.tagName==='SELECT')) return;
+    const snapBefore = JSON.stringify(S.units)+JSON.stringify(S.bookings)+JSON.stringify(S.issues)+JSON.stringify(S.users);
+    const ok = await pullData();
+    if(!ok) return;
+    // Only re-render if data actually changed
+    const snapAfter = JSON.stringify(S.units)+JSON.stringify(S.bookings)+JSON.stringify(S.issues)+JSON.stringify(S.users);
+    if(snapAfter !== snapBefore) render();
+    // flush queued writes
+    if(_dirtyQueue.length>0){
+      const latest = _dirtyQueue[_dirtyQueue.length-1];
+      _dirtyQueue = [];
+      await gasWrite(latest);
+    }
+  }, 8000);
+}
+
+function showSyncBar(show){
+  const el=document.getElementById('syncbar');
+  if(el){ el.classList.toggle('show',show); }
+}
+
+// ══════════════════════════════════════════════════
+//  LOCAL STORAGE
+// ══════════════════════════════════════════════════
+function saveLS(){
+  try{ localStorage.setItem(LS, JSON.stringify({units:S.units,bookings:S.bookings,issues:S.issues,users:S.users})); }catch(e){}
+}
+function loadLS(){
+  try{
+    const r=localStorage.getItem(LS);
+    if(r){ const d=JSON.parse(r); S.units=d.units||{}; S.bookings=d.bookings||{}; S.issues=d.issues||{}; S.users=d.users||{}; }
+  }catch(e){}
+}
+function saveSession(){ try{localStorage.setItem(LS+'_me',S.currentUser?JSON.stringify(S.currentUser):'');}catch(e){} }
+function loadSession(){
+  try{
+    const u=localStorage.getItem(LS+'_me');
+    if(u){
+      const p=JSON.parse(u);
+      if(p&&p.id){
+        // Always use live data from server — never stale local copy
+        const live=S.users[p.id];
+        if(live) S.currentUser=live;
+        // If user not found in live data, stay logged out (force re-login)
+        else S.currentUser=null;
+      }
+    }
+  }catch(e){}
+}
+function saveConfig(url){ try{localStorage.setItem(LS+'_url',url);}catch(e){} }
+function loadConfig(){ try{return localStorage.getItem(LS+'_url')||'';}catch(e){return '';} }
+
+// ══════════════════════════════════════════════════
+//  DATA WRITE  (update local + push to cloud)
+// ══════════════════════════════════════════════════
+function deepSet(path,val){
+  const parts=path.split('/').filter(Boolean);
+  const last=parts.pop();
+  let obj=S;
+  for(const p of parts){ if(obj[p]==null)obj[p]={}; obj=obj[p]; }
+  if(val===null) delete obj[last]; else obj[last]=val;
+}
+
+async function dbSet(path,val){
+  deepSet(path,val);
+  saveLS();
+  render();
+  await pushData();
+}
+async function dbDel(path){
+  deepSet(path,null);
+  saveLS();
+  render();
+  await pushData();
+}
+
+// ══════════════════════════════════════════════════
+//  SETUP SCREEN
+// ══════════════════════════════════════════════════
+function copyGasCode(){
+  const code = document.getElementById('gas-code').textContent;
+  navigator.clipboard?.writeText(code).then(()=>toast('Code copied ✓')).catch(()=>{
+    const ta=document.createElement('textarea');ta.value=code;document.body.appendChild(ta);ta.select();document.execCommand('copy');ta.remove();toast('Code copied ✓');
+  });
+}
+
+async function connectGAS(){
+  const url=(document.getElementById('gas-url')?.value||'').trim();
+  const errEl=document.getElementById('setup-err');
+  const btn=document.getElementById('connect-btn');
+  errEl.style.display='none';
+  if(!url||!url.includes('script.google.com')){
+    errEl.textContent='Please paste the Web app URL from Google Apps Script (starts with https://script.google.com)';
+    errEl.style.display='block'; return;
+  }
+  btn.textContent='Testing connection…'; btn.disabled=true;
+  try{
+    // Test read
+    const r = await fetch(url+'?test=1', {method:'GET', cache:'no-store'});
+    if(!r.ok) throw new Error('HTTP '+r.status);
+    // Save and launch
+    GAS_URL = url;
+    saveConfig(url);
+    document.getElementById('setup').style.display='none';
+    document.getElementById('loading').style.display='flex';
+    document.getElementById('ldmsg').textContent='Loading data…';
+    await pullData();
+    if(!Object.keys(S.units).length){ S.units={...SEED_UNITS}; await pushData(); }
+    startPolling();
+    hideLoading();
+    loadSession();
+    render();
+  }catch(e){
+    errEl.innerHTML=`<strong>Connection failed:</strong> ${e.message}<br><br>Make sure you:<br>• Copied the Web App URL (not the script URL)<br>• Set "Who has access" to <strong>Anyone</strong><br>• Clicked <strong>Deploy</strong> (not just Save)`;
+    errEl.style.display='block';
+    btn.textContent='CONNECT & LAUNCH →'; btn.disabled=false;
+  }
+}
+
+function useLocal(){
+  LOCAL_MODE=true;
+  document.getElementById('setup').style.display='none';
+  document.getElementById('loading').style.display='flex';
+  loadLS();
+  if(!Object.keys(S.units).length){ S.units={...SEED_UNITS}; saveLS(); }
+  hideLoading();
+  loadSession();
+  render();
+  toast('Running in local-only mode');
+}
+
+function hideLoading(){ const el=document.getElementById('loading');if(el)el.style.display='none'; }
+
+// ══════════════════════════════════════════════════
+//  HELPERS
+// ══════════════════════════════════════════════════
+const gU=id=>S.units[id];
+const gUser=id=>S.users[id];
+const gBk=id=>S.bookings[id];
+const aBkOf=uid=>Object.values(S.bookings).find(b=>b.unitId===uid&&b.status==='Active');
+const today=()=>new Date().toISOString().split('T')[0];
+const fD=d=>{ if(!d||d==='—')return'—'; const p=d.split('-');return`${p[2]}/${p[1]}/${p[0]}`; };
+const fDT=iso=>{ if(!iso)return'—'; const d=new Date(iso);return fD(d.toISOString().split('T')[0])+' '+d.toTimeString().slice(0,5); };
+const dTo=d=>Math.ceil((new Date(d)-new Date())/86400000);
+const cDue=(dt,mo)=>{ if(!dt||!mo)return''; const d=new Date(dt);d.setMonth(d.getMonth()+parseInt(mo));return d.toISOString().split('T')[0]; };
+const nid=()=>'ID-'+Date.now()+'-'+Math.random().toString(36).slice(2,5);
+const fn=u=>u?u.firstName+' '+u.lastName:'—';
+function nextId(dept,cat){ const dc=DC[dept];if(!dc)return'GEN-XX-001'; const ab=dc.cats[cat]||cat.slice(0,2).toUpperCase(); const pf=`${dc.abbr}-${ab}-`; const nums=Object.keys(S.units).filter(id=>id.startsWith(pf)).map(id=>parseInt(id.slice(pf.length))||0); return pf+String((nums.length?Math.max(...nums):0)+1).padStart(3,'0'); }
+function sChip(s){ const m={Available:'c-av',Booked:'c-bk','Checked Out':'c-co','Out of Service':'c-os'}; return`<span class="chip ${m[s]||'c-av'}">${s}</span>`; }
+function cChip(c){ const m={Good:'c-gd',Fair:'c-fr',Poor:'c-pr'}; return`<span class="chip ${m[c]||'c-gd'}">${c}</span>`; }
+const gv=id=>(document.getElementById(id)?.value||'').trim();
+let _tt;
+function toast(msg,t='ok'){ const el=document.getElementById('toast');el.textContent=msg;el.style.background=t==='err'?'#b71c1c':'#003865';el.classList.add('show');clearTimeout(_tt);_tt=setTimeout(()=>el.classList.remove('show'),3400); }
+
+// ══════════════════════════════════════════════════
+//  SHEET STACK
+// ══════════════════════════════════════════════════
+let _stk=[];
+function sw(){ let w=document.getElementById('sw');if(!w){w=document.createElement('div');w.id='sw';document.body.appendChild(w);}return w; }
+function openSh(h){ sw().innerHTML=h;_stk=[h]; }
+function pushSh(h){ sw().innerHTML=h;_stk.push(h); }
+function closeSh(e){ if(e&&!e.target.classList.contains('ov'))return;_stk=[];sw().innerHTML=''; }
+function popSh(){ _stk.pop();sw().innerHTML=_stk.length?_stk[_stk.length-1]:''; }
+
+// ══════════════════════════════════════════════════
+//  RENDER
+// ══════════════════════════════════════════════════
+function navigate(v){ S.view=v;document.querySelectorAll('.nb').forEach(b=>b.classList.toggle('active',b.dataset.view===v));rView(); }
+function render(){
+  // Auth removed
+  const app=document.getElementById('app');
+  if(!app.querySelector('#content')){
+    app.innerHTML=`<div id="content"></div><nav id="nav">${[['home','🏠','Home'],['instruments','🔬','Equipment'],['bookings','📋','Bookings'],['admin','⚙️','Admin']].map(([v,i,l])=>`<button class="nb${S.view===v?' active':''}" data-view="${v}" onclick="navigate('${v}')"><span class="ni">${i}</span><span class="nl">${l}</span><div class="nd"></div></button>`).join('')}</nav>`;
+  }
+  document.querySelectorAll('.nb').forEach(b=>b.classList.toggle('active',b.dataset.view===S.view));
+  rView();
+}
+function rView(){ const c=document.getElementById('content');if(!c)return;const views={home:vHome,instruments:vInstr,bookings:vBk,admin:vAdmin};c.innerHTML=(views[S.view]||vHome)(); }
+
+// ══════════════════════════════════════════════════
+//  AUTH
+// ══════════════════════════════════════════════════
+function rAuth(){
+  const isL=S.authTab==='login';
+  document.getElementById('app').innerHTML=`
+  <div class="aw">
+    <div style="text-align:center"><div style="font-size:52px">⚙️</div>
+      <div style="font-family:var(--S);font-size:34px;font-weight:800;color:#fff;letter-spacing:-1px">EquipBook</div>
+      <div style="font-size:12px;color:rgba(255,255,255,.5);margin-top:4px">ENGINEERING SOLUTIONS · SA WATER</div>
+    </div>
+    <div class="acard">
+      <div class="atab">
+        <button class="${isL?'active':''}" onclick="S.authTab='login';rAuth()">Sign In</button>
+        <button class="${!isL?'active':''}" onclick="S.authTab='register';rAuth()">Register</button>
+      </div>
+      <div id="aerr" style="display:none;background:#fce4ec;color:#b71c1c;border-radius:9px;padding:10px 12px;font-size:13px;margin-bottom:12px"></div>
+      ${isL?`
+        <div class="fld" style="margin-bottom:11px"><label>SA Water Email</label><input id="l-em" type="email" placeholder="firstname.lastname@sawater.com.au" autocomplete="email"/></div>
+        <div class="fld"><label>Password</label><input id="l-pw" type="password" placeholder="••••••••"/></div>
+        <button class="btn-p" style="margin-top:18px" onclick="doLogin()">SIGN IN</button>`:`
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px">
+          <div class="fld"><label>First Name</label><input id="r-fn" placeholder="First"/></div>
+          <div class="fld"><label>Last Name</label><input id="r-ln" placeholder="Last"/></div>
+        </div>
+        <div class="fld" style="margin-bottom:10px"><label>SA Water Email</label><input id="r-em" type="email" placeholder="firstname.lastname@sawater.com.au"/></div>
+        <div class="fld" style="margin-bottom:10px"><label>Phone</label><input id="r-ph" type="tel" placeholder="04XX XXX XXX"/></div>
+        <div class="fld" style="margin-bottom:10px"><label>Position</label><select id="r-pos"><option value="">Select...</option>${POSITIONS.map(p=>`<option>${p}</option>`).join('')}</select></div>
+        <div class="fld"><label>Password</label><input id="r-pw" type="password" placeholder="Min 6 characters"/></div>
+        <button class="btn-p" style="margin-top:18px" onclick="doReg()">CREATE ACCOUNT</button>`}
+    </div>
+    <div style="font-size:11px;color:rgba(255,255,255,.3);margin-top:18px;text-align:center">Authorised SA Water personnel only</div>
+  </div>`;
+}
+const aErr=m=>{const el=document.getElementById('aerr');el.textContent='⚠ '+m;el.style.display='block';};
+function doLogin(){
+  const em=gv('l-em').toLowerCase(),pw=gv('l-pw');
+  if(!em||!pw)return aErr('Please fill in all fields.');
+  const u=Object.values(S.users).find(u=>u.email===em&&u.pw===pw);
+  if(!u)return aErr('Incorrect email or password.');
+  S.currentUser=u;saveSession();render();
+}
+function doReg(){
+  const fn2=gv('r-fn'),ln=gv('r-ln'),em=gv('r-em').toLowerCase(),ph=gv('r-ph'),pos=gv('r-pos'),pw=gv('r-pw');
+  if(!fn2||!ln||!em||!ph||!pos||!pw)return aErr('Please fill in all fields.');
+  if(!em.endsWith('@sawater.com.au'))return aErr('Must use your @sawater.com.au email.');
+  if(pw.length<6)return aErr('Password must be at least 6 characters.');
+  if(Object.values(S.users).find(u=>u.email===em))return aErr('Account already exists for this email.');
+  const id=nid();
+  const user={id,firstName:fn2,lastName:ln,email:em,phone:ph,position:pos,pw,createdAt:new Date().toISOString()};
+  dbSet(`users/${id}`,user).then(()=>{S.currentUser=user;saveSession();render();toast(`Welcome, ${fn2}!`);});
+}
+function doLogout(){render();} // auth removed
+
+// ══════════════════════════════════════════════════
+//  HOME
+// ══════════════════════════════════════════════════
+function vHome(){
+  const me={firstName:'User',lastName:'',position:'',id:'guest'};
+  const units=Object.values(S.units),bks=Object.values(S.bookings);
+  const avail=units.filter(u=>u.status==='Available').length;
+  const inUse=units.filter(u=>u.status==='Booked'||u.status==='Checked Out').length;
+  const oIss=Object.values(S.issues).filter(i=>i.status==='Open').length;
+  const myBk=bks.filter(b=>b.status==='Active'&&b.userId===me.id);
+  const calW=units.filter(u=>{ const d=dTo(cDue(u.calDate,u.calInterval)||'9999');return d<=30; });
+  const syncInfo=LOCAL_MODE?'<span style="background:rgba(255,255,255,.15);border-radius:6px;padding:2px 8px;font-size:10px;font-weight:700;color:#ffd54f;margin-left:6px">LOCAL ONLY</span>':'<span style="background:rgba(255,255,255,.15);border-radius:6px;padding:2px 8px;font-size:10px;font-weight:700;color:#a5f3a5;margin-left:6px">● LIVE SYNC</span>';
+  return`
+  <div class="tb">
+    <div style="display:flex;justify-content:space-between;align-items:flex-start">
+      <div><div style="font-size:10px;font-weight:700;color:rgba(255,255,255,.45);letter-spacing:2px;margin-bottom:2px">ENGINEERING SOLUTIONS</div>
+      <div class="tb-h">EquipBook${syncInfo}</div></div>
+
+    </div>
+  </div>
+  <div class="sg">
+    <div class="sb2"><div class="sn" style="color:var(--g2)">${avail}</div><div class="sl">Available</div></div>
+    <div class="sb2"><div class="sn" style="color:var(--a2)">${inUse}</div><div class="sl">In Use</div></div>
+    <div class="sb2"><div class="sn" style="color:var(--r2)">${oIss}</div><div class="sl">Issues</div></div>
+  </div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:9px;padding:0 12px 4px">
+    ${[['🔬','Equipment','instruments',`${units.length} units`],['📋','Bookings','bookings',`${bks.filter(b=>b.status==='Active').length} active`],['🔴','Issues','admin',`${oIss} open`],['📅','Cal Alerts','home',`${calW.length} due`]].map(([ic,lb,vw,sub])=>`
+      <button onclick="navigate('${vw}')" style="background:#fff;border:1px solid var(--bdr);border-radius:var(--rad);padding:16px 14px;text-align:left">
+        <div style="font-size:24px;margin-bottom:7px">${ic}</div>
+        <div style="font-weight:700;font-size:13px">${lb}</div>
+        <div style="font-size:11px;color:var(--mut);margin-top:2px">${sub}</div>
+      </button>`).join('')}
+  </div>
+  ${myBk.length?`<div class="sec-lbl" style="margin-top:14px">My Active Bookings</div>
+  ${myBk.map(b=>{ const u=gU(b.unitId);if(!u)return'';
+    return`<div style="background:#fff;border:1px solid var(--bdr);border-radius:var(--rad);padding:14px;margin:0 12px 9px;cursor:pointer" onclick="openUnit('${u.id}')">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:5px">
+        <div><div style="font-weight:700;font-size:13px">${u.brand} ${u.model}</div>
+        <div style="font-family:monospace;font-size:10px;color:var(--sky);font-weight:700">${u.id} · SN ${u.sn}</div></div>
+        ${b.checkedOut?`<span class="chip c-co">📤 Out</span>`:`<span class="chip c-bk">📦 Booked</span>`}
+      </div>
+      <div style="font-size:12px;color:var(--mut)">📍 ${b.deployLoc} · 📅 ${fD(b.bookDate)} → ${fD(b.returnDate)}</div>
+      <div class="brow" style="margin-top:10px">
+        ${!b.checkedOut?`<button class="btn-w" style="padding:9px;font-size:12px;margin:0" onclick="event.stopPropagation();checkOut('${b.id}')">📤 Check Out</button>`
+        :`<button class="btn-ok" style="padding:9px;font-size:12px;margin:0" onclick="event.stopPropagation();checkIn('${b.id}')">📥 Check In</button>`}
+      </div>
+    </div>`;}).join('')}`:''}
+  ${calW.length?`<div class="sec-lbl" style="margin-top:14px">⚠ Calibration Alerts</div>
+  ${calW.map(u=>{ const due=cDue(u.calDate,u.calInterval);const d=dTo(due);
+    return`<div style="background:${d<0?'#fce4ec':'#fff3e0'};border-radius:12px;padding:12px 14px;margin:0 12px 8px;cursor:pointer" onclick="openUnit('${u.id}')">
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <div><div style="font-weight:700;font-size:13px">${u.brand} ${u.model}</div>
+        <div style="font-family:monospace;font-size:10px;color:var(--mut)">${u.id} · Due ${fD(due)}</div></div>
+        <span class="chip ${d<0?'c-os':'c-bk'}">${d<0?Math.abs(d)+'d overdue':d+'d left'}</span>
+      </div>
+    </div>`;}).join('')}`:''}
+  <div style="height:8px">`;
+}
+
+function showProfile(){} // auth removed
+
+// ══════════════════════════════════════════════════
+//  INSTRUMENTS
+// ══════════════════════════════════════════════════
+function vInstr(){
+  const f=S.iF;
+  let units=Object.values(S.units);
+  if(f.dept!=='All') units=units.filter(u=>u.dept===f.dept);
+  if(f.cat!=='All')  units=units.filter(u=>u.cat===f.cat);
+  if(f.status!=='All') units=units.filter(u=>u.status===f.status);
+  if(f.q){const q=f.q.toLowerCase();units=units.filter(u=>[u.id,u.sn,u.brand,u.model,u.dept,u.cat,u.station].some(v=>(v||'').toLowerCase().includes(q)));}
+  units.sort((a,b)=>a.id.localeCompare(b.id));
+  const aCats=f.dept!=='All'?Object.keys(DC[f.dept]?.cats||{}):[...new Set(Object.values(S.units).map(u=>u.cat))].sort();
+  const dPills=['All',...DEPTS].map(d=>`<button class="fp" style="background:${f.dept===d?'var(--navy)':'#f0f4f8'};color:${f.dept===d?'#fff':'var(--txt)'}" onclick="sIF('dept','${d}');sIF('cat','All')">${d}</button>`).join('');
+  const cPills=`<div style="display:flex;gap:7px;overflow-x:auto;padding-bottom:4px;margin-top:8px">${['All',...aCats].map(c=>`<button class="fp" style="background:${f.cat===c?(f.dept!=='All'?DC[f.dept]?.col[1]:'var(--navy)'):'#f0f4f8'};color:${f.cat===c?'#fff':'var(--txt)'};font-size:10px" onclick="sIF('cat','${c}')">${c}</button>`).join('')}</div>`;
+  const cards=units.map(u=>{
+    const dc=DC[u.dept]||{col:['#f0f4f8','#334155'],abbr:'???'};
+    const bk=aBkOf(u.id);const bkr=bk?gUser(bk.userId):null;
+    const due=cDue(u.calDate,u.calInterval);const d=due?dTo(due):999;
+    const oIss=Object.values(S.issues).filter(x=>x.unitId===u.id&&x.status==='Open').length;
+    return`<div class="uc" onclick="openUnit('${u.id}')">
+      <div class="db" style="background:${dc.col[0]};color:${dc.col[1]}">${dc.abbr}</div>
+      <div style="flex:1;min-width:0">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:6px">
+          <div style="min-width:0"><div style="font-weight:700;font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${u.brand} <span style="font-weight:500;color:var(--mut)">${u.model}</span></div>
+          <div style="font-family:monospace;font-size:10px;color:var(--sky);font-weight:700;margin-top:1px">${u.id}</div></div>
+          <div style="flex-shrink:0">${sChip(u.status)}</div>
+        </div>
+        <div style="font-family:monospace;font-size:10px;color:var(--mut);margin-top:3px">SN: ${u.sn} · ${u.cat}</div>
+        <div style="display:flex;gap:8px;margin-top:6px;flex-wrap:wrap;align-items:center">
+          <span style="font-size:11px;color:var(--mut)">📍 ${u.location}-${u.station}</span>
+          ${d<=30?`<span style="font-size:11px;color:${d<0?'var(--r2)':'var(--a2)'};font-weight:600">⚠ Cal ${d<0?'overdue':d+'d'}</span>`:''}
+          ${oIss?`<span style="font-size:11px;color:var(--r2);font-weight:600">🔴 ${oIss} issue${oIss>1?'s':''}</span>`:''}
+          ${bk&&bkr?`<span style="font-size:11px;color:var(--sky)">👤 ${bkr.firstName}</span>`:''}
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+  return`
+  <div class="tb">
+    <div style="display:flex;justify-content:space-between;align-items:center"><div class="tb-h">Equipment</div><button onclick="addUnit()" style="background:rgba(255,255,255,.15);color:#fff;border-radius:10px;padding:7px 13px;font-size:12px;font-weight:700">+ Add</button></div>
+    <input class="srch" id="iQ" placeholder="🔍  Search ID, brand, model, serial..." oninput="sIF('q',this.value)" value="${f.q}"/>
+    <div style="display:flex;gap:7px;overflow-x:auto;padding-bottom:4px;margin-top:9px">${dPills}</div>${cPills}
+  </div>
+  <div style="display:flex;gap:6px;padding:10px 12px 2px;overflow-x:auto">
+    ${['All','Available','Booked','Checked Out','Out of Service'].map(s=>`<button class="fp" style="background:${f.status===s?'var(--navy)':'#f0f4f8'};color:${f.status===s?'#fff':'var(--txt)'};font-size:10px" onclick="sIF('status','${s}')">${s}</button>`).join('')}
+  </div>
+  <div style="padding:8px 0">${cards||`<div style="text-align:center;padding:50px 20px;color:var(--mut)">No units found</div>`}</div>`;
+}
+function sIF(k,val){S.iF[k]=val;rView();setTimeout(()=>{const el=document.getElementById('iQ');if(el&&k==='q'){el.focus();const l=el.value.length;el.setSelectionRange(l,l);}},10);}
+
+function openUnit(uid){
+  const u=gU(uid);if(!u)return;
+  const bk=aBkOf(uid);const bkr=bk?gUser(bk.userId):null;
+  const isMine=true; // auth removed — everyone can act
+  const dc=DC[u.dept]||{col:['#f0f4f8','#334155']};
+  const due=cDue(u.calDate,u.calInterval);const d=due?dTo(due):999;
+  const calOver=d<0,calWarn=d<=30&&d>=0;
+  const calBg=calOver?'#fce4ec':calWarn?'#fff3e0':'#e8f5e9';
+  const calCol=calOver?'#b71c1c':calWarn?'#bf360c':'#1b5e20';
+  const oIss=Object.values(S.issues).filter(x=>x.unitId===uid&&x.status==='Open');
+  const bkH=Object.values(S.bookings).filter(b=>b.unitId===uid&&b.status==='Returned').sort((a,b)=>(b.createdAt||'').localeCompare(a.createdAt||'')).slice(0,5);
+
+  let act='';
+  if(u.status==='Available') act=`<button class="btn-p" onclick="bookUnit('${uid}')">📅 BOOK THIS UNIT</button>`;
+  else if(u.status==='Booked'&&bk&&!bk.checkedOut) act=isMine?`<button class="btn-w" onclick="checkOut('${bk.id}')">📤 CHECK OUT</button>`:`<div style="background:#fff3e0;border-radius:10px;padding:12px;text-align:center;font-size:13px;color:var(--a2)">Booked by <strong>${bkr?fn(bkr):'another user'}</strong> — only they can check out.</div>`;
+  else if(u.status==='Checked Out'&&bk&&bk.checkedOut) act=isMine?`<button class="btn-ok" onclick="checkIn('${bk.id}')">📥 CHECK IN (Return)</button>`:`<div style="background:#e3f2fd;border-radius:10px;padding:12px;text-align:center;font-size:13px;color:#0d47a1">Checked out by <strong>${bkr?fn(bkr):'another user'}</strong> — only they can return it.</div>`;
+
+  openSh(`<div class="ov" onclick="closeSh(event)"><div class="sh">
+    <div class="sh-han"></div>
+    <div style="background:linear-gradient(135deg,${dc.col[1]} 0%,${dc.col[1]}bb 100%);padding:20px 18px">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start">
+        <div><div style="font-size:10px;font-weight:700;color:rgba(255,255,255,.6);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:3px">${u.dept} · ${u.cat}</div>
+        <div style="font-family:var(--S);font-size:20px;font-weight:800;color:#fff;line-height:1.15">${u.brand} ${u.model}</div>
+        <div style="font-family:monospace;font-size:13px;color:rgba(255,255,255,.85);margin-top:3px;font-weight:700">${u.id} · SN ${u.sn}</div></div>
+        <button class="btn-x" onclick="popSh()" style="background:rgba(255,255,255,.2);color:#fff;flex-shrink:0">×</button>
+      </div>
+      <div style="display:flex;gap:6px;margin-top:12px;flex-wrap:wrap">${sChip(u.status)} ${cChip(u.condition)}</div>
+    </div>
+    <div class="sh-bd">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-bottom:14px">
+        ${[['Location',u.location],['Station',u.station],['Department',u.dept],['Category',u.cat]].map(([k,v])=>`<div style="background:#f8fafc;border-radius:10px;padding:11px"><div style="font-size:10px;font-weight:700;color:var(--mut);text-transform:uppercase;margin-bottom:3px">${k}</div><div style="font-size:13px;font-weight:700">${v||'—'}</div></div>`).join('')}
+      </div>
+      ${u.notes?`<div style="background:#fffbeb;border-radius:10px;padding:12px;margin-bottom:14px;font-size:13px;color:#92400e;border-left:3px solid #fbbf24">📝 ${u.notes}</div>`:''}
+      <div style="background:${calBg};border-radius:10px;padding:13px;margin-bottom:14px">
+        <div style="font-size:10px;font-weight:700;color:${calCol};text-transform:uppercase;margin-bottom:8px">${calOver?'⚠ CALIBRATION OVERDUE':calWarn?'⚠ CALIBRATION DUE SOON':'✓ Calibration Current'}</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;font-size:12px">
+          ${[['Last Cal.',fD(u.calDate)],['Interval',u.calInterval+' months'],['Due Date',fD(due)],['Status',calOver?Math.abs(d)+'d overdue':calWarn?d+'d left':'OK']].map(([k,v])=>`<div><div style="font-size:10px;font-weight:700;color:var(--mut);text-transform:uppercase;margin-bottom:2px">${k}</div><div style="font-weight:700;color:${calCol}">${v}</div></div>`).join('')}
+        </div>
+        ${(calWarn||calOver)?`<button class="btn-p" style="margin-top:10px;padding:10px;font-size:12px;background:${calCol}" onclick="markCal('${u.id}')">✓ Mark as Calibrated Today</button>`:''}
+      </div>
+      ${u.desc?`<div style="background:#f8fafc;border-radius:10px;padding:13px;margin-bottom:10px"><div style="font-size:10px;font-weight:700;color:var(--mut);text-transform:uppercase;margin-bottom:6px">Description</div><div style="font-size:13px;color:#374151;line-height:1.6">${u.desc}</div></div>`:''}
+      ${u.sop?`<div style="background:#e8f5e9;border-radius:10px;padding:13px;margin-bottom:14px"><div style="font-size:10px;font-weight:700;color:var(--g1);text-transform:uppercase;margin-bottom:6px">📋 Standard Operating Procedure</div><div style="font-size:12px;color:#1b5e20;line-height:1.8;white-space:pre-line">${u.sop}</div></div>`:''}
+      ${oIss.length?`<div style="background:#fce4ec;border-radius:10px;padding:13px;margin-bottom:14px"><div style="font-size:10px;font-weight:700;color:var(--r1);text-transform:uppercase;margin-bottom:8px">⚠ Open Issues (${oIss.length})</div>${oIss.map(iss=>`<div style="border-left:3px solid var(--r2);padding-left:10px;margin-bottom:10px"><div style="display:flex;justify-content:space-between;margin-bottom:3px"><span style="font-weight:700;font-size:12px;color:#880e4f">${iss.type} · ${iss.severity}</span><span style="font-size:10px;color:var(--mut)">${fD(iss.date)}</span></div><div style="font-size:12px;color:#7f1d1d;line-height:1.5">${iss.comment}</div>${iss.action?`<div style="font-size:11px;color:var(--sky);margin-top:2px">⚙ ${iss.action}</div>`:''}<div style="font-size:11px;color:var(--mut);margin-top:2px">by ${iss.loggedBy}</div></div>`).join('')}</div>`:''}
+      ${bk?`<div style="background:#e3f2fd;border-radius:10px;padding:14px;margin-bottom:14px"><div style="font-size:10px;font-weight:700;color:#0d47a1;text-transform:uppercase;margin-bottom:8px">Active Booking</div><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px"><div style="font-weight:700;font-size:14px">${bkr?fn(bkr):'Unknown'}</div>${bk.checkedOut?`<span class="chip c-co">📤 Out</span>`:`<span class="chip" style="background:#e0e7ff;color:#3730a3">📦 Pending</span>`}</div><div style="font-size:12px;color:var(--mut)">📅 ${fD(bk.bookDate)} ${bk.bookTime} → ${fD(bk.returnDate)}</div><div style="font-size:12px;color:var(--sky);margin-top:3px;font-weight:600">📍 ${bk.deployLoc}</div>${bk.project?`<div style="font-size:12px;color:var(--mut);margin-top:3px">🗂 ${bk.project}</div>`:''}${bk.checkedOutAt?`<div style="font-size:11px;color:var(--mut);margin-top:6px">📤 ${fDT(bk.checkedOutAt)}</div>`:''}</div>`:''}
+      ${bkH.length?`<div style="margin-bottom:14px"><div style="font-size:11px;font-weight:700;color:var(--mut);text-transform:uppercase;margin-bottom:8px">Booking History</div>${bkH.map(b=>{const bu=gUser(b.userId);return`<div style="border-left:3px solid var(--bdr);padding:7px 0 7px 12px;margin-bottom:6px"><div style="font-weight:700;font-size:13px">${bu?fn(bu):'Unknown'}</div><div style="font-size:11px;color:var(--mut)">${fD(b.bookDate)} → ${fD(b.returnDate)} · 📍 ${b.deployLoc}</div>${b.checkedInAt?`<div style="font-size:11px;color:var(--g2)">Returned: ${fDT(b.checkedInAt)}</div>`:''}</div>`}).join('')}</div>`:''}
+      <div style="margin-bottom:10px">${act}</div>
+      <div class="brow"><button class="btn-s" onclick="editUnit('${u.id}')">✏️ Edit</button><button onclick="logIssue('${u.id}')" style="flex:1;background:#fce4ec;color:var(--r2);border-radius:12px;padding:12px;font-size:13px;font-weight:700">🔴 Issue</button></div>
+      <div class="brow"><button onclick="showQR('${u.id}')" class="btn-s" style="margin:0">🔳 QR</button><button onclick="confirmDel('${u.id}')" style="flex:1;background:#fce4ec;color:var(--r2);border-radius:12px;padding:12px;font-size:13px;font-weight:700;margin-top:0">🗑 Delete</button></div>
+    </div>
+  </div></div>`);
+}
+
+function markCal(uid){ const u=gU(uid);if(!u)return; dbSet(`units/${uid}`,{...u,calDate:today()}).then(()=>{popSh();setTimeout(()=>openUnit(uid),100);toast('✓ Calibration updated');}); }
+
+function addUnit(){
+  pushSh(`<div class="ov" onclick="closeSh(event)"><div class="sh">
+    <div class="sh-han"></div><div class="sh-hdr"><div class="sh-ttl">Add New Unit</div><button class="btn-x" onclick="popSh()">×</button></div>
+    <div class="sh-bd">
+      <div class="fg">
+        <div class="fld"><label>Department</label><select id="au-dept" onchange="uCats();genId()">${DEPTS.map(d=>`<option>${d}</option>`).join('')}</select></div>
+        <div class="fld"><label>Category</label><select id="au-cat" onchange="genId()">${Object.keys(DC['Hydraulic'].cats).map(c=>`<option>${c}</option>`).join('')}</select></div>
+        <div class="ff fld"><label>Unit ID (auto)</label><div style="display:flex;gap:8px"><input id="au-id" style="flex:1;font-family:monospace;color:var(--sky);font-weight:700"/><button onclick="genId()" style="background:#f0f4f8;border-radius:10px;padding:0 12px;font-size:12px;font-weight:700;flex-shrink:0;border:1.5px solid var(--bdr)">↺</button></div></div>
+        <div class="fld"><label>Brand</label><input id="au-brand"/></div>
+        <div class="fld"><label>Model</label><input id="au-model"/></div>
+        <div class="ff fld"><label>Serial Number ✱</label><input id="au-sn"/></div>
+        <div class="fld"><label>Location</label><input id="au-loc" value="G29"/></div>
+        <div class="fld"><label>Station</label><input id="au-st"/></div>
+        <div class="fld"><label>Condition</label><select id="au-cond">${CONDITIONS.map(c=>`<option>${c}</option>`).join('')}</select></div>
+        <div class="fld"><label>Responsible</label><select id="au-resp"><option value="">—</option>${Object.values(S.users).map(u=>`<option value="${fn(u)}">${fn(u)}</option>`).join('')}</select></div>
+        <div class="fld"><label>Calibration Date</label><input type="date" id="au-cd"/></div>
+        <div class="fld"><label>Cal. Interval (months)</label><input type="number" id="au-ci" value="12" min="1" max="120"/></div>
+        <div class="ff fld"><label>Description</label><textarea id="au-desc" rows="2"></textarea></div>
+        <div class="ff fld"><label>SOP</label><textarea id="au-sop" rows="4"></textarea></div>
+        <div class="ff fld"><label>Notes</label><input id="au-notes"/></div>
+      </div>
+      <button class="btn-p" onclick="saveAdd()">ADD UNIT</button>
+    </div>
+  </div></div>`);
+  setTimeout(genId,60);
+}
+function uCats(){const d=document.getElementById('au-dept')?.value||'Hydraulic';const c=document.getElementById('au-cat');if(c)c.innerHTML=Object.keys(DC[d]?.cats||{}).map(x=>`<option>${x}</option>`).join('');}
+function genId(){const d=document.getElementById('au-dept')?.value||'Hydraulic';const c=document.getElementById('au-cat')?.value||'';const el=document.getElementById('au-id');if(el)el.value=nextId(d,c);}
+function saveAdd(){
+  const id=gv('au-id'),sn=gv('au-sn');
+  if(!id)return toast('Select dept & category','err');
+  if(!sn)return toast('Serial number required','err');
+  if(!gv('au-brand'))return toast('Brand required','err');
+  if(S.units[id])return toast(`ID ${id} exists — click ↺`,'err');
+  const unit={id,dept:gv('au-dept'),cat:gv('au-cat'),brand:gv('au-brand'),model:gv('au-model'),sn,location:gv('au-loc')||'G29',station:gv('au-st'),condition:gv('au-cond')||'Good',responsible:gv('au-resp'),calDate:gv('au-cd'),calInterval:parseInt(gv('au-ci'))||12,status:'Available',notes:gv('au-notes'),desc:gv('au-desc'),sop:gv('au-sop')};
+  dbSet(`units/${id}`,unit).then(()=>{popSh();toast(`${id} added ✓`);});
+}
+
+function editUnit(uid){
+  const u=gU(uid);if(!u)return;
+  const uSel=Object.values(S.users).map(us=>`<option value="${fn(us)}" ${fn(us)===u.responsible?'selected':''}>${fn(us)}</option>`).join('');
+  pushSh(`<div class="ov" onclick="closeSh(event)"><div class="sh">
+    <div class="sh-han"></div><div class="sh-hdr"><div><div class="sh-ttl">Edit Unit</div><div style="font-family:monospace;font-size:11px;color:var(--sky);font-weight:700;margin-top:2px">${u.id}</div></div><button class="btn-x" onclick="popSh()">×</button></div>
+    <div class="sh-bd">
+      <div class="fg">
+        <div class="ff fld"><label>Unit ID</label><input id="eu-id" value="${u.id}" style="font-family:monospace;color:var(--sky);font-weight:700"/></div>
+        <div class="fld"><label>Brand</label><input id="eu-brand" value="${u.brand||''}"/></div>
+        <div class="fld"><label>Model</label><input id="eu-model" value="${u.model||''}"/></div>
+        <div class="fld"><label>Department</label><select id="eu-dept">${DEPTS.map(d=>`<option ${d===u.dept?'selected':''}>${d}</option>`).join('')}</select></div>
+        <div class="fld"><label>Category</label><select id="eu-cat">${Object.keys(DC[u.dept]?.cats||{}).map(c=>`<option ${c===u.cat?'selected':''}>${c}</option>`).join('')}</select></div>
+        <div class="ff fld"><label>Serial Number</label><input id="eu-sn" value="${u.sn||''}"/></div>
+        <div class="fld"><label>Location</label><input id="eu-loc" value="${u.location||''}"/></div>
+        <div class="fld"><label>Station</label><input id="eu-st" value="${u.station||''}"/></div>
+        <div class="fld"><label>Condition</label><select id="eu-cond">${CONDITIONS.map(c=>`<option ${c===u.condition?'selected':''}>${c}</option>`).join('')}</select></div>
+        <div class="fld"><label>Status</label><select id="eu-stat">${['Available','Out of Service'].map(s=>`<option ${s===u.status?'selected':''}>${s}</option>`).join('')}</select></div>
+        <div class="fld"><label>Responsible</label><select id="eu-resp"><option value="">—</option>${uSel}</select></div>
+        <div class="fld"><label>Cal. Date</label><input type="date" id="eu-cd" value="${u.calDate||''}"/></div>
+        <div class="fld"><label>Cal. Interval (months)</label><input type="number" id="eu-ci" value="${u.calInterval||12}" min="1" max="120"/></div>
+        <div class="ff fld"><label>Description</label><textarea id="eu-desc" rows="2">${u.desc||''}</textarea></div>
+        <div class="ff fld"><label>SOP</label><textarea id="eu-sop" rows="4">${u.sop||''}</textarea></div>
+        <div class="ff fld"><label>Notes</label><input id="eu-notes" value="${u.notes||''}"/></div>
+      </div>
+      <button class="btn-p" onclick="saveEdit('${uid}')">SAVE CHANGES</button>
+    </div>
+  </div></div>`);
+}
+function saveEdit(oldId){
+  const nId=gv('eu-id')||oldId;
+  const upd={id:nId,dept:gv('eu-dept'),cat:gv('eu-cat'),brand:gv('eu-brand'),model:gv('eu-model'),sn:gv('eu-sn'),location:gv('eu-loc'),station:gv('eu-st'),condition:gv('eu-cond'),status:gv('eu-stat'),responsible:gv('eu-resp'),calDate:gv('eu-cd'),calInterval:parseInt(gv('eu-ci'))||12,desc:gv('eu-desc'),sop:gv('eu-sop'),notes:gv('eu-notes')};
+  const ops=[dbSet(`units/${nId}`,upd)];
+  if(nId!==oldId)ops.push(dbDel(`units/${oldId}`));
+  Promise.all(ops).then(()=>{popSh();toast('Unit updated ✓');});
+}
+
+function confirmDel(uid){
+  const u=gU(uid);if(!u)return;
+  pushSh(`<div class="ov" onclick="closeSh(event)"><div class="sh">
+    <div class="sh-han"></div><div class="sh-hdr"><div class="sh-ttl">Delete Unit</div><button class="btn-x" onclick="popSh()">×</button></div>
+    <div class="sh-bd">
+      <div style="background:#fce4ec;border-radius:12px;padding:16px;margin-bottom:18px"><div style="font-weight:700;font-size:14px;color:var(--r2);margin-bottom:8px">⚠ Confirm</div><div style="font-size:13px;color:#7f1d1d">Permanently delete:<br><br><strong>${u.brand} ${u.model}</strong><br>${u.id} · SN: ${u.sn}</div></div>
+      <button class="btn-d" onclick="delUnit('${uid}')">YES, DELETE PERMANENTLY</button>
+      <button class="btn-s" style="margin-top:9px" onclick="popSh()">Cancel</button>
+    </div>
+  </div></div>`);
+}
+function delUnit(uid){
+  const bkIds=Object.keys(S.bookings).filter(id=>S.bookings[id].unitId===uid);
+  const iIds=Object.keys(S.issues).filter(id=>S.issues[id].unitId===uid);
+  // Remove from local state
+  delete S.units[uid];
+  bkIds.forEach(id=>delete S.bookings[id]);
+  iIds.forEach(id=>delete S.issues[id]);
+  saveLS();render();
+  pushData().then(()=>toast('Unit deleted'));
+  _stk=[];sw().innerHTML='';
+}
+
+function logIssue(uid){
+  const u=gU(uid);if(!u)return;const me={firstName:'User',lastName:'',id:'guest'};
+  pushSh(`<div class="ov" onclick="closeSh(event)"><div class="sh">
+    <div class="sh-han"></div><div class="sh-hdr"><div class="sh-ttl">🔴 Log Issue</div><button class="btn-x" onclick="popSh()">×</button></div>
+    <div class="sh-bd">
+      <div style="background:#fce4ec;border-radius:10px;padding:12px;margin-bottom:14px"><div style="font-weight:700;font-size:13px;color:var(--r2)">${u.brand} ${u.model}</div><div style="font-family:monospace;font-size:11px;color:var(--mut);margin-top:2px">${u.id} · SN ${u.sn}</div></div>
+      <div class="fg">
+        <div class="fld"><label>Issue Type</label><select id="is-t">${ISSUE_TYPES.map(t=>`<option>${t}</option>`).join('')}</select></div>
+        <div class="fld"><label>Severity</label><select id="is-s"><option>Low</option><option>Medium</option><option selected>High</option></select></div>
+        <div class="ff fld"><label>Description ✱</label><textarea id="is-c" rows="4" placeholder="Describe the issue in detail..."></textarea></div>
+        <div class="ff fld"><label>Recommended Action</label><input id="is-a" placeholder="e.g. Send for repair..."/></div>
+        <div class="ff fld"><label>Change Unit Status To</label><select id="is-st"><option value="">No change</option><option value="Out of Service">Out of Service</option></select></div>
+      </div>
+      <div style="background:#f8fafc;border-radius:10px;padding:11px;margin:12px 0;font-size:12px;color:var(--mut)">Logged by: <strong style="color:var(--txt)">${fn(me)}</strong> · ${fD(today())}</div>
+      <button class="btn-d" onclick="saveIssue('${uid}')">SUBMIT ISSUE REPORT</button>
+    </div>
+  </div></div>`);
+}
+function saveIssue(uid){
+  const c=gv('is-c');if(!c)return toast('Please describe the issue','err');
+  const me={firstName:'User',lastName:'',id:'guest'};const id='ISS-'+Date.now();
+  const iss={id,unitId:uid,type:gv('is-t')||'Other',severity:gv('is-s')||'High',comment:c,action:gv('is-a'),loggedBy:fn(me),userId:me.id,date:today(),status:'Open',resolvedDate:null,resolvedBy:null};
+  const ns=gv('is-st');const u=gU(uid);
+  S.issues[id]=iss;
+  if(ns&&u)u.status=ns;
+  saveLS();render();
+  pushData().then(()=>{popSh();toast('Issue logged ✓');});
+}
+
+function bookUnit(uid){
+  const u=gU(uid);if(!u)return;
+  const ex=Object.values(S.bookings).filter(b=>b.unitId===uid&&b.status==='Active');
+  const me=S.currentUser;
+  pushSh(`<div class="ov" onclick="closeSh(event)"><div class="sh">
+    <div class="sh-han"></div><div class="sh-hdr"><div><div class="sh-ttl">Book Unit</div><div style="font-family:monospace;font-size:11px;color:var(--sky);font-weight:700;margin-top:2px">${u.id} · SN ${u.sn}</div></div><button class="btn-x" onclick="popSh()">×</button></div>
+    <div class="sh-bd">
+      ${ex.length?`<div style="background:#fff3e0;border-radius:10px;padding:11px;margin-bottom:12px"><div style="font-size:11px;font-weight:700;color:var(--a2);margin-bottom:5px">⚠ EXISTING BOOKING</div>${ex.map(b=>{const bu=gUser(b.userId);return`<div style="font-size:12px;color:var(--a2)">${bu?fn(bu):'?'}: ${fD(b.bookDate)} → ${fD(b.returnDate)}</div>`}).join('')}</div>`:''}
+      <div id="bk-err" style="display:none;background:#fce4ec;color:var(--r2);border-radius:10px;padding:11px;margin-bottom:12px;font-size:13px"></div>
+      <div class="fg">
+        <div class="fld"><label>Booking Date ✱</label><input type="date" id="bk-d" min="${today()}"/></div>
+        <div class="fld"><label>Time</label><input type="time" id="bk-t" value="08:00"/></div>
+        <div class="ff fld"><label>Expected Return Date ✱</label><input type="date" id="bk-r" min="${today()}"/></div>
+        <div class="ff fld"><label>Deployment Location ✱</label><input id="bk-l" placeholder="e.g. Hope Valley Reservoir, Stirling Main..."/></div>
+        <div class="ff fld"><label>Project / WO Number</label><input id="bk-p" placeholder="Project name or work order..."/></div>
+        <div class="ff fld"><label>Notes</label><textarea id="bk-n" rows="2" placeholder="Special requirements..."></textarea></div>
+      </div>
+      
+      <button class="btn-p" onclick="confirmBk('${uid}')">CONFIRM BOOKING</button>
+    </div>
+  </div></div>`);
+}
+function confirmBk(uid){
+  const d=gv('bk-d'),t=gv('bk-t'),r=gv('bk-r'),l=gv('bk-l');
+  const err=m=>{const el=document.getElementById('bk-err');el.textContent='⚠ '+m;el.style.display='block';};
+  if(!d)return err('Please select a booking date.');
+  if(!r)return err('Please select a return date.');
+  if(r<d)return err('Return date must be after booking date.');
+  if(!l)return err('Deployment location is required.');
+  const conflict=Object.values(S.bookings).find(b=>{
+    if(b.unitId!==uid||b.status!=='Active')return false;
+    const s1=new Date(`${b.bookDate}T${b.bookTime}`),e1=new Date(`${b.returnDate}T23:59`);
+    const s2=new Date(`${d}T${t}`),e2=new Date(`${r}T23:59`);
+    return!(e2<s1||s2>e1);
+  });
+  if(conflict){const bu=gUser(conflict.userId);return err(`Conflict with ${bu?fn(bu):'another booking'} (${fD(conflict.bookDate)} → ${fD(conflict.returnDate)}).`);}
+  const id='BK-'+Date.now();
+  const bk={id,unitId:uid,userId:'guest',bookDate:d,bookTime:t,returnDate:r,deployLoc:l,project:gv('bk-p'),notes:gv('bk-n'),status:'Active',checkedOut:false,createdAt:new Date().toISOString(),checkedOutAt:null,checkedInAt:null};
+  const u=gU(uid);
+  S.bookings[id]=bk;
+  if(u)u.status='Booked';
+  saveLS();render();
+  pushData().then(()=>{popSh();toast(`✓ ${uid} booked for ${fD(d)}`);});
+}
+function checkOut(bkId){
+  const bk=gBk(bkId);if(!bk)return;
+  // Auth removed — anyone can check out
+  const u=gU(bk.unitId);
+  bk.checkedOut=true;bk.checkedOutAt=new Date().toISOString();
+  if(u)u.status='Checked Out';
+  saveLS();render();pushData().then(()=>toast('📤 Checked out'));
+}
+function checkIn(bkId){
+  const bk=gBk(bkId);if(!bk)return;
+  // Auth removed — anyone can check in
+  const u=gU(bk.unitId);
+  bk.status='Returned';bk.checkedInAt=new Date().toISOString();
+  if(u)u.status='Available';
+  saveLS();render();pushData().then(()=>toast('📥 Unit returned ✓'));
+}
+function showQR(uid){
+  const u=gU(uid);if(!u)return;
+  const due=cDue(u.calDate,u.calInterval);
+  const qd=encodeURIComponent([`EquipBook`,`ID:${u.id}`,`SN:${u.sn}`,`${u.brand} ${u.model}`,`${u.dept}/${u.cat}`,`${u.location}-${u.station}`,`Cal Due:${fD(due)}`].join(' | '));
+  pushSh(`<div class="ov" onclick="closeSh(event)"><div class="sh">
+    <div class="sh-han"></div><div class="sh-hdr"><div class="sh-ttl">🔳 QR Label</div><button class="btn-x" onclick="popSh()">×</button></div>
+    <div class="sh-bd" style="text-align:center">
+      <div style="font-family:var(--S);font-size:16px;font-weight:700;margin-bottom:2px">${u.brand} ${u.model}</div>
+      <div style="font-family:monospace;font-size:13px;color:var(--sky);font-weight:700;margin-bottom:16px">${u.id} · SN ${u.sn}</div>
+      <div style="background:#f0f4f8;border-radius:16px;padding:18px;display:inline-block;margin-bottom:16px"><img src="https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=${qd}&bgcolor=ffffff&color=003865&margin=10" width="200" height="200" style="border-radius:8px;display:block"/></div>
+      <div style="background:#f8fafc;border-radius:10px;padding:13px;text-align:left;margin-bottom:16px">${[['Unit ID',u.id],['Serial No.',u.sn],['Brand/Model',`${u.brand} ${u.model}`],['Department',u.dept],['Category',u.cat],['Location',`${u.location}-${u.station}`],['Cal. Due',fD(due)]].map(([k,v])=>`<div style="display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid #f0f4f8;font-size:12px"><span style="color:var(--mut)">${k}</span><span style="font-weight:700">${v}</span></div>`).join('')}</div>
+      <button onclick="window.print()" class="btn-p" style="margin-top:0">🖨️ PRINT LABEL</button>
+    </div>
+  </div></div>`);
+}
+
+// ══════════════════════════════════════════════════
+//  BOOKINGS
+// ══════════════════════════════════════════════════
+function vBk(){
+  const f=S.bF;
+  let list=Object.values(S.bookings);
+  if(f.q){const q=f.q.toLowerCase();list=list.filter(b=>{const u=gU(b.unitId);const bu=gUser(b.userId);return[u?.id,u?.sn,u?.brand,u?.model,b.deployLoc,b.project,bu?.firstName,bu?.lastName].some(v=>(v||'').toLowerCase().includes(q));});}
+  if(f.userId)list=list.filter(b=>b.userId===f.userId);
+  if(f.df)list=list.filter(b=>b.bookDate>=f.df);
+  if(f.dt)list=list.filter(b=>b.bookDate<=f.dt);
+  if(!f.ret)list=list.filter(b=>b.status==='Active');
+  list.sort((a,b)=>(b.createdAt||'').localeCompare(a.createdAt||''));
+  const active=list.filter(b=>b.status==='Active'),ret=list.filter(b=>b.status==='Returned');
+  const card=(b,showAct=true)=>{
+    const u=gU(b.unitId);if(!u)return'';
+    const dc=DC[u.dept]||{col:['#f0f4f8','#334155'],abbr:'???'};
+    const bu=gUser(b.userId);const isMine=b.userId===S.currentUser.id;
+    return`<div style="background:#fff;border:1px solid var(--bdr);border-radius:var(--rad);padding:14px;margin:0 12px 9px;cursor:pointer" onclick="openUnit('${u.id}')">
+      <div style="display:flex;gap:10px;align-items:flex-start">
+        <div class="db" style="background:${dc.col[0]};color:${dc.col[1]};width:38px;height:38px;font-size:9px;flex-shrink:0">${dc.abbr}</div>
+        <div style="flex:1;min-width:0">
+          <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:6px">
+            <div style="font-weight:700;font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${u.brand} ${u.model}</div>
+            ${b.status==='Active'?(b.checkedOut?`<span class="chip c-co">Out</span>`:`<span class="chip c-bk">Booked</span>`):`<span class="chip c-av">Returned</span>`}
+          </div>
+          <div style="font-family:monospace;font-size:10px;color:var(--sky);font-weight:700;margin-top:1px">${u.id} · SN ${u.sn}</div>
+          <div style="font-size:12px;color:var(--mut);margin-top:5px">👤 <strong>${bu?fn(bu):'?'}</strong></div>
+          <div style="font-size:12px;color:var(--mut);margin-top:2px">📍 ${b.deployLoc}</div>
+          <div style="font-size:12px;color:var(--mut);margin-top:2px">📅 ${fD(b.bookDate)} → ${fD(b.returnDate)}</div>
+          ${b.project?`<div style="font-size:12px;color:var(--sky);margin-top:2px">🗂 ${b.project}</div>`:''}
+          ${b.checkedOutAt?`<div style="font-size:11px;color:var(--mut);margin-top:2px">📤 ${fDT(b.checkedOutAt)}</div>`:''}
+          ${b.checkedInAt?`<div style="font-size:11px;color:var(--g2);margin-top:2px">📥 ${fDT(b.checkedInAt)}</div>`:''}
+        </div>
+      </div>
+      ${showAct&&b.status==='Active'&&isMine?`<div class="brow" style="margin-top:10px">${!b.checkedOut?`<button class="btn-w" style="padding:9px;font-size:12px;margin:0" onclick="event.stopPropagation();checkOut('${b.id}')">📤 Check Out</button>`:`<button class="btn-ok" style="padding:9px;font-size:12px;margin:0" onclick="event.stopPropagation();checkIn('${b.id}')">📥 Check In</button>`}</div>`:''}
+    </div>`;
+  };
+  const uOpts=Object.values(S.users).map(u=>`<option value="${u.id}" ${f.userId===u.id?'selected':''}>${fn(u)}</option>`).join('');
+  return`
+  <div class="tb"><div style="display:flex;justify-content:space-between;align-items:center"><div class="tb-h">Bookings</div><button onclick="expBk()" style="background:rgba(255,255,255,.15);color:#fff;border-radius:10px;padding:7px 12px;font-size:12px;font-weight:700">⬇ CSV</button></div>
+    <input class="srch" placeholder="🔍  Search name, location, unit..." oninput="S.bF.q=this.value;rView()" value="${f.q}"/>
+  </div>
+  <div style="padding:9px 12px;background:#fff;border-bottom:1px solid var(--bdr);display:flex;gap:8px;flex-wrap:wrap">
+    <select style="flex:1;min-width:130px;font-size:12px;padding:8px 10px;border:1.5px solid var(--bdr);border-radius:9px" onchange="S.bF.userId=this.value;rView()"><option value="">All Users</option>${uOpts}</select>
+    <input type="date" style="flex:1;min-width:110px;font-size:12px;padding:8px 10px;border:1.5px solid var(--bdr);border-radius:9px" onchange="S.bF.df=this.value;rView()" value="${f.df}"/>
+    <input type="date" style="flex:1;min-width:110px;font-size:12px;padding:8px 10px;border:1.5px solid var(--bdr);border-radius:9px" onchange="S.bF.dt=this.value;rView()" value="${f.dt}"/>
+  </div>
+  <div style="padding:8px 12px;display:flex;align-items:center;gap:8px">
+    <label style="display:flex;align-items:center;gap:6px;font-size:12px;font-weight:600;color:var(--mut);text-transform:none;letter-spacing:0;cursor:pointer"><input type="checkbox" ${f.ret?'checked':''} onchange="S.bF.ret=this.checked;rView()" style="width:auto;border:none;accent-color:var(--navy)"/>Show returned bookings</label>
+    <div style="margin-left:auto;font-size:12px;color:var(--mut)">${active.length} active · ${ret.length} returned</div>
+  </div>
+  <div style="padding:4px 0">
+    ${active.length?`<div class="sec-lbl">Active (${active.length})</div>${active.map(b=>card(b)).join('')}`:''}
+    ${f.ret&&ret.length?`<div class="sec-lbl">Returned (${ret.length})</div>${ret.map(b=>card(b,false)).join('')}`:''}
+    ${!active.length&&(!f.ret||!ret.length)?`<div style="text-align:center;padding:60px 20px;color:var(--mut)"><div style="font-size:40px;margin-bottom:12px">📋</div><div style="font-weight:700">No bookings</div></div>`:''}
+  </div>`;
+}
+function expBk(){
+  const rows=[['Booking ID','Unit ID','SN','Brand','Model','Dept','Cat','Location','Station','Booked By','Email','Position','Deploy Location','Project','Book Date','Book Time','Return Date','Notes','Status','Checked Out','Checked Out At','Checked In At']];
+  Object.values(S.bookings).forEach(b=>{const u=gU(b.unitId);const bu=gUser(b.userId);rows.push([b.id,u?.id||'',u?.sn||'',u?.brand||'',u?.model||'',u?.dept||'',u?.cat||'',u?.location||'',u?.station||'',bu?fn(bu):'',bu?.email||'',bu?.position||'',b.deployLoc,b.project||'',b.bookDate,b.bookTime,b.returnDate,b.notes||'',b.status,b.checkedOut?'Yes':'No',fDT(b.checkedOutAt),fDT(b.checkedInAt)]);});
+  const csv=rows.map(r=>r.map(c=>`"${(c||'').toString().replace(/"/g,'""')}"`).join(',')).join('\n');
+  const a=document.createElement('a');a.href='data:text/csv;charset=utf-8,\uFEFF'+encodeURIComponent(csv);a.download=`EquipBook_Bookings_${today()}.csv`;a.click();toast('Exported ✓');
+}
+
+// ══════════════════════════════════════════════════
+//  ADMIN
+// ══════════════════════════════════════════════════
+function vAdmin(){
+  const units=Object.values(S.units);
+  const oIss=Object.values(S.issues).filter(i=>i.status==='Open');
+  const cIss=Object.values(S.issues).filter(i=>i.status==='Resolved').sort((a,b)=>(b.date||'').localeCompare(a.date||''));
+  const byS={Available:0,Booked:0,'Checked Out':0,'Out of Service':0};
+  units.forEach(u=>{byS[u.status]=(byS[u.status]||0)+1});
+  const iCard=(iss,isOpen)=>{
+    const u=gU(iss.unitId);
+    const sc={High:'var(--r2)',Medium:'var(--a2)',Low:'var(--g2)'}[iss.severity]||'var(--mut)';
+    return`<div style="background:#fff;border:1px solid var(--bdr);border-radius:12px;padding:14px;margin-bottom:9px">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px">
+        <div style="flex:1;min-width:0;cursor:pointer" onclick="${u?`openUnit('${u.id}')`:''}""><div style="font-weight:700;font-size:13px">${u?u.brand+' '+u.model:'Unknown'}</div>${u?`<div style="font-family:monospace;font-size:10px;color:var(--sky);font-weight:700">${u.id} · SN ${u.sn}</div>`:''}</div>
+        <div style="text-align:right;flex-shrink:0;margin-left:8px"><span class="chip" style="background:${sc}22;color:${sc}">${iss.severity}</span><div style="font-size:10px;color:var(--mut);margin-top:3px">${iss.type}</div></div>
+      </div>
+      <div style="font-size:13px;color:#374151;border-left:3px solid ${sc};padding-left:10px;line-height:1.5;margin-bottom:8px">${iss.comment}</div>
+      ${iss.action?`<div style="font-size:12px;color:var(--sky);margin-bottom:6px">⚙ ${iss.action}</div>`:''}
+      <div style="font-size:11px;color:var(--mut)">by <strong>${iss.loggedBy}</strong> · ${fD(iss.date)}</div>
+      ${isOpen?`<button class="btn-ok" style="margin-top:10px;padding:8px 16px;font-size:12px;width:auto" onclick="resIss('${iss.id}')">✓ Mark Resolved</button>`:`<div style="font-size:11px;color:var(--g2);margin-top:6px;font-weight:600">✓ Resolved ${fD(iss.resolvedDate)} by ${iss.resolvedBy}</div>`}
+    </div>`;
+  };
+  return`
+  <div class="tb"><div class="tb-h">Admin</div><div class="tb-s">Issues, calibration, users & reports</div></div>
+  <div style="padding:0 12px">
+    <div style="background:#fff3e0;border:1px solid #ffcc80;border-radius:var(--rad);padding:14px;margin:14px 0 4px;display:flex;justify-content:space-between;align-items:center;gap:12px">
+      <div><div style="font-weight:700;font-size:13px;color:var(--a2)">⚠ System Reset</div><div style="font-size:11px;color:var(--mut);margin-top:2px">Clear bookings & issues, restore all units to Available.</div></div>
+      <button onclick="confReset()" style="background:var(--a2);color:#fff;border-radius:10px;padding:9px 14px;font-size:12px;font-weight:700;flex-shrink:0">Reset</button>
+    </div>
+    <div class="sec-lbl">Unit Status</div>
+    <div style="background:#fff;border:1px solid var(--bdr);border-radius:var(--rad);padding:4px 16px;margin-bottom:4px">
+      ${Object.entries(byS).map(([k,v])=>`<div style="display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid #f0f4f8"><span style="font-size:13px">${sChip(k)} ${k}</span><span style="font-family:monospace;font-weight:800">${v}</span></div>`).join('')}
+      <div style="display:flex;justify-content:space-between;padding:10px 0;font-weight:800;font-size:13px"><span>Total Units</span><span style="font-family:monospace">${units.length}</span></div>
+    </div>
+    <div style="display:flex;justify-content:space-between;align-items:center;margin:16px 0 8px"><div class="sec-lbl" style="margin:0">Calibration Report</div><button onclick="expCal()" style="background:#f0f4f8;border:none;border-radius:8px;padding:4px 10px;font-size:11px;font-weight:700;cursor:pointer">⬇ CSV</button></div>
+    <div style="background:#fff;border:1px solid var(--bdr);border-radius:var(--rad);padding:4px 16px;margin-bottom:4px">
+      ${units.slice().sort((a,b)=>{const da=cDue(a.calDate,a.calInterval)||'9999';const db2=cDue(b.calDate,b.calInterval)||'9999';return da.localeCompare(db2);}).map(u=>{
+        const due=cDue(u.calDate,u.calInterval);const d=due?dTo(due):null;
+        const col=d===null?'var(--mut)':d<0?'var(--r2)':d<=30?'var(--a2)':'var(--g2)';
+        return`<div style="display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid #f0f4f8;cursor:pointer" onclick="openUnit('${u.id}')">
+          <div><div style="font-weight:700;font-size:12px">${u.brand} ${u.model}</div><div style="font-family:monospace;font-size:10px;color:var(--sky)">${u.id} · SN ${u.sn}</div><div style="font-size:11px;color:var(--mut)">Last: ${fD(u.calDate)} · Every ${u.calInterval}mo</div></div>
+          <div style="text-align:right;flex-shrink:0;margin-left:8px"><div style="font-weight:700;font-size:12px;color:${col}">${fD(due||'')}</div><div style="font-size:10px;color:${col};font-weight:600">${d===null?'No date':d<0?Math.abs(d)+'d over':d<=30?d+'d left':'OK'}</div></div>
+        </div>`;}).join('')}
+    </div>
+    <div class="sec-lbl">🔴 Open Issues (${oIss.length})</div>
+    ${oIss.length?oIss.map(i=>iCard(i,true)).join(''):`<div style="text-align:center;padding:16px;color:var(--mut);font-size:13px;background:#fff;border:1px solid var(--bdr);border-radius:var(--rad);margin-bottom:4px">✓ No open issues</div>`}
+    <div style="display:flex;justify-content:space-between;align-items:center;margin:16px 0 8px"><div class="sec-lbl" style="margin:0">✓ Resolved (${cIss.length})</div>${cIss.length?`<button id="rb" onclick="togRes()" style="background:#f0f4f8;border:none;border-radius:8px;padding:4px 10px;font-size:11px;font-weight:700;cursor:pointer">Show</button>`:''}</div>
+    <div id="rl" style="display:none">${cIss.map(i=>iCard(i,false)).join('')}</div>
+    <div class="sec-lbl">Registered Users (${Object.values(S.users).length})</div>
+    <div style="background:#fff;border:1px solid var(--bdr);border-radius:var(--rad);padding:4px 16px;margin-bottom:4px">
+      ${Object.values(S.users).map(u=>`<div style="display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid #f0f4f8">
+        <div style="width:34px;height:34px;border-radius:50%;background:var(--sky);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;font-size:13px;flex-shrink:0">${u.firstName[0]}${u.lastName[0]}</div>
+        <div style="flex:1;min-width:0"><div style="font-weight:700;font-size:13px">${fn(u)}</div><div style="font-size:11px;color:var(--mut);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${u.email} · ${u.position}</div><div style="font-size:11px;color:var(--mut)">${u.phone}</div></div>
+        <button onclick="editUser('${u.id}')" style="background:#f0f4f8;border:none;border-radius:8px;padding:6px 10px;font-size:11px;font-weight:700;cursor:pointer;flex-shrink:0">Edit</button>
+      </div>`).join('')}
+    </div>
+    <div class="brow" style="margin-bottom:4px"><button class="btn-s" onclick="expBk()">⬇ Bookings</button><button class="btn-s" onclick="expIss()">⬇ Issues</button></div>
+    <div style="height:16px"></div>
+  </div>`;
+}
+function togRes(){const l=document.getElementById('rl'),b=document.getElementById('rb');if(!l)return;const s=l.style.display==='none';l.style.display=s?'block':'none';if(b)b.textContent=s?'Hide':'Show';}
+function resIss(id){
+  const iss=S.issues[id];if(!iss)return;
+  iss.status='Resolved';iss.resolvedDate=today();iss.resolvedBy=fn(S.currentUser);
+  if(iss.unitId){const u=gU(iss.unitId);if(u&&u.status==='Out of Service'){const still=Object.values(S.issues).some(x=>x.unitId===iss.unitId&&x.status==='Open'&&x.id!==id);if(!still)u.status='Available';}}
+  saveLS();render();pushData().then(()=>toast('Issue resolved ✓'));
+}
+function editUser(uid){
+  const u=gUser(uid);if(!u)return;
+  pushSh(`<div class="ov" onclick="closeSh(event)"><div class="sh">
+    <div class="sh-han"></div><div class="sh-hdr"><div class="sh-ttl">Edit User</div><button class="btn-x" onclick="popSh()">×</button></div>
+    <div class="sh-bd">
+      <div class="fg">
+        <div class="fld"><label>First Name</label><input id="uu-fn" value="${u.firstName}"/></div>
+        <div class="fld"><label>Last Name</label><input id="uu-ln" value="${u.lastName}"/></div>
+        <div class="ff fld"><label>SA Water Email</label><input id="uu-em" type="email" value="${u.email}"/></div>
+        <div class="fld"><label>Phone</label><input id="uu-ph" value="${u.phone}"/></div>
+        <div class="fld"><label>Position</label><select id="uu-pos">${POSITIONS.map(p=>`<option ${p===u.position?'selected':''}>${p}</option>`).join('')}</select></div>
+        <div class="ff fld"><label>New Password (blank = keep)</label><input id="uu-pw" type="password" placeholder="Leave blank to keep current"/></div>
+      </div>
+      <button class="btn-p" onclick="saveUser('${uid}')">SAVE CHANGES</button>
+      <button class="btn-d" style="margin-top:9px" onclick="confDelUser('${uid}')">Delete User</button>
+    </div>
+  </div></div>`);
+}
+function saveUser(uid){
+  const u=gUser(uid);if(!u)return;
+  const fn2=gv('uu-fn'),ln=gv('uu-ln'),em=gv('uu-em').toLowerCase(),ph=gv('uu-ph'),pos=gv('uu-pos'),pw=gv('uu-pw');
+  if(!fn2||!ln||!em||!ph||!pos)return toast('All fields required','err');
+  if(!em.endsWith('@sawater.com.au'))return toast('Must use @sawater.com.au email','err');
+  if(pw&&pw.length<6)return toast('Password must be ≥ 6 characters','err');
+  Object.assign(u,{firstName:fn2,lastName:ln,email:em,phone:ph,position:pos});
+  if(pw)u.pw=pw;
+  if(S.currentUser?.id===uid){S.currentUser=u;saveSession();}
+  saveLS();render();
+  pushData().then(()=>{popSh();toast('User updated ✓');});
+}
+function confDelUser(uid){
+  if(uid===S.currentUser?.id)return toast('Cannot delete your own account','err');
+  const u=gUser(uid);if(!u)return;
+  pushSh(`<div class="ov" onclick="closeSh(event)"><div class="sh">
+    <div class="sh-han"></div><div class="sh-hdr"><div class="sh-ttl">Delete User</div><button class="btn-x" onclick="popSh()">×</button></div>
+    <div class="sh-bd">
+      <div style="background:#fce4ec;border-radius:12px;padding:16px;margin-bottom:18px"><div style="font-weight:700;font-size:14px;color:var(--r2);margin-bottom:8px">⚠ Confirm</div><div style="font-size:13px;color:#7f1d1d">Delete account for <strong>${fn(u)}</strong>? Booking history is kept.</div></div>
+      <button class="btn-d" onclick="(()=>{delete S.users['${uid}'];saveLS();render();pushData();popSh();toast('User deleted');})()">YES, DELETE</button>
+      <button class="btn-s" style="margin-top:9px" onclick="popSh()">Cancel</button>
+    </div>
+  </div></div>`);
+}
+function expCal(){
+  const rows=[['Unit ID','SN','Brand','Model','Dept','Cat','Location','Station','Last Cal Date','Interval (months)','Due Date','Days Until Due','Status']];
+  Object.values(S.units).forEach(u=>{const due=cDue(u.calDate,u.calInterval);const d=due?dTo(due):null;rows.push([u.id,u.sn,u.brand,u.model,u.dept,u.cat,u.location,u.station,u.calDate||'',u.calInterval||'',due||'',d===null?'':d,d===null?'No date':d<0?'OVERDUE':d<=30?'DUE SOON':'OK']);});
+  const csv=rows.map(r=>r.map(c=>`"${(c||'').toString().replace(/"/g,'""')}"`).join(',')).join('\n');
+  const a=document.createElement('a');a.href='data:text/csv;charset=utf-8,\uFEFF'+encodeURIComponent(csv);a.download=`EquipBook_CalReport_${today()}.csv`;a.click();toast('Cal report exported ✓');
+}
+function expIss(){
+  const rows=[['Issue ID','Unit ID','SN','Brand','Model','Dept','Type','Severity','Description','Action','Logged By','Date','Status','Resolved By','Resolved Date']];
+  Object.values(S.issues).forEach(i=>{const u=gU(i.unitId);rows.push([i.id,u?.id||'',u?.sn||'',u?.brand||'',u?.model||'',u?.dept||'',i.type,i.severity,i.comment,i.action||'',i.loggedBy,i.date,i.status,i.resolvedBy||'',i.resolvedDate||'']);});
+  const csv=rows.map(r=>r.map(c=>`"${(c||'').toString().replace(/"/g,'""')}"`).join(',')).join('\n');
+  const a=document.createElement('a');a.href='data:text/csv;charset=utf-8,\uFEFF'+encodeURIComponent(csv);a.download=`EquipBook_Issues_${today()}.csv`;a.click();toast('Issues exported ✓');
+}
+function confReset(){
+  openSh(`<div class="ov" onclick="closeSh(event)"><div class="sh">
+    <div class="sh-han"></div><div class="sh-hdr"><div class="sh-ttl">System Reset</div><button class="btn-x" onclick="popSh()">×</button></div>
+    <div class="sh-bd">
+      <div style="background:#fff3e0;border-radius:12px;padding:16px;margin-bottom:18px"><div style="font-weight:700;font-size:14px;color:var(--a2);margin-bottom:8px">⚠ Confirm Reset</div><div style="font-size:13px;color:#7f3f00;line-height:1.6">This will:<br>• Clear ALL bookings<br>• Clear ALL issue logs<br>• Set ALL units to Available<br><br>User accounts and unit records are kept.</div></div>
+      <button class="btn-d" onclick="doReset()">YES, RESET SYSTEM</button>
+      <button class="btn-s" style="margin-top:9px" onclick="popSh()">Cancel</button>
+    </div>
+  </div></div>`);
+}
+function doReset(){
+  S.bookings={};S.issues={};
+  Object.values(S.units).forEach(u=>{u.status='Available';});
+  saveLS();render();pushData().then(()=>{_stk=[];sw().innerHTML='';toast('System reset ✓');});
+}
+
+// ══════════════════════════════════════════════════
+//  BOOT
+// ══════════════════════════════════════════════════
+(function boot(){
+  // GAS URL hardcoded — no setup screen needed
+  // Auth removed — go straight to app
+  loadLS();
+  if(!Object.keys(S.units).length){ S.units={...SEED_UNITS}; saveLS(); }
+  document.getElementById('ldmsg').textContent='Connecting…';
+  setTimeout(async ()=>{
+    hideLoading();
+    render();
+    const ok = await pullData();
+    if(ok){ saveLS(); render(); }
+    startPolling();
+  }, 400);
+})();
+</script>
+</body>
+</html>

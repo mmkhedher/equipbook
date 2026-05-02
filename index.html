@@ -9,26 +9,27 @@
 <meta name="apple-mobile-web-app-title" content="EquipBook"/>
 <title>EquipBook — Engineering Solutions</title>
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Outfit:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap');
 :root{
   --navy:#003865;--navy2:#00274d;--sky:#0072CE;
   --g1:#1b5e20;--g2:#2e7d32;--a2:#e65100;--r1:#b71c1c;--r2:#c62828;
   --bg:#eef1f5;--bdr:#d4dce6;--txt:#0a1628;--mut:#546e7a;
-  --rad:16px;--S:'Syne',sans-serif;--B:'Outfit',sans-serif;
+  --rad:16px;--S:'Outfit',sans-serif;--B:'Outfit',sans-serif;
+  --um1:#fff8e1;--um2:#e65100;
 }
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html,body{height:100%;background:var(--bg);font-family:var(--B);color:var(--txt);overscroll-behavior:none}
 button{font-family:var(--B);cursor:pointer;border:none;transition:transform .1s,opacity .15s}
 button:active{transform:scale(.96);opacity:.8}
-input,select,textarea{font-family:var(--B);outline:none;border:1.5px solid var(--bdr);border-radius:10px;padding:10px 12px;font-size:14px;color:var(--txt);background:#fff;width:100%;transition:border-color .18s;box-sizing:border-box}
+input,select,textarea{font-family:var(--B);outline:none;border:1.5px solid var(--bdr);border-radius:10px;padding:12px 14px;font-size:14px;color:var(--txt);background:#fff;width:100%;transition:border-color .18s;box-sizing:border-box}
 input:focus,select:focus,textarea:focus{border-color:var(--sky)}
 select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='11' height='11' viewBox='0 0 24 24' fill='none' stroke='%23546e7a' stroke-width='2.5'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 11px center;padding-right:30px}
 ::-webkit-scrollbar{width:0;height:0}
-label{font-size:11px;font-weight:700;color:var(--mut);text-transform:uppercase;letter-spacing:.8px;display:block;margin-bottom:5px}
+label{font-size:11px;font-weight:700;color:var(--mut);text-transform:uppercase;letter-spacing:.8px;display:block;margin-bottom:7px}
 #app{max-width:430px;margin:0 auto;min-height:100vh;background:var(--bg)}
 #content{padding-bottom:84px}
-.tb{background:linear-gradient(135deg,var(--navy2) 0%,var(--navy) 55%,var(--sky) 100%);padding:calc(env(safe-area-inset-top,0px)+14px) 18px 15px;position:sticky;top:0;z-index:40}
-.tb-h{font-family:var(--S);font-size:21px;font-weight:800;color:#fff;letter-spacing:-.3px}
+.tb{background:linear-gradient(160deg,#00274d 0%,#003865 50%,#0056a0 100%);padding:calc(env(safe-area-inset-top,0px)+16px) 22px 16px;position:sticky;top:0;z-index:40}
+.tb-h{font-family:var(--S);font-size:22px;font-weight:700;color:#fff;letter-spacing:-.3px}
 .tb-s{font-size:12px;color:rgba(255,255,255,.55);margin-top:2px}
 .srch{background:rgba(255,255,255,.11);border:1px solid rgba(255,255,255,.18);border-radius:11px;color:#fff;padding:10px 14px;font-size:13px;width:100%;margin-top:10px}
 .srch::placeholder{color:rgba(255,255,255,.45)}.srch:focus{outline:none;border-color:rgba(255,255,255,.5)}
@@ -42,23 +43,24 @@ label{font-size:11px;font-weight:700;color:var(--mut);text-transform:uppercase;l
 .c-bk{background:#fff3e0;color:#bf360c}.c-bk::before{background:#fb8c00}
 .c-co{background:#e3f2fd;color:#0d47a1}.c-co::before{background:#1e88e5}
 .c-os{background:#fce4ec;color:#880e4f}.c-os::before{background:#e91e63}
+.c-um{background:#fff8e1;color:#e65100}.c-um::before{background:#ffa000}
 .c-gd{background:#e8f5e9;color:#1b5e20}.c-gd::before{background:#43a047}
 .c-fr{background:#fff3e0;color:#bf360c}.c-fr::before{background:#fb8c00}
 .c-pr{background:#fce4ec;color:#880e4f}.c-pr::before{background:#e91e63}
 .ov{position:fixed;inset:0;background:rgba(5,18,38,.58);z-index:200;display:flex;align-items:flex-end;justify-content:center;animation:fi .18s ease}
 .sh{background:#fff;border-radius:22px 22px 0 0;width:100%;max-width:430px;max-height:94vh;overflow-y:auto;animation:su .23s cubic-bezier(.32,1,.24,1);padding-bottom:calc(20px + env(safe-area-inset-bottom,0px))}
 .sh-han{width:36px;height:4px;background:#cbd5e0;border-radius:2px;margin:11px auto 0}
-.sh-hdr{padding:13px 18px 0;display:flex;justify-content:space-between;align-items:center}
-.sh-ttl{font-family:var(--S);font-size:17px;font-weight:700}.sh-bd{padding:14px 18px}
+.sh-hdr{padding:16px 20px 0;display:flex;justify-content:space-between;align-items:center}
+.sh-ttl{font-family:var(--S);font-size:17px;font-weight:700}.sh-bd{padding:16px 20px}
 .btn-x{width:32px;height:32px;border-radius:50%;background:#f0f4f8;border:none;font-size:17px;color:var(--mut);display:flex;align-items:center;justify-content:center;flex-shrink:0}
 @keyframes fi{from{opacity:0}to{opacity:1}}@keyframes su{from{transform:translateY(100%)}to{transform:translateY(0)}}
-.fg{display:grid;grid-template-columns:1fr 1fr;gap:11px}.ff{grid-column:1/-1}.fld{display:flex;flex-direction:column}
+.fg{display:grid;grid-template-columns:1fr 1fr;gap:14px}.ff{grid-column:1/-1}.fld{display:flex;flex-direction:column}
 .btn-p{background:var(--navy);color:#fff;border-radius:12px;padding:14px;font-size:14px;font-weight:700;width:100%;margin-top:14px;font-family:var(--S)}
 .btn-s{background:#f0f4f8;color:var(--txt);border-radius:12px;padding:12px;font-size:13px;font-weight:600;width:100%}
 .btn-ok{background:var(--g2);color:#fff;border-radius:12px;padding:12px;font-size:13px;font-weight:700;width:100%;font-family:var(--S)}
 .btn-w{background:var(--a2);color:#fff;border-radius:12px;padding:12px;font-size:13px;font-weight:700;width:100%;font-family:var(--S)}
 .btn-d{background:var(--r2);color:#fff;border-radius:12px;padding:12px;font-size:13px;font-weight:700;width:100%;font-family:var(--S)}
-.brow{display:flex;gap:9px;margin-top:10px}.brow>*{flex:1}
+.brow{display:flex;gap:10px;margin-top:12px}.brow>*{flex:1}
 #toast{position:fixed;top:20px;left:50%;transform:translateX(-50%) translateY(-90px);background:var(--navy);color:#fff;border-radius:12px;padding:11px 20px;font-size:13px;font-weight:600;z-index:9999;transition:transform .3s cubic-bezier(.32,1,.24,1);white-space:nowrap;box-shadow:0 4px 24px rgba(0,0,0,.25);pointer-events:none}
 #toast.show{transform:translateX(-50%) translateY(0)}
 #syncbar{position:fixed;top:0;left:50%;transform:translateX(-50%);width:100%;max-width:430px;z-index:999;background:var(--sky);color:#fff;font-size:12px;font-weight:700;padding:6px 16px;display:flex;align-items:center;gap:8px;justify-content:center;transition:transform .3s;transform:translateX(-50%) translateY(-40px)}
@@ -68,10 +70,10 @@ label{font-size:11px;font-weight:700;color:var(--mut);text-transform:uppercase;l
 .sn{font-family:var(--S);font-size:26px;font-weight:800;line-height:1}
 .sl{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.4px;color:var(--mut);margin-top:3px}
 .fp{padding:5px 13px;border-radius:20px;border:none;font-size:11px;font-weight:700;cursor:pointer;white-space:nowrap;flex-shrink:0}
-.uc{background:#fff;border:1px solid var(--bdr);border-radius:var(--rad);padding:14px;margin:0 12px 9px;cursor:pointer;display:flex;gap:12px;transition:background .12s}
+.uc{background:#fff;border:1px solid var(--bdr);border-radius:var(--rad);padding:16px;margin:0 18px 10px;cursor:pointer;display:flex;gap:13px;transition:background .12s}
 .uc:active{background:#f0f4f8}
 .db{width:44px;height:44px;border-radius:11px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-family:var(--S);font-size:9px;font-weight:800;text-align:center;line-height:1.3}
-.sec-lbl{font-size:10px;font-weight:700;color:var(--mut);text-transform:uppercase;letter-spacing:1px;margin:16px 16px 8px}
+.sec-lbl{font-size:10px;font-weight:700;color:var(--mut);text-transform:uppercase;letter-spacing:1px;margin:20px 18px 10px}
 /* auth */
 .aw{min-height:100vh;background:linear-gradient(160deg,var(--navy2) 0%,var(--navy) 50%,#005fab 100%);display:flex;flex-direction:column;align-items:center;padding:56px 24px 40px}
 .acard{background:#fff;border-radius:20px;padding:24px 22px;width:100%;max-width:380px;margin-top:28px;box-shadow:0 8px 40px rgba(0,0,0,.25)}
@@ -93,6 +95,7 @@ label{font-size:11px;font-weight:700;color:var(--mut);text-transform:uppercase;l
 .setup-input::placeholder{color:rgba(255,255,255,.35)}
 .setup-input:focus{outline:none;border-color:var(--sky)}
 </style>
+<script src="https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.min.js"></script>
 </head>
 <body>
 
@@ -135,10 +138,16 @@ const DC={
   Mechanical:{abbr:'MCH',col:['#f3e8ff','#4c1d95'],cats:{'Torque Wrench':'TQ','Vibration Meter':'VB','Pressure Gauge':'PG','Temperature Sensor':'TS','NDT Equipment':'ND'}},
   Material:  {abbr:'MTL',col:['#dcfce7','#14532d'],cats:{'Thickness Gauge':'TG','Hardness Tester':'HT','Tensile Tester':'TT','Coating Thickness':'CK','Microscope':'MS'}},
 };
+const SEED_USERS={
+  'usr-mk':{id:'usr-mk',firstName:'Mahmoud',lastName:'Khedher',email:'mahmoud.khedher@sawater.com.au',position:'Engineer',createdAt:'2026-01-01T00:00:00.000Z'},
+  'usr-ph':{id:'usr-ph',firstName:'Paul',lastName:'Hanna',email:'paul.hanna@sawater.com.au',position:'Engineer',createdAt:'2026-01-01T00:00:00.000Z'},
+  'usr-md':{id:'usr-md',firstName:'Matt',lastName:'Daly',email:'matt.daly@sawater.com.au',position:'Engineer',createdAt:'2026-01-01T00:00:00.000Z'},
+  'usr-ma':{id:'usr-ma',firstName:'Murat',lastName:'Aksoy',email:'murat.aksoy@sawater.com.au',position:'Engineer',createdAt:'2026-01-01T00:00:00.000Z'},
+};
 const DEPTS=['Hydraulic','Civil','Mechanical','Material'];
 const CONDITIONS=['Good','Fair','Poor'];
-const POSITIONS=['Engineer','Senior Engineer','Principal Engineer','Project Manager','Technician','Graduate Engineer','Scientist','Team Leader'];
-const ISSUE_TYPES=['Malfunction','Damage','Calibration Needed','Battery Issue','Software Error','Missing Accessory','Other'];
+const POSITIONS=['Graduate Engineer','Engineer','Senior Engineer','Lead Engineer','Principal Engineer','Manager','Senior Manager','Design Manager'];
+const ISSUE_TYPES=['Malfunction','Damage','Calibration Needed','Battery Issue','Missing Accessory','Other'];
 
 // ══════════════════════════════════════════════════
 //  STATE
@@ -386,8 +395,7 @@ const cDue=(dt,mo)=>{ if(!dt||!mo)return''; const d=new Date(dt);d.setMonth(d.ge
 const nid=()=>'ID-'+Date.now()+'-'+Math.random().toString(36).slice(2,5);
 const fn=u=>u?u.firstName+' '+u.lastName:'—';
 function nextId(dept,cat){ const dc=DC[dept];if(!dc)return'GEN-XX-001'; const ab=dc.cats[cat]||cat.slice(0,2).toUpperCase(); const pf=`${dc.abbr}-${ab}-`; const nums=Object.keys(S.units).filter(id=>id.startsWith(pf)).map(id=>parseInt(id.slice(pf.length))||0); return pf+String((nums.length?Math.max(...nums):0)+1).padStart(3,'0'); }
-function sChip(s){ const m={Available:'c-av',Booked:'c-bk','Checked Out':'c-co','Out of Service':'c-os'}; return`<span class="chip ${m[s]||'c-av'}">${s}</span>`; }
-function cChip(c){ const m={Good:'c-gd',Fair:'c-fr',Poor:'c-pr'}; return`<span class="chip ${m[c]||'c-gd'}">${c}</span>`; }
+function sChip(s){ const m={Available:'c-av',Booked:'c-bk','Checked Out':'c-co','Out of Service':'c-os','Under Maintenance':'c-um'}; return`<span class="chip ${m[s]||'c-av'}">${s}</span>`; }
 const gv=id=>(document.getElementById(id)?.value||'').trim();
 let _tt;
 function toast(msg,t='ok'){ const el=document.getElementById('toast');el.textContent=msg;el.style.background=t==='err'?'#b71c1c':'#003865';el.classList.add('show');clearTimeout(_tt);_tt=setTimeout(()=>el.classList.remove('show'),3400); }
@@ -406,8 +414,44 @@ function popSh(){ _stk.pop();sw().innerHTML=_stk.length?_stk[_stk.length-1]:''; 
 //  RENDER
 // ══════════════════════════════════════════════════
 function navigate(v){ S.view=v;document.querySelectorAll('.nb').forEach(b=>b.classList.toggle('active',b.dataset.view===v));rView(); }
+function rWelcome(){
+  const users=Object.values(S.users);
+  document.getElementById('app').innerHTML=`
+  <div style="min-height:100vh;background:linear-gradient(175deg,#00274d 0%,#003865 45%,#0056a0 80%,#0072ce 100%);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:56px 32px;position:relative;overflow:hidden">
+    <div style="position:absolute;bottom:0;left:0;right:0;pointer-events:none">
+      <svg viewBox="0 0 400 110" fill="none" preserveAspectRatio="none" style="width:100%;display:block">
+        <path d="M0,60 C60,20 140,90 200,55 C260,20 340,80 400,50 L400,110 L0,110Z" fill="rgba(255,255,255,0.05)"/>
+        <path d="M0,80 C70,45 150,100 220,70 C290,40 360,90 400,68 L400,110 L0,110Z" fill="rgba(255,255,255,0.04)"/>
+        <path d="M0,95 C80,70 180,110 260,88 C320,72 370,100 400,85 L400,110 L0,110Z" fill="rgba(255,255,255,0.04)"/>
+      </svg>
+    </div>
+    <div style="position:absolute;top:10%;right:-40px;width:180px;height:180px;border-radius:50%;background:rgba(0,114,206,0.15);pointer-events:none"></div>
+    <div style="position:absolute;top:5%;left:-60px;width:200px;height:200px;border-radius:50%;background:rgba(255,255,255,0.03);pointer-events:none"></div>
+    <div style="text-align:center;margin-bottom:44px;position:relative">
+      <div style="margin-bottom:20px;display:inline-flex;align-items:center;justify-content:center;width:210px;height:74px;background:#fff;border-radius:20px;box-shadow:0 8px 32px rgba(0,0,0,0.28);padding:10px 18px">
+        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALYAAAAuCAYAAACFxeMqAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoV2luZG93cykiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6NzBFRjFERTc1NERDMTFFNzhFMjU4MDFGNjY4MUZFRUIiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6NzBFRjFERTg1NERDMTFFNzhFMjU4MDFGNjY4MUZFRUIiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo3MEVGMURFNTU0REMxMUU3OEUyNTgwMUY2NjgxRkVFQiIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo3MEVGMURFNjU0REMxMUU3OEUyNTgwMUY2NjgxRkVFQiIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/Pu64CBAAABHwSURBVHja7F0JlBTV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" alt="SA Water" style="max-width:174px;max-height:54px;object-fit:contain"/>
+      </div>
+      <div style="font-size:10px;font-weight:700;color:rgba(255,255,255,.5);letter-spacing:3px;margin-bottom:8px;text-transform:uppercase">Engineering Solutions</div>
+      <div style="font-family:var(--S);font-size:24px;font-weight:700;color:#fff;letter-spacing:-.3px;margin-bottom:6px">EquipBook</div>
+      <div style="font-size:12px;color:rgba(255,255,255,.45)">Equipment booking & tracking</div>
+    </div>
+    <div style="width:100%;max-width:340px;position:relative">
+      <div style="font-size:10px;font-weight:700;color:rgba(255,255,255,.45);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:10px;text-align:center">Select your name to continue</div>
+      <select id="welcome-sel" style="width:100%;background:rgba(255,255,255,.1);border:1.5px solid rgba(255,255,255,.2);border-radius:12px;padding:14px 16px;font-size:14px;font-weight:600;color:#fff;font-family:var(--B);margin-bottom:14px;appearance:none">
+        <option value="" style="color:var(--txt);background:#fff">— select name —</option>
+        ${users.map(u=>`<option value="${u.id}" style="color:var(--txt);background:#fff">${fn(u)}${u.position?' · '+u.position:''}</option>`).join('')}
+      </select>
+      <button onclick="doWelcomeSelect()" style="width:100%;background:#fff;color:var(--navy);border:none;border-radius:12px;padding:15px;font-size:14px;font-weight:700;font-family:var(--S);letter-spacing:.2px;cursor:pointer">Continue →</button>
+    </div>
+  </div>`;
+}
+function doWelcomeSelect(){
+  const uid=document.getElementById('welcome-sel')?.value;
+  if(!uid)return;
+  selectUser(uid);
+}
 function render(){
-  // Auth removed
+  if(!S.currentUser){ rWelcome(); return; }
   const app=document.getElementById('app');
   if(!app.querySelector('#content')){
     app.innerHTML=`<div id="content"></div><nav id="nav">${[['home','🏠','Home'],['instruments','🔬','Equipment'],['bookings','📋','Bookings'],['admin','⚙️','Admin']].map(([v,i,l])=>`<button class="nb${S.view===v?' active':''}" data-view="${v}" onclick="navigate('${v}')"><span class="ni">${i}</span><span class="nl">${l}</span><div class="nd"></div></button>`).join('')}</nav>`;
@@ -475,62 +519,173 @@ function doLogout(){render();} // auth removed
 //  HOME
 // ══════════════════════════════════════════════════
 function vHome(){
-  const me={firstName:'User',lastName:'',position:'',id:'guest'};
+  const me=S.currentUser||{firstName:'?',lastName:'',position:'',id:''};
   const units=Object.values(S.units),bks=Object.values(S.bookings);
-  const avail=units.filter(u=>u.status==='Available').length;
-  const inUse=units.filter(u=>u.status==='Booked'||u.status==='Checked Out').length;
-  const oIss=Object.values(S.issues).filter(i=>i.status==='Open').length;
   const myBk=bks.filter(b=>b.status==='Active'&&b.userId===me.id);
-  const calW=units.filter(u=>{ const d=dTo(cDue(u.calDate,u.calInterval)||'9999');return d<=30; });
-  const syncInfo=LOCAL_MODE?'<span style="background:rgba(255,255,255,.15);border-radius:6px;padding:2px 8px;font-size:10px;font-weight:700;color:#ffd54f;margin-left:6px">LOCAL ONLY</span>':'<span style="background:rgba(255,255,255,.15);border-radius:6px;padding:2px 8px;font-size:10px;font-weight:700;color:#a5f3a5;margin-left:6px">● LIVE SYNC</span>';
+  const syncInfo=LOCAL_MODE?'<span style="background:rgba(255,255,255,.15);border-radius:6px;padding:2px 7px;font-size:10px;font-weight:700;color:#ffd54f;margin-left:6px">LOCAL</span>':'<span style="background:rgba(255,255,255,.15);border-radius:6px;padding:2px 7px;font-size:10px;font-weight:700;color:#a5f3a5;margin-left:6px">● LIVE</span>';
+  const initials=((me.firstName||'?')[0]+((me.lastName||'')[0]||'')).toUpperCase();
+  const recentBks=bks.slice().sort((a,b)=>(b.createdAt||'').localeCompare(a.createdAt||'')).filter(b=>b.userId===me.id).slice(0,5);
   return`
-  <div class="tb">
-    <div style="display:flex;justify-content:space-between;align-items:flex-start">
-      <div><div style="font-size:10px;font-weight:700;color:rgba(255,255,255,.45);letter-spacing:2px;margin-bottom:2px">ENGINEERING SOLUTIONS</div>
-      <div class="tb-h">EquipBook${syncInfo}</div></div>
-
+  <div style="background:linear-gradient(160deg,#00274d 0%,#003865 50%,#0056a0 100%);padding:calc(env(safe-area-inset-top,0px)+16px) 22px 18px;position:sticky;top:0;z-index:40">
+    <div style="display:flex;justify-content:space-between;align-items:center">
+      <div>
+        <div style="font-size:10px;font-weight:700;color:rgba(255,255,255,.65);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:3px">SA Water</div>
+        <div style="font-size:20px;font-weight:800;color:#fff;letter-spacing:-.3px">EquipBook${syncInfo}</div>
+      </div>
+      <button onclick="showProfile()" style="background:rgba(255,255,255,.13);border:1.5px solid rgba(255,255,255,.28);border-radius:50%;width:40px;height:40px;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;font-size:13px;flex-shrink:0">${initials}</button>
     </div>
   </div>
-  <div class="sg">
-    <div class="sb2"><div class="sn" style="color:var(--g2)">${avail}</div><div class="sl">Available</div></div>
-    <div class="sb2"><div class="sn" style="color:var(--a2)">${inUse}</div><div class="sl">In Use</div></div>
-    <div class="sb2"><div class="sn" style="color:var(--r2)">${oIss}</div><div class="sl">Issues</div></div>
-  </div>
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:9px;padding:0 12px 4px">
-    ${[['🔬','Equipment','instruments',`${units.length} units`],['📋','Bookings','bookings',`${bks.filter(b=>b.status==='Active').length} active`],['🔴','Issues','admin',`${oIss} open`],['📅','Cal Alerts','home',`${calW.length} due`]].map(([ic,lb,vw,sub])=>`
-      <button onclick="navigate('${vw}')" style="background:#fff;border:1px solid var(--bdr);border-radius:var(--rad);padding:16px 14px;text-align:left">
-        <div style="font-size:24px;margin-bottom:7px">${ic}</div>
-        <div style="font-weight:700;font-size:13px">${lb}</div>
-        <div style="font-size:11px;color:var(--mut);margin-top:2px">${sub}</div>
-      </button>`).join('')}
-  </div>
-  ${myBk.length?`<div class="sec-lbl" style="margin-top:14px">My Active Bookings</div>
-  ${myBk.map(b=>{ const u=gU(b.unitId);if(!u)return'';
-    return`<div style="background:#fff;border:1px solid var(--bdr);border-radius:var(--rad);padding:14px;margin:0 12px 9px;cursor:pointer" onclick="openUnit('${u.id}')">
-      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:5px">
-        <div><div style="font-weight:700;font-size:13px">${u.brand} ${u.model}</div>
-        <div style="font-family:monospace;font-size:10px;color:var(--sky);font-weight:700">${u.id} · SN ${u.sn}</div></div>
-        ${b.checkedOut?`<span class="chip c-co">📤 Out</span>`:`<span class="chip c-bk">📦 Booked</span>`}
-      </div>
-      <div style="font-size:12px;color:var(--mut)">📍 ${b.deployLoc} · 📅 ${fD(b.bookDate)} → ${fD(b.returnDate)}</div>
-      <div class="brow" style="margin-top:10px">
-        ${!b.checkedOut?`<button class="btn-w" style="padding:9px;font-size:12px;margin:0" onclick="event.stopPropagation();checkOut('${b.id}')">📤 Check Out</button>`
-        :`<button class="btn-ok" style="padding:9px;font-size:12px;margin:0" onclick="event.stopPropagation();checkIn('${b.id}')">📥 Check In</button>`}
-      </div>
-    </div>`;}).join('')}`:''}
-  ${calW.length?`<div class="sec-lbl" style="margin-top:14px">⚠ Calibration Alerts</div>
-  ${calW.map(u=>{ const due=cDue(u.calDate,u.calInterval);const d=dTo(due);
-    return`<div style="background:${d<0?'#fce4ec':'#fff3e0'};border-radius:12px;padding:12px 14px;margin:0 12px 8px;cursor:pointer" onclick="openUnit('${u.id}')">
-      <div style="display:flex;justify-content:space-between;align-items:center">
-        <div><div style="font-weight:700;font-size:13px">${u.brand} ${u.model}</div>
-        <div style="font-family:monospace;font-size:10px;color:var(--mut)">${u.id} · Due ${fD(due)}</div></div>
-        <span class="chip ${d<0?'c-os':'c-bk'}">${d<0?Math.abs(d)+'d overdue':d+'d left'}</span>
-      </div>
-    </div>`;}).join('')}`:''}
-  <div style="height:8px">`;
+
+  <div style="background:#fff;min-height:calc(100vh - 100px);padding:22px 20px 20px">
+
+    <div style="margin-bottom:24px">
+      <div style="font-size:14px;color:var(--mut);margin-bottom:4px">Welcome back,</div>
+      <div style="font-size:26px;font-weight:800;color:var(--txt);letter-spacing:-.5px">${me.firstName}</div>
+    </div>
+
+    <button onclick="openQRScanner()" style="width:100%;background:linear-gradient(160deg,#00274d 0%,#003865 50%,#0056a0 100%);color:#fff;border:none;border-radius:16px;padding:22px 20px;display:flex;flex-direction:column;align-items:center;gap:10px;cursor:pointer;box-shadow:0 4px 20px rgba(0,56,101,0.28);margin-bottom:14px">
+      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/>
+        <rect x="5" y="5" width="3" height="3" fill="currentColor" stroke="none"/><rect x="16" y="5" width="3" height="3" fill="currentColor" stroke="none"/><rect x="5" y="16" width="3" height="3" fill="currentColor" stroke="none"/>
+        <path d="M14 14h2v2h-2zM18 14h3M18 18v3M14 18h2v2"/><path d="M20 18h1v3h-3v-1"/>
+      </svg>
+      <div style="font-size:16px;font-weight:700;letter-spacing:-.2px">Scan QR code</div>
+    </button>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:26px">
+      <button onclick="S.bF.userId=S.currentUser?.id;navigate('bookings')" style="background:#f2ede8;border:none;border-radius:16px;padding:18px 14px;text-align:center;cursor:pointer">
+        <div style="font-size:15px;font-weight:700;color:var(--txt);margin-bottom:5px">My bookings</div>
+        <div style="font-size:13px;color:var(--mut)">${myBk.length} active</div>
+      </button>
+      <button onclick="navigate('instruments')" style="background:#f2ede8;border:none;border-radius:16px;padding:18px 14px;text-align:center;cursor:pointer">
+        <div style="font-size:15px;font-weight:700;color:var(--txt);margin-bottom:5px">Browse all</div>
+        <div style="font-size:13px;color:var(--mut)">${units.length} items</div>
+      </button>
+    </div>
+
+    <div style="font-size:13px;font-weight:600;color:var(--mut);margin-bottom:4px">Recent activity</div>
+    ${recentBks.length?recentBks.map((b,i)=>{
+      const u=gU(b.unitId);if(!u)return'';
+      const isRet=b.status==='Returned',isOut=b.checkedOut&&b.status==='Active';
+      const label=isRet?'Returned':isOut?`Out — due ${fD(b.returnDate)}`:b.status==='Active'?`Booked — due ${fD(b.returnDate)}`:'—';
+      const lCol=isRet?'#2e7d32':isOut?'#e65100':'#0072CE';
+      return`<div style="display:flex;align-items:center;justify-content:space-between;padding:13px 0;${i<recentBks.length-1?'border-bottom:1px solid #eef1f5':''};cursor:pointer" onclick="openUnit('${u.id}')">
+        <span style="font-size:14px;font-weight:500;color:var(--txt)">${u.name||u.id}</span>
+        <span style="font-size:13px;font-weight:600;color:${lCol}">${label}</span>
+      </div>`;}).join(''):`<div style="padding:16px 0;font-size:13px;color:var(--mut)">No activity yet — book equipment to get started</div>`}
+
+  </div>`;
 }
 
-function showProfile(){} // auth removed
+function showProfile(){
+  const me=S.currentUser;if(!me)return;
+  const ini=((me.firstName||'?')[0]+((me.lastName||'')[0]||'')).toUpperCase();
+  openSh(`<div class="ov" onclick="closeSh(event)"><div class="sh">
+    <div class="sh-han"></div>
+    <div class="sh-bd" style="padding-top:12px">
+      <div style="display:flex;align-items:center;gap:12px;padding-bottom:14px;border-bottom:1px solid var(--bdr);margin-bottom:14px">
+        <div style="width:42px;height:42px;border-radius:50%;background:var(--navy);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;font-size:15px;flex-shrink:0">${ini}</div>
+        <div style="flex:1;min-width:0">
+          <div style="font-weight:700;font-size:15px;color:var(--txt)">${fn(me)}</div>
+          <div style="font-size:12px;color:var(--mut);margin-top:1px">${me.position||me.email||''}</div>
+        </div>
+      </div>
+      <button class="btn-d" onclick="doLogout()" style="width:100%">Log Out</button>
+    </div>
+  </div></div>`);
+}
+function doLogout(){
+  S.currentUser=null;
+  saveSession();
+  closeSh();
+  S.view='home';
+  render();
+  toast('Logged out');
+}
+
+// ══════════════════════════════════════════════════
+//  USER PICKER
+// ══════════════════════════════════════════════════
+function showUserPicker(){
+  const users=Object.values(S.users);
+  const canClose=!!S.currentUser;
+  openSh(`<div class="ov" ${canClose?'onclick="closeSh(event)"':''}><div class="sh">
+    <div class="sh-han"></div>
+    <div class="sh-hdr">
+      <div><div class="sh-ttl">Who are you?</div><div style="font-size:12px;color:var(--mut);margin-top:2px">Select your name to continue</div></div>
+      ${canClose?`<button class="btn-x" onclick="closeSh()">×</button>`:''}
+    </div>
+    <div class="sh-bd">
+      ${users.length===0
+        ?`<div style="text-align:center;padding:30px 16px;color:var(--mut)"><div style="font-size:36px;margin-bottom:10px">👤</div><div style="font-weight:700;font-size:14px">No users yet</div><div style="font-size:13px;margin-top:6px">Add users from the Admin tab</div></div>`
+        :users.map(u=>`<button onclick="selectUser('${u.id}')" style="width:100%;background:${S.currentUser?.id===u.id?'#e8f4ff':'#f8fafc'};border:1.5px solid ${S.currentUser?.id===u.id?'var(--sky)':'var(--bdr)'};border-radius:13px;padding:13px 14px;text-align:left;margin-bottom:8px;display:flex;align-items:center;gap:12px;cursor:pointer">
+          <div style="width:40px;height:40px;border-radius:50%;background:var(--navy);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;font-size:14px;flex-shrink:0">${(u.firstName||'?')[0]}${(u.lastName||'')[0]||''}</div>
+          <div style="flex:1"><div style="font-weight:700;font-size:14px;color:var(--txt)">${fn(u)}</div><div style="font-size:12px;color:var(--mut)">${u.position||''}</div></div>
+          ${S.currentUser?.id===u.id?`<span class="chip c-av">Active</span>`:''}
+        </button>`).join('')}
+    </div>
+  </div></div>`);
+}
+function selectUser(uid){
+  if(!uid){S.currentUser=null;saveSession();closeSh();render();return;}
+  const u=S.users[uid];
+  if(u){S.currentUser=u;saveSession();closeSh();render();toast('Welcome, '+u.firstName+'!');}
+}
+
+// ══════════════════════════════════════════════════
+//  QR SCANNER
+// ══════════════════════════════════════════════════
+let _qrStream=null,_qrTimer=null;
+function openQRScanner(){
+  openSh(`<div class="ov" onclick="closeSh(event)"><div class="sh">
+    <div class="sh-han"></div>
+    <div class="sh-hdr"><div class="sh-ttl">Scan QR Code</div><button class="btn-x" onclick="stopQR();closeSh()">×</button></div>
+    <div class="sh-bd">
+      <div id="qr-wrap" style="position:relative;background:#000;border-radius:14px;overflow:hidden;width:100%;aspect-ratio:1/1;margin-bottom:14px">
+        <video id="qr-vid" style="width:100%;height:100%;object-fit:cover;display:block" playsinline autoplay muted></video>
+        <canvas id="qr-cv" style="display:none"></canvas>
+        <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;pointer-events:none">
+          <div style="width:55%;height:55%;border:3px solid rgba(255,255,255,.9);border-radius:12px;box-shadow:0 0 0 9999px rgba(0,0,0,.45)"></div>
+        </div>
+      </div>
+      <div id="qr-msg" style="text-align:center;font-size:13px;color:var(--mut);padding:4px 0 8px">Point camera at the QR code on the equipment</div>
+    </div>
+  </div></div>`);
+  setTimeout(startQR,200);
+}
+async function startQR(){
+  try{
+    const stream=await navigator.mediaDevices.getUserMedia({video:{facingMode:'environment'}});
+    _qrStream=stream;
+    const vid=document.getElementById('qr-vid');
+    if(!vid){stopQR();return;}
+    vid.srcObject=stream;
+    await vid.play();
+    _qrTimer=setInterval(scanQRFrame,300);
+  }catch(e){
+    const m=document.getElementById('qr-msg');
+    if(m)m.innerHTML='<span style="color:var(--r2)">Camera access denied.<br>Allow camera permission and try again.</span>';
+  }
+}
+function stopQR(){
+  if(_qrTimer){clearInterval(_qrTimer);_qrTimer=null;}
+  if(_qrStream){_qrStream.getTracks().forEach(t=>t.stop());_qrStream=null;}
+}
+function scanQRFrame(){
+  const vid=document.getElementById('qr-vid'),cv=document.getElementById('qr-cv');
+  if(!vid||!cv||vid.readyState<2)return;
+  cv.width=vid.videoWidth;cv.height=vid.videoHeight;
+  const ctx=cv.getContext('2d');ctx.drawImage(vid,0,0);
+  if(typeof jsQR==='undefined')return;
+  const img=ctx.getImageData(0,0,cv.width,cv.height);
+  const code=jsQR(img.data,img.width,img.height);
+  if(code){
+    const m=code.data.match(/ID:([A-Z]+-[A-Z]+-\d+)/);
+    if(m&&S.units[m[1]]){stopQR();closeSh();openUnit(m[1]);toast('Found: '+m[1]);return;}
+    const msg=document.getElementById('qr-msg');
+    if(msg)msg.textContent='Scanned: '+code.data.slice(0,50);
+  }
+}
 
 // ══════════════════════════════════════════════════
 //  INSTRUMENTS
@@ -551,22 +706,26 @@ function vInstr(){
     const bk=aBkOf(u.id);const bkr=bk?gUser(bk.userId):null;
     const due=cDue(u.calDate,u.calInterval);const d=due?dTo(due):999;
     const oIss=Object.values(S.issues).filter(x=>x.unitId===u.id&&x.status==='Open').length;
-    return`<div class="uc" onclick="openUnit('${u.id}')">
-      <div class="db" style="background:${dc.col[0]};color:${dc.col[1]}">${dc.abbr}</div>
-      <div style="flex:1;min-width:0">
-        <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:6px">
-          <div style="min-width:0"><div style="font-weight:700;font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${u.brand} <span style="font-weight:500;color:var(--mut)">${u.model}</span></div>
-          <div style="font-family:monospace;font-size:10px;color:var(--sky);font-weight:700;margin-top:1px">${u.id}</div></div>
-          <div style="flex-shrink:0">${sChip(u.status)}</div>
-        </div>
-        <div style="font-family:monospace;font-size:10px;color:var(--mut);margin-top:3px">SN: ${u.sn} · ${u.cat}</div>
-        <div style="display:flex;gap:8px;margin-top:6px;flex-wrap:wrap;align-items:center">
-          <span style="font-size:11px;color:var(--mut)">📍 ${u.location}-${u.station}</span>
-          ${d<=30?`<span style="font-size:11px;color:${d<0?'var(--r2)':'var(--a2)'};font-weight:600">⚠ Cal ${d<0?'overdue':d+'d'}</span>`:''}
-          ${oIss?`<span style="font-size:11px;color:var(--r2);font-weight:600">🔴 ${oIss} issue${oIss>1?'s':''}</span>`:''}
-          ${bk&&bkr?`<span style="font-size:11px;color:var(--sky)">👤 ${bkr.firstName}</span>`:''}
+    const bookBtn=u.status==='Available'?`<button class="btn-p" style="padding:11px 16px;font-size:13px;margin:0;flex:1" onclick="event.stopPropagation();bookUnit('${u.id}')">Book</button>`:`<button disabled style="flex:1;padding:11px 16px;font-size:13px;margin:0;border-radius:12px;background:#e0e7ef;color:#9fb4c0;font-weight:700;border:none;cursor:not-allowed">Book</button>`;
+    const issueBtn=`<button style="flex-shrink:0;background:none;color:var(--mut);border:1px solid var(--bdr);border-radius:10px;padding:8px 11px;font-size:11px;font-weight:600;cursor:pointer;white-space:nowrap" onclick="event.stopPropagation();logIssue('${u.id}')">Log issue</button>`;
+    return`<div class="uc" style="flex-direction:column;gap:10px" onclick="openUnit('${u.id}')">
+      <div style="display:flex;gap:12px;align-items:flex-start">
+        <div style="flex:1;min-width:0">
+          <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:6px">
+            <div style="min-width:0"><div style="font-weight:700;font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${u.brand} <span style="font-weight:500;color:var(--mut)">${u.model}</span></div>
+            <div style="font-family:monospace;font-size:10px;color:var(--sky);font-weight:700;margin-top:1px">${u.id}</div></div>
+            <div style="flex-shrink:0">${sChip(u.status)}</div>
+          </div>
+          <div style="font-family:monospace;font-size:10px;color:var(--mut);margin-top:3px">SN: ${u.sn} · ${u.cat}</div>
+          <div style="display:flex;gap:8px;margin-top:6px;flex-wrap:wrap;align-items:center">
+            <span style="font-size:11px;color:var(--mut)">📍 ${u.location}-${u.station}</span>
+            ${d<=30?`<span style="font-size:11px;color:${d<0?'var(--r2)':'var(--a2)'};font-weight:600">⚠ Cal ${d<0?'overdue':d+'d'}</span>`:''}
+            ${oIss?`<span style="font-size:11px;color:var(--r2);font-weight:600">🔴 ${oIss} issue${oIss>1?'s':''}</span>`:''}
+            ${bk&&bkr?`<span style="font-size:11px;color:var(--sky)">👤 ${bkr.firstName}</span>`:''}
+          </div>
         </div>
       </div>
+      <div style="display:flex;gap:8px">${bookBtn}${issueBtn}</div>
     </div>`;
   }).join('');
   return`
@@ -575,8 +734,8 @@ function vInstr(){
     <input class="srch" id="iQ" placeholder="🔍  Search ID, brand, model, serial..." oninput="sIF('q',this.value)" value="${f.q}"/>
     <div style="display:flex;gap:7px;overflow-x:auto;padding-bottom:4px;margin-top:9px">${dPills}</div>${cPills}
   </div>
-  <div style="display:flex;gap:6px;padding:10px 12px 2px;overflow-x:auto">
-    ${['All','Available','Booked','Checked Out','Out of Service'].map(s=>`<button class="fp" style="background:${f.status===s?'var(--navy)':'#f0f4f8'};color:${f.status===s?'#fff':'var(--txt)'};font-size:10px" onclick="sIF('status','${s}')">${s}</button>`).join('')}
+  <div style="display:flex;gap:6px;padding:10px 18px 2px;overflow-x:auto">
+    ${['All','Available','Under Maintenance','Booked','Checked Out','Out of Service'].map(s=>`<button class="fp" style="background:${f.status===s?'var(--navy)':'#f0f4f8'};color:${f.status===s?'#fff':'var(--txt)'};font-size:10px" onclick="sIF('status','${s}')">${s}</button>`).join('')}
   </div>
   <div style="padding:8px 0">${cards||`<div style="text-align:center;padding:50px 20px;color:var(--mut)">No units found</div>`}</div>`;
 }
@@ -608,11 +767,11 @@ function openUnit(uid){
         <div style="font-family:monospace;font-size:13px;color:rgba(255,255,255,.85);margin-top:3px;font-weight:700">${u.id} · SN ${u.sn}</div></div>
         <button class="btn-x" onclick="popSh()" style="background:rgba(255,255,255,.2);color:#fff;flex-shrink:0">×</button>
       </div>
-      <div style="display:flex;gap:6px;margin-top:12px;flex-wrap:wrap">${sChip(u.status)} ${cChip(u.condition)}</div>
+      <div style="display:flex;gap:6px;margin-top:12px;flex-wrap:wrap">${sChip(u.status)}</div>
     </div>
     <div class="sh-bd">
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-bottom:14px">
-        ${[['Location',u.location],['Station',u.station],['Department',u.dept],['Category',u.cat]].map(([k,v])=>`<div style="background:#f8fafc;border-radius:10px;padding:11px"><div style="font-size:10px;font-weight:700;color:var(--mut);text-transform:uppercase;margin-bottom:3px">${k}</div><div style="font-size:13px;font-weight:700">${v||'—'}</div></div>`).join('')}
+        ${[['Location',u.location],['Station',u.station],['Department',u.dept],['Category',u.cat],['Responsible',u.responsible||'—']].map(([k,v])=>`<div style="background:#f8fafc;border-radius:10px;padding:11px"><div style="font-size:10px;font-weight:700;color:var(--mut);text-transform:uppercase;margin-bottom:3px">${k}</div><div style="font-size:13px;font-weight:700">${v||'—'}</div></div>`).join('')}
       </div>
       ${u.notes?`<div style="background:#fffbeb;border-radius:10px;padding:12px;margin-bottom:14px;font-size:13px;color:#92400e;border-left:3px solid #fbbf24">📝 ${u.notes}</div>`:''}
       <div style="background:${calBg};border-radius:10px;padding:13px;margin-bottom:14px">
@@ -620,15 +779,15 @@ function openUnit(uid){
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;font-size:12px">
           ${[['Last Cal.',fD(u.calDate)],['Interval',u.calInterval+' months'],['Due Date',fD(due)],['Status',calOver?Math.abs(d)+'d overdue':calWarn?d+'d left':'OK']].map(([k,v])=>`<div><div style="font-size:10px;font-weight:700;color:var(--mut);text-transform:uppercase;margin-bottom:2px">${k}</div><div style="font-weight:700;color:${calCol}">${v}</div></div>`).join('')}
         </div>
-        ${(calWarn||calOver)?`<button class="btn-p" style="margin-top:10px;padding:10px;font-size:12px;background:${calCol}" onclick="markCal('${u.id}')">✓ Mark as Calibrated Today</button>`:''}
       </div>
       ${u.desc?`<div style="background:#f8fafc;border-radius:10px;padding:13px;margin-bottom:10px"><div style="font-size:10px;font-weight:700;color:var(--mut);text-transform:uppercase;margin-bottom:6px">Description</div><div style="font-size:13px;color:#374151;line-height:1.6">${u.desc}</div></div>`:''}
-      ${u.sop?`<div style="background:#e8f5e9;border-radius:10px;padding:13px;margin-bottom:14px"><div style="font-size:10px;font-weight:700;color:var(--g1);text-transform:uppercase;margin-bottom:6px">📋 Standard Operating Procedure</div><div style="font-size:12px;color:#1b5e20;line-height:1.8;white-space:pre-line">${u.sop}</div></div>`:''}
       ${oIss.length?`<div style="background:#fce4ec;border-radius:10px;padding:13px;margin-bottom:14px"><div style="font-size:10px;font-weight:700;color:var(--r1);text-transform:uppercase;margin-bottom:8px">⚠ Open Issues (${oIss.length})</div>${oIss.map(iss=>`<div style="border-left:3px solid var(--r2);padding-left:10px;margin-bottom:10px"><div style="display:flex;justify-content:space-between;margin-bottom:3px"><span style="font-weight:700;font-size:12px;color:#880e4f">${iss.type} · ${iss.severity}</span><span style="font-size:10px;color:var(--mut)">${fD(iss.date)}</span></div><div style="font-size:12px;color:#7f1d1d;line-height:1.5">${iss.comment}</div>${iss.action?`<div style="font-size:11px;color:var(--sky);margin-top:2px">⚙ ${iss.action}</div>`:''}<div style="font-size:11px;color:var(--mut);margin-top:2px">by ${iss.loggedBy}</div></div>`).join('')}</div>`:''}
-      ${bk?`<div style="background:#e3f2fd;border-radius:10px;padding:14px;margin-bottom:14px"><div style="font-size:10px;font-weight:700;color:#0d47a1;text-transform:uppercase;margin-bottom:8px">Active Booking</div><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px"><div style="font-weight:700;font-size:14px">${bkr?fn(bkr):'Unknown'}</div>${bk.checkedOut?`<span class="chip c-co">📤 Out</span>`:`<span class="chip" style="background:#e0e7ff;color:#3730a3">📦 Pending</span>`}</div><div style="font-size:12px;color:var(--mut)">📅 ${fD(bk.bookDate)} ${bk.bookTime} → ${fD(bk.returnDate)}</div><div style="font-size:12px;color:var(--sky);margin-top:3px;font-weight:600">📍 ${bk.deployLoc}</div>${bk.project?`<div style="font-size:12px;color:var(--mut);margin-top:3px">🗂 ${bk.project}</div>`:''}${bk.checkedOutAt?`<div style="font-size:11px;color:var(--mut);margin-top:6px">📤 ${fDT(bk.checkedOutAt)}</div>`:''}</div>`:''}
-      ${bkH.length?`<div style="margin-bottom:14px"><div style="font-size:11px;font-weight:700;color:var(--mut);text-transform:uppercase;margin-bottom:8px">Booking History</div>${bkH.map(b=>{const bu=gUser(b.userId);return`<div style="border-left:3px solid var(--bdr);padding:7px 0 7px 12px;margin-bottom:6px"><div style="font-weight:700;font-size:13px">${bu?fn(bu):'Unknown'}</div><div style="font-size:11px;color:var(--mut)">${fD(b.bookDate)} → ${fD(b.returnDate)} · 📍 ${b.deployLoc}</div>${b.checkedInAt?`<div style="font-size:11px;color:var(--g2)">Returned: ${fDT(b.checkedInAt)}</div>`:''}</div>`}).join('')}</div>`:''}
+      ${bk?`<div style="background:#e3f2fd;border-radius:10px;padding:14px;margin-bottom:14px"><div style="font-size:10px;font-weight:700;color:#0d47a1;text-transform:uppercase;margin-bottom:8px">Active Booking</div><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px"><div style="font-weight:700;font-size:14px">${bkr?fn(bkr):'Unknown'}</div>${bk.checkedOut?`<span class="chip c-co">📤 Out</span>`:`<span class="chip" style="background:#e0e7ff;color:#3730a3">📦 Pending</span>`}</div><div style="font-size:12px;color:var(--mut)">📅 ${fD(bk.bookDate)} ${bk.bookTime} → ${fD(bk.returnDate)}</div><div style="font-size:12px;color:var(--sky);margin-top:3px;font-weight:600">📍 ${bk.deployLoc}</div>${bk.project?`<div style="font-size:12px;color:var(--mut);margin-top:3px">🗂 ${bk.project}</div>`:''}${bk.checkedOutAt?`<div style="font-size:11px;color:var(--mut);margin-top:6px">📤 ${fDT(bk.checkedOutAt)}</div>`:''}${bk.checkOutPhoto?`<img src="${bk.checkOutPhoto}" style="width:100%;border-radius:10px;margin-top:10px;display:block"/>`:''}</div>`:''}
+      ${bkH.length?`<div style="margin-bottom:14px"><div style="font-size:11px;font-weight:700;color:var(--mut);text-transform:uppercase;margin-bottom:8px">Booking History</div>${bkH.map(b=>{const bu=gUser(b.userId);return`<div style="border-left:3px solid var(--bdr);padding:7px 0 7px 12px;margin-bottom:10px"><div style="font-weight:700;font-size:13px">${bu?fn(bu):'Unknown'}</div><div style="font-size:11px;color:var(--mut)">${fD(b.bookDate)} → ${fD(b.returnDate)} · 📍 ${b.deployLoc}</div>${b.checkedInAt?`<div style="font-size:11px;color:var(--g2)">Returned: ${fDT(b.checkedInAt)}</div>`:''}`
+        +`${(b.checkOutPhoto||b.checkInPhoto)?`<div style="display:flex;gap:6px;margin-top:8px">${b.checkOutPhoto?`<div style="flex:1"><div style="font-size:9px;font-weight:700;color:var(--mut);text-transform:uppercase;margin-bottom:3px">📤 Check-out</div><img src="${b.checkOutPhoto}" style="width:100%;border-radius:8px;display:block"/></div>`:''}${b.checkInPhoto?`<div style="flex:1"><div style="font-size:9px;font-weight:700;color:var(--mut);text-transform:uppercase;margin-bottom:3px">📥 Check-in</div><img src="${b.checkInPhoto}" style="width:100%;border-radius:8px;display:block"/></div>`:''}</div>`:''}`
+        +`</div>`}).join('')}</div>`:''}
       <div style="margin-bottom:10px">${act}</div>
-      <div class="brow"><button class="btn-s" onclick="editUnit('${u.id}')">✏️ Edit</button><button onclick="logIssue('${u.id}')" style="flex:1;background:#fce4ec;color:var(--r2);border-radius:12px;padding:12px;font-size:13px;font-weight:700">🔴 Issue</button></div>
+      <div class="brow"><button class="btn-s" onclick="editUnit('${u.id}')">✏️ Edit</button></div>
       <div class="brow"><button onclick="showQR('${u.id}')" class="btn-s" style="margin:0">🔳 QR</button><button onclick="confirmDel('${u.id}')" style="flex:1;background:#fce4ec;color:var(--r2);border-radius:12px;padding:12px;font-size:13px;font-weight:700;margin-top:0">🗑 Delete</button></div>
     </div>
   </div></div>`);
@@ -649,12 +808,10 @@ function addUnit(){
         <div class="ff fld"><label>Serial Number ✱</label><input id="au-sn"/></div>
         <div class="fld"><label>Location</label><input id="au-loc" value="G29"/></div>
         <div class="fld"><label>Station</label><input id="au-st"/></div>
-        <div class="fld"><label>Condition</label><select id="au-cond">${CONDITIONS.map(c=>`<option>${c}</option>`).join('')}</select></div>
         <div class="fld"><label>Responsible</label><select id="au-resp"><option value="">—</option>${Object.values(S.users).map(u=>`<option value="${fn(u)}">${fn(u)}</option>`).join('')}</select></div>
         <div class="fld"><label>Calibration Date</label><input type="date" id="au-cd"/></div>
         <div class="fld"><label>Cal. Interval (months)</label><input type="number" id="au-ci" value="12" min="1" max="120"/></div>
         <div class="ff fld"><label>Description</label><textarea id="au-desc" rows="2"></textarea></div>
-        <div class="ff fld"><label>SOP</label><textarea id="au-sop" rows="4"></textarea></div>
         <div class="ff fld"><label>Notes</label><input id="au-notes"/></div>
       </div>
       <button class="btn-p" onclick="saveAdd()">ADD UNIT</button>
@@ -670,7 +827,7 @@ function saveAdd(){
   if(!sn)return toast('Serial number required','err');
   if(!gv('au-brand'))return toast('Brand required','err');
   if(S.units[id])return toast(`ID ${id} exists — click ↺`,'err');
-  const unit={id,dept:gv('au-dept'),cat:gv('au-cat'),brand:gv('au-brand'),model:gv('au-model'),sn,location:gv('au-loc')||'G29',station:gv('au-st'),condition:gv('au-cond')||'Good',responsible:gv('au-resp'),calDate:gv('au-cd'),calInterval:parseInt(gv('au-ci'))||12,status:'Available',notes:gv('au-notes'),desc:gv('au-desc'),sop:gv('au-sop')};
+  const unit={id,dept:gv('au-dept'),cat:gv('au-cat'),brand:gv('au-brand'),model:gv('au-model'),sn,location:gv('au-loc')||'G29',station:gv('au-st'),responsible:gv('au-resp'),calDate:gv('au-cd'),calInterval:parseInt(gv('au-ci'))||12,status:'Available',notes:gv('au-notes'),desc:gv('au-desc')};
   dbSet(`units/${id}`,unit).then(()=>{popSh();toast(`${id} added ✓`);});
 }
 
@@ -689,13 +846,11 @@ function editUnit(uid){
         <div class="ff fld"><label>Serial Number</label><input id="eu-sn" value="${u.sn||''}"/></div>
         <div class="fld"><label>Location</label><input id="eu-loc" value="${u.location||''}"/></div>
         <div class="fld"><label>Station</label><input id="eu-st" value="${u.station||''}"/></div>
-        <div class="fld"><label>Condition</label><select id="eu-cond">${CONDITIONS.map(c=>`<option ${c===u.condition?'selected':''}>${c}</option>`).join('')}</select></div>
-        <div class="fld"><label>Status</label><select id="eu-stat">${['Available','Out of Service'].map(s=>`<option ${s===u.status?'selected':''}>${s}</option>`).join('')}</select></div>
+        <div class="fld"><label>Status</label><select id="eu-stat">${['Available','Under Maintenance','Out of Service'].map(s=>`<option ${s===u.status?'selected':''}>${s}</option>`).join('')}</select></div>
         <div class="fld"><label>Responsible</label><select id="eu-resp"><option value="">—</option>${uSel}</select></div>
         <div class="fld"><label>Cal. Date</label><input type="date" id="eu-cd" value="${u.calDate||''}"/></div>
         <div class="fld"><label>Cal. Interval (months)</label><input type="number" id="eu-ci" value="${u.calInterval||12}" min="1" max="120"/></div>
         <div class="ff fld"><label>Description</label><textarea id="eu-desc" rows="2">${u.desc||''}</textarea></div>
-        <div class="ff fld"><label>SOP</label><textarea id="eu-sop" rows="4">${u.sop||''}</textarea></div>
         <div class="ff fld"><label>Notes</label><input id="eu-notes" value="${u.notes||''}"/></div>
       </div>
       <button class="btn-p" onclick="saveEdit('${uid}')">SAVE CHANGES</button>
@@ -704,7 +859,7 @@ function editUnit(uid){
 }
 function saveEdit(oldId){
   const nId=gv('eu-id')||oldId;
-  const upd={id:nId,dept:gv('eu-dept'),cat:gv('eu-cat'),brand:gv('eu-brand'),model:gv('eu-model'),sn:gv('eu-sn'),location:gv('eu-loc'),station:gv('eu-st'),condition:gv('eu-cond'),status:gv('eu-stat'),responsible:gv('eu-resp'),calDate:gv('eu-cd'),calInterval:parseInt(gv('eu-ci'))||12,desc:gv('eu-desc'),sop:gv('eu-sop'),notes:gv('eu-notes')};
+  const upd={id:nId,dept:gv('eu-dept'),cat:gv('eu-cat'),brand:gv('eu-brand'),model:gv('eu-model'),sn:gv('eu-sn'),location:gv('eu-loc'),station:gv('eu-st'),status:gv('eu-stat'),responsible:gv('eu-resp'),calDate:gv('eu-cd'),calInterval:parseInt(gv('eu-ci'))||12,desc:gv('eu-desc'),notes:gv('eu-notes')};
   const ops=[dbSet(`units/${nId}`,upd)];
   if(nId!==oldId)ops.push(dbDel(`units/${oldId}`));
   Promise.all(ops).then(()=>{popSh();toast('Unit updated ✓');});
@@ -740,11 +895,10 @@ function logIssue(uid){
     <div class="sh-bd">
       <div style="background:#fce4ec;border-radius:10px;padding:12px;margin-bottom:14px"><div style="font-weight:700;font-size:13px;color:var(--r2)">${u.brand} ${u.model}</div><div style="font-family:monospace;font-size:11px;color:var(--mut);margin-top:2px">${u.id} · SN ${u.sn}</div></div>
       <div class="fg">
-        <div class="fld"><label>Issue Type</label><select id="is-t">${ISSUE_TYPES.map(t=>`<option>${t}</option>`).join('')}</select></div>
-        <div class="fld"><label>Severity</label><select id="is-s"><option>Low</option><option>Medium</option><option selected>High</option></select></div>
+        <div class="ff fld"><label>Issue Type</label><select id="is-t">${ISSUE_TYPES.map(t=>`<option>${t}</option>`).join('')}</select></div>
         <div class="ff fld"><label>Description ✱</label><textarea id="is-c" rows="4" placeholder="Describe the issue in detail..."></textarea></div>
         <div class="ff fld"><label>Recommended Action</label><input id="is-a" placeholder="e.g. Send for repair..."/></div>
-        <div class="ff fld"><label>Change Unit Status To</label><select id="is-st"><option value="">No change</option><option value="Out of Service">Out of Service</option></select></div>
+        <div class="ff fld"><label>Change Unit Status To</label><select id="is-st"><option value="">No change</option><option value="Under Maintenance">Under Maintenance</option><option value="Out of Service">Out of Service</option></select></div>
       </div>
       <div style="background:#f8fafc;border-radius:10px;padding:11px;margin:12px 0;font-size:12px;color:var(--mut)">Logged by: <strong style="color:var(--txt)">${fn(me)}</strong> · ${fD(today())}</div>
       <button class="btn-d" onclick="saveIssue('${uid}')">SUBMIT ISSUE REPORT</button>
@@ -754,7 +908,7 @@ function logIssue(uid){
 function saveIssue(uid){
   const c=gv('is-c');if(!c)return toast('Please describe the issue','err');
   const me={firstName:'User',lastName:'',id:'guest'};const id='ISS-'+Date.now();
-  const iss={id,unitId:uid,type:gv('is-t')||'Other',severity:gv('is-s')||'High',comment:c,action:gv('is-a'),loggedBy:fn(me),userId:me.id,date:today(),status:'Open',resolvedDate:null,resolvedBy:null};
+  const iss={id,unitId:uid,type:gv('is-t')||'Other',comment:c,action:gv('is-a'),loggedBy:fn(me),userId:me.id,date:today(),status:'Open',resolvedDate:null,resolvedBy:null};
   const ns=gv('is-st');const u=gU(uid);
   S.issues[id]=iss;
   if(ns&&u)u.status=ns;
@@ -772,12 +926,13 @@ function bookUnit(uid){
       ${ex.length?`<div style="background:#fff3e0;border-radius:10px;padding:11px;margin-bottom:12px"><div style="font-size:11px;font-weight:700;color:var(--a2);margin-bottom:5px">⚠ EXISTING BOOKING</div>${ex.map(b=>{const bu=gUser(b.userId);return`<div style="font-size:12px;color:var(--a2)">${bu?fn(bu):'?'}: ${fD(b.bookDate)} → ${fD(b.returnDate)}</div>`}).join('')}</div>`:''}
       <div id="bk-err" style="display:none;background:#fce4ec;color:var(--r2);border-radius:10px;padding:11px;margin-bottom:12px;font-size:13px"></div>
       <div class="fg">
-        <div class="fld"><label>Booking Date ✱</label><input type="date" id="bk-d" min="${today()}"/></div>
-        <div class="fld"><label>Time</label><input type="time" id="bk-t" value="08:00"/></div>
-        <div class="ff fld"><label>Expected Return Date ✱</label><input type="date" id="bk-r" min="${today()}"/></div>
+        <div class="fld"><label>Start Date ✱</label><input type="date" id="bk-d" min="${today()}"/></div>
+        <div class="fld"><label>Start Time</label><input type="time" id="bk-t" value="08:00"/></div>
+        <div class="fld"><label>Return Date ✱</label><input type="date" id="bk-r" min="${today()}"/></div>
+        <div class="fld"><label>Return Time</label><input type="time" id="bk-rt" value="17:00"/></div>
         <div class="ff fld"><label>Deployment Location ✱</label><input id="bk-l" placeholder="e.g. Hope Valley Reservoir, Stirling Main..."/></div>
-        <div class="ff fld"><label>Project / WO Number</label><input id="bk-p" placeholder="Project name or work order..."/></div>
-        <div class="ff fld"><label>Notes</label><textarea id="bk-n" rows="2" placeholder="Special requirements..."></textarea></div>
+        <div class="ff fld"><label>Purpose</label><input id="bk-pu" placeholder="e.g. Flow measurement, site inspection..."/></div>
+
       </div>
       
       <button class="btn-p" onclick="confirmBk('${uid}')">CONFIRM BOOKING</button>
@@ -785,7 +940,7 @@ function bookUnit(uid){
   </div></div>`);
 }
 function confirmBk(uid){
-  const d=gv('bk-d'),t=gv('bk-t'),r=gv('bk-r'),l=gv('bk-l');
+  const d=gv('bk-d'),t=gv('bk-t'),r=gv('bk-r'),rt=gv('bk-rt'),l=gv('bk-l'),pu=gv('bk-pu');
   const err=m=>{const el=document.getElementById('bk-err');el.textContent='⚠ '+m;el.style.display='block';};
   if(!d)return err('Please select a booking date.');
   if(!r)return err('Please select a return date.');
@@ -799,29 +954,186 @@ function confirmBk(uid){
   });
   if(conflict){const bu=gUser(conflict.userId);return err(`Conflict with ${bu?fn(bu):'another booking'} (${fD(conflict.bookDate)} → ${fD(conflict.returnDate)}).`);}
   const id='BK-'+Date.now();
-  const bk={id,unitId:uid,userId:'guest',bookDate:d,bookTime:t,returnDate:r,deployLoc:l,project:gv('bk-p'),notes:gv('bk-n'),status:'Active',checkedOut:false,createdAt:new Date().toISOString(),checkedOutAt:null,checkedInAt:null};
+  const bk={id,unitId:uid,userId:S.currentUser?.id||'guest',bookDate:d,bookTime:t,returnDate:r,returnTime:rt,deployLoc:l,purpose:pu,status:'Active',checkedOut:false,createdAt:new Date().toISOString(),checkedOutAt:null,checkedInAt:null};
   const u=gU(uid);
   S.bookings[id]=bk;
   if(u)u.status='Booked';
   saveLS();render();
   pushData().then(()=>{popSh();toast(`✓ ${uid} booked for ${fD(d)}`);});
 }
+let _camStream=null;
+
 function checkOut(bkId){
   const bk=gBk(bkId);if(!bk)return;
-  // Auth removed — anyone can check out
-  const u=gU(bk.unitId);
-  bk.checkedOut=true;bk.checkedOutAt=new Date().toISOString();
-  if(u)u.status='Checked Out';
-  saveLS();render();pushData().then(()=>toast('📤 Checked out'));
+  const u=gU(bk.unitId);if(!u)return;
+  _qrVerifyStep(u.id,'Step 1 of 2 · Check Out','Scan the QR code on <strong>'+u.id+'</strong> to verify',()=>{
+    _photoStep('Step 2 of 2 · Check Out','📷 Photo of instrument <em>before</em> taking it out',photo=>{
+      bk.checkedOut=true;bk.checkedOutAt=new Date().toISOString();
+      if(photo)bk.checkOutPhoto=photo;
+      u.status='Checked Out';
+      saveLS();render();pushData().then(()=>{closeSh();toast('📤 Checked out ✓');});
+    });
+  });
 }
 function checkIn(bkId){
   const bk=gBk(bkId);if(!bk)return;
-  // Auth removed — anyone can check in
-  const u=gU(bk.unitId);
-  bk.status='Returned';bk.checkedInAt=new Date().toISOString();
-  if(u)u.status='Available';
-  saveLS();render();pushData().then(()=>toast('📥 Unit returned ✓'));
+  const u=gU(bk.unitId);if(!u)return;
+  _qrVerifyStep(u.id,'Step 1 of 2 · Check In','Scan the QR code on <strong>'+u.id+'</strong> to confirm return',()=>{
+    _photoStep('Step 2 of 2 · Check In','📷 Photo of instrument returned in place',photo=>{
+      bk.status='Returned';bk.checkedInAt=new Date().toISOString();
+      if(photo)bk.checkInPhoto=photo;
+      u.status='Available';
+      _prunePhotos(u.id);
+      saveLS();render();pushData().then(()=>{closeSh();toast('📥 Returned ✓');});
+    });
+  });
 }
+
+function cancelBooking(bkId){
+  const bk=gBk(bkId);if(!bk)return;
+  if(bk.checkedOut)return toast('Cannot cancel — instrument already checked out','err');
+  const u=gU(bk.unitId);
+  pushSh(`<div class="ov" onclick="closeSh(event)"><div class="sh">
+    <div class="sh-han"></div><div class="sh-hdr"><div class="sh-ttl">Cancel Booking</div><button class="btn-x" onclick="popSh()">×</button></div>
+    <div class="sh-bd">
+      <div style="background:#fce4ec;border-radius:12px;padding:14px;margin-bottom:18px">
+        <div style="font-weight:700;font-size:13px;color:var(--r2);margin-bottom:4px">Cancel this booking?</div>
+        <div style="font-size:12px;color:#7f1d1d">${u?u.brand+' '+u.model:bk.unitId} — ${fD(bk.bookDate)} → ${fD(bk.returnDate)}</div>
+      </div>
+      <button class="btn-d" onclick="(()=>{const bk2=gBk('${bkId}');const u2=gU(bk2?.unitId);if(bk2){bk2.status='Cancelled';if(u2)u2.status='Available';saveLS();render();pushData();popSh();toast('Booking cancelled');}})()">Yes, Cancel Booking</button>
+      <button class="btn-s" style="margin-top:9px" onclick="popSh()">Keep Booking</button>
+    </div>
+  </div></div>`);
+}
+function _prunePhotos(unitId){
+  const bks=Object.values(S.bookings).filter(b=>b.unitId===unitId)
+    .sort((a,b)=>(b.checkedInAt||b.checkedOutAt||b.createdAt||'').localeCompare(a.checkedInAt||a.checkedOutAt||a.createdAt||''));
+  bks.slice(2).forEach(b=>{delete b.checkOutPhoto;delete b.checkInPhoto;});
+}
+
+function _qrVerifyStep(expectedUid,title,subtitle,onOk){
+  openSh(`<div class="ov" onclick="event.stopPropagation()"><div class="sh">
+    <div class="sh-han"></div>
+    <div class="sh-hdr"><div class="sh-ttl">${title}</div><button class="btn-x" onclick="stopQR();closeSh()">×</button></div>
+    <div class="sh-bd">
+      <div style="background:#e3f2fd;border-radius:12px;padding:12px;margin-bottom:14px;font-size:13px;color:#0d47a1;font-weight:600">${subtitle}</div>
+      <div id="qr-wrap" style="position:relative;background:#000;border-radius:14px;overflow:hidden;width:100%;aspect-ratio:1/1;margin-bottom:12px">
+        <video id="qr-vid" style="width:100%;height:100%;object-fit:cover;display:block" playsinline autoplay muted></video>
+        <canvas id="qr-cv" style="display:none"></canvas>
+        <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;pointer-events:none">
+          <div style="width:55%;height:55%;border:3px solid rgba(255,255,255,.9);border-radius:12px;box-shadow:0 0 0 9999px rgba(0,0,0,.45)"></div>
+        </div>
+      </div>
+      <div id="qr-msg" style="text-align:center;font-size:13px;color:var(--mut);padding:4px 0 8px">Point camera at the QR code on the equipment</div>
+    </div>
+  </div></div>`);
+  setTimeout(async ()=>{
+    try{
+      const stream=await navigator.mediaDevices.getUserMedia({video:{facingMode:'environment'}});
+      _qrStream=stream;
+      const vid=document.getElementById('qr-vid');if(!vid){stopQR();return;}
+      vid.srcObject=stream;await vid.play();
+      _qrTimer=setInterval(()=>{
+        const vid2=document.getElementById('qr-vid'),cv=document.getElementById('qr-cv');
+        if(!vid2||!cv||vid2.readyState<2)return;
+        cv.width=vid2.videoWidth;cv.height=vid2.videoHeight;
+        const ctx=cv.getContext('2d');ctx.drawImage(vid2,0,0);
+        if(typeof jsQR==='undefined')return;
+        const img=ctx.getImageData(0,0,cv.width,cv.height);
+        const code=jsQR(img.data,img.width,img.height);
+        if(!code)return;
+        const m=code.data.match(/ID:([A-Z]+-[A-Z]+-\d+)/);
+        const msg=document.getElementById('qr-msg');
+        if(m&&m[1]===expectedUid){
+          stopQR();
+          if(msg){msg.style.color='var(--g2)';msg.textContent='✓ Verified! Opening camera…';}
+          setTimeout(onOk,600);
+        } else if(msg){
+          msg.style.color='var(--r2)';
+          msg.textContent=m?'Wrong instrument ('+m[1]+') — please scan '+expectedUid:'Unrecognised QR code, try again';
+        }
+      },300);
+    }catch(e){
+      const m=document.getElementById('qr-msg');
+      const wrap=document.getElementById('qr-wrap');
+      if(wrap)wrap.style.display='none';
+      const insecure=!window.isSecureContext||location.protocol==='file:';
+      const msg=insecure
+        ?'Camera blocked: open this app via <strong>https://</strong> or allow file access in browser settings.'
+        :e.name==='NotAllowedError'||e.name==='PermissionDeniedError'
+          ?'Camera permission denied — tap the 🔒 icon in the address bar and allow camera, then try again.'
+          :e.name==='NotFoundError'
+            ?'No camera found on this device.'
+            :'Camera unavailable ('+e.name+').';
+      if(m)m.innerHTML=`<div style="color:var(--r2);font-size:12px;line-height:1.6;margin-bottom:12px">${msg}</div>`
+        +`<button class="btn-s" onclick="stopQR();(window._qrSkipCb&&window._qrSkipCb())">Skip QR — proceed anyway</button>`;
+      window._qrSkipCb=onOk;
+    }
+  },200);
+}
+
+function _photoStep(title,subtitle,onDone){
+  pushSh(`<div class="ov" onclick="event.stopPropagation()"><div class="sh">
+    <div class="sh-han"></div>
+    <div class="sh-hdr"><div class="sh-ttl">${title}</div><button class="btn-x" onclick="_stopCam();popSh()">×</button></div>
+    <div class="sh-bd">
+      <div style="background:#e8f5e9;border-radius:12px;padding:12px;margin-bottom:14px;font-size:13px;color:#1b5e20;font-weight:600">${subtitle}</div>
+      <div id="cam-live" style="position:relative;background:#000;border-radius:14px;overflow:hidden;width:100%;aspect-ratio:4/3;margin-bottom:14px">
+        <video id="cam-vid" style="width:100%;height:100%;object-fit:cover;display:block" playsinline autoplay muted></video>
+        <canvas id="cam-cv" style="display:none"></canvas>
+      </div>
+      <div id="cam-preview" style="display:none;margin-bottom:14px"><img id="cam-img" style="width:100%;border-radius:14px;display:block"/></div>
+      <div id="cam-btns"><button class="btn-p" onclick="_capSnap()">📷 CAPTURE PHOTO</button><button class="btn-s" style="margin-top:8px" onclick="_skipPhoto()">Skip (no photo)</button></div>
+      <div id="cam-confirm" style="display:none">
+        <button class="btn-ok" onclick="_useSnap()" style="margin-bottom:8px">✓ USE THIS PHOTO</button>
+        <button class="btn-s" onclick="_retakeSnap()">↺ Retake</button>
+      </div>
+    </div>
+  </div></div>`);
+  window._snapCb=onDone;
+  setTimeout(async ()=>{
+    try{
+      const stream=await navigator.mediaDevices.getUserMedia({video:{facingMode:'environment',width:{ideal:1280}}});
+      _camStream=stream;
+      const vid=document.getElementById('cam-vid');if(!vid){_stopCam();return;}
+      vid.srcObject=stream;await vid.play();
+    }catch(e){
+      document.getElementById('cam-live').style.display='none';
+      const btns=document.getElementById('cam-btns');
+      const insecure=!window.isSecureContext||location.protocol==='file:';
+      const msg=insecure
+        ?'Camera blocked: open this app via <strong>https://</strong> or allow file access in browser settings.'
+        :e.name==='NotAllowedError'||e.name==='PermissionDeniedError'
+          ?'Camera permission denied — tap the 🔒 icon in the address bar and allow camera, then retry.'
+          :e.name==='NotFoundError'?'No camera found on this device.'
+          :'Camera unavailable ('+e.name+').';
+      if(btns)btns.innerHTML=`<div style="font-size:12px;color:var(--r2);line-height:1.6;margin-bottom:12px">${msg}</div><button class="btn-s" onclick="_skipPhoto()">Skip (no photo)</button>`;
+    }
+  },200);
+}
+function _stopCam(){if(_camStream){_camStream.getTracks().forEach(t=>t.stop());_camStream=null;}}
+function _capSnap(){
+  const vid=document.getElementById('cam-vid'),cv=document.getElementById('cam-cv');
+  if(!vid||!cv)return;
+  const scale=Math.min(1,640/vid.videoWidth);
+  cv.width=Math.round(vid.videoWidth*scale);cv.height=Math.round(vid.videoHeight*scale);
+  cv.getContext('2d').drawImage(vid,0,0,cv.width,cv.height);
+  window._snap=cv.toDataURL('image/jpeg',0.72);
+  document.getElementById('cam-img').src=window._snap;
+  document.getElementById('cam-preview').style.display='block';
+  document.getElementById('cam-live').style.display='none';
+  document.getElementById('cam-btns').style.display='none';
+  document.getElementById('cam-confirm').style.display='block';
+}
+function _retakeSnap(){
+  window._snap=null;
+  document.getElementById('cam-preview').style.display='none';
+  document.getElementById('cam-live').style.display='block';
+  document.getElementById('cam-btns').style.display='block';
+  document.getElementById('cam-confirm').style.display='none';
+}
+function _useSnap(){_stopCam();const cb=window._snapCb;window._snapCb=null;const p=window._snap;window._snap=null;if(cb)cb(p);}
+function _skipPhoto(){_stopCam();const cb=window._snapCb;window._snapCb=null;window._snap=null;if(cb)cb(null);}
 function showQR(uid){
   const u=gU(uid);if(!u)return;
   const due=cDue(u.calDate,u.calInterval);
@@ -844,56 +1156,61 @@ function showQR(uid){
 function vBk(){
   const f=S.bF;
   let list=Object.values(S.bookings);
-  if(f.q){const q=f.q.toLowerCase();list=list.filter(b=>{const u=gU(b.unitId);const bu=gUser(b.userId);return[u?.id,u?.sn,u?.brand,u?.model,b.deployLoc,b.project,bu?.firstName,bu?.lastName].some(v=>(v||'').toLowerCase().includes(q));});}
+  if(f.q){const q=f.q.toLowerCase();list=list.filter(b=>{const u=gU(b.unitId);const bu=gUser(b.userId);return[u?.id,bu?.firstName,bu?.lastName,b.bookDate].some(v=>(v||'').toLowerCase().includes(q));});}
   if(f.userId)list=list.filter(b=>b.userId===f.userId);
-  if(f.df)list=list.filter(b=>b.bookDate>=f.df);
-  if(f.dt)list=list.filter(b=>b.bookDate<=f.dt);
   if(!f.ret)list=list.filter(b=>b.status==='Active');
   list.sort((a,b)=>(b.createdAt||'').localeCompare(a.createdAt||''));
-  const active=list.filter(b=>b.status==='Active'),ret=list.filter(b=>b.status==='Returned');
-  const card=(b,showAct=true)=>{
+  const active=list.filter(b=>b.status==='Active'),ret=list.filter(b=>b.status!=='Active');
+  const row=(b,i,arr)=>{
     const u=gU(b.unitId);if(!u)return'';
-    const dc=DC[u.dept]||{col:['#f0f4f8','#334155'],abbr:'???'};
-    const bu=gUser(b.userId);const isMine=b.userId===S.currentUser.id;
-    return`<div style="background:#fff;border:1px solid var(--bdr);border-radius:var(--rad);padding:14px;margin:0 12px 9px;cursor:pointer" onclick="openUnit('${u.id}')">
-      <div style="display:flex;gap:10px;align-items:flex-start">
-        <div class="db" style="background:${dc.col[0]};color:${dc.col[1]};width:38px;height:38px;font-size:9px;flex-shrink:0">${dc.abbr}</div>
-        <div style="flex:1;min-width:0">
-          <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:6px">
-            <div style="font-weight:700;font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${u.brand} ${u.model}</div>
-            ${b.status==='Active'?(b.checkedOut?`<span class="chip c-co">Out</span>`:`<span class="chip c-bk">Booked</span>`):`<span class="chip c-av">Returned</span>`}
-          </div>
-          <div style="font-family:monospace;font-size:10px;color:var(--sky);font-weight:700;margin-top:1px">${u.id} · SN ${u.sn}</div>
-          <div style="font-size:12px;color:var(--mut);margin-top:5px">👤 <strong>${bu?fn(bu):'?'}</strong></div>
-          <div style="font-size:12px;color:var(--mut);margin-top:2px">📍 ${b.deployLoc}</div>
-          <div style="font-size:12px;color:var(--mut);margin-top:2px">📅 ${fD(b.bookDate)} → ${fD(b.returnDate)}</div>
-          ${b.project?`<div style="font-size:12px;color:var(--sky);margin-top:2px">🗂 ${b.project}</div>`:''}
-          ${b.checkedOutAt?`<div style="font-size:11px;color:var(--mut);margin-top:2px">📤 ${fDT(b.checkedOutAt)}</div>`:''}
-          ${b.checkedInAt?`<div style="font-size:11px;color:var(--g2);margin-top:2px">📥 ${fDT(b.checkedInAt)}</div>`:''}
-        </div>
+    const bu=gUser(b.userId);
+    const chip=b.status==='Active'?(b.checkedOut?`<span class="chip c-co">Out</span>`:`<span class="chip c-bk">Booked</span>`):`<span class="chip c-av">Returned</span>`;
+    return`<div style="padding:12px 18px;${i<arr.length-1?'border-bottom:1px solid var(--bdr)':''};cursor:pointer" onclick="openUnit('${u.id}')">
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:4px">
+        <div style="font-family:monospace;font-size:12px;font-weight:700;color:var(--sky)">${u.id}</div>
+        ${chip}
       </div>
-      ${showAct&&b.status==='Active'&&isMine?`<div class="brow" style="margin-top:10px">${!b.checkedOut?`<button class="btn-w" style="padding:9px;font-size:12px;margin:0" onclick="event.stopPropagation();checkOut('${b.id}')">📤 Check Out</button>`:`<button class="btn-ok" style="padding:9px;font-size:12px;margin:0" onclick="event.stopPropagation();checkIn('${b.id}')">📥 Check In</button>`}</div>`:''}
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:8px">
+        <div style="font-size:12px;font-weight:600;color:var(--txt)">👤 ${bu?fn(bu):'—'}</div>
+        <div style="font-size:11px;color:var(--mut)">📅 ${fD(b.bookDate)} → ${fD(b.returnDate)}</div>
+      </div>
     </div>`;
   };
-  const uOpts=Object.values(S.users).map(u=>`<option value="${u.id}" ${f.userId===u.id?'selected':''}>${fn(u)}</option>`).join('');
+  const myActive=f.userId?active.filter(b=>b.userId===f.userId):[];
+  const myActiveCards=myActive.map(b=>{const u=gU(b.unitId);if(!u)return'';
+    return`<div style="background:#fff;border:1px solid var(--bdr);border-radius:var(--rad);padding:16px;margin:0 18px 10px;cursor:pointer" onclick="openUnit('${u.id}')">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
+        <div>
+          <div style="font-weight:700;font-size:13px">${u.brand} ${u.model}</div>
+          <div style="font-family:monospace;font-size:10px;color:var(--sky);font-weight:700;margin-top:1px">${u.id}</div>
+        </div>
+        ${b.checkedOut?`<span class="chip c-co">Out</span>`:`<span class="chip c-bk">Booked</span>`}
+      </div>
+      <div style="font-size:12px;color:var(--mut)">📍 ${b.deployLoc} · due ${fD(b.returnDate)}</div>
+      <div class="brow" style="margin-top:10px">
+        ${!b.checkedOut
+          ?`<button class="btn-w" style="padding:9px;font-size:12px;margin:0" onclick="event.stopPropagation();checkOut('${b.id}')">📤 Check Out</button>`
+          :`<button class="btn-ok" style="padding:9px;font-size:12px;margin:0" onclick="event.stopPropagation();checkIn('${b.id}')">📥 Check In</button>`}
+        ${!b.checkedOut?`<button style="padding:9px;font-size:12px;font-weight:700;background:#fce4ec;color:var(--r2);border:none;border-radius:12px;cursor:pointer;flex:0 0 auto" onclick="event.stopPropagation();cancelBooking('${b.id}')">✕ Cancel</button>`:''}
+      </div>
+    </div>`;}).join('');
+  const histList=f.userId?list.filter(b=>!(b.status==='Active'&&b.userId===f.userId)):list;
   return`
-  <div class="tb"><div style="display:flex;justify-content:space-between;align-items:center"><div class="tb-h">Bookings</div><button onclick="expBk()" style="background:rgba(255,255,255,.15);color:#fff;border-radius:10px;padding:7px 12px;font-size:12px;font-weight:700">⬇ CSV</button></div>
-    <input class="srch" placeholder="🔍  Search name, location, unit..." oninput="S.bF.q=this.value;rView()" value="${f.q}"/>
+  <div class="tb"><div style="display:flex;justify-content:space-between;align-items:center">
+    <div class="tb-h">${f.userId?'My Bookings':'Bookings'}</div>
+    <div style="display:flex;align-items:center;gap:8px">
+      <label style="display:flex;align-items:center;gap:5px;font-size:11px;font-weight:700;color:rgba(255,255,255,.7);text-transform:none;letter-spacing:0;cursor:pointer;margin:0"><input type="checkbox" ${f.ret?'checked':''} onchange="S.bF.ret=this.checked;rView()" style="width:auto;border:none;accent-color:#fff"/>All</label>
+      <button onclick="expBk()" style="background:rgba(255,255,255,.15);color:#fff;border-radius:10px;padding:7px 12px;font-size:12px;font-weight:700">⬇ CSV</button>
+    </div>
   </div>
-  <div style="padding:9px 12px;background:#fff;border-bottom:1px solid var(--bdr);display:flex;gap:8px;flex-wrap:wrap">
-    <select style="flex:1;min-width:130px;font-size:12px;padding:8px 10px;border:1.5px solid var(--bdr);border-radius:9px" onchange="S.bF.userId=this.value;rView()"><option value="">All Users</option>${uOpts}</select>
-    <input type="date" style="flex:1;min-width:110px;font-size:12px;padding:8px 10px;border:1.5px solid var(--bdr);border-radius:9px" onchange="S.bF.df=this.value;rView()" value="${f.df}"/>
-    <input type="date" style="flex:1;min-width:110px;font-size:12px;padding:8px 10px;border:1.5px solid var(--bdr);border-radius:9px" onchange="S.bF.dt=this.value;rView()" value="${f.dt}"/>
+    <input class="srch" placeholder="🔍  Search unit ID, user or date…" oninput="S.bF.q=this.value;rView()" value="${f.q}"/>
   </div>
-  <div style="padding:8px 12px;display:flex;align-items:center;gap:8px">
-    <label style="display:flex;align-items:center;gap:6px;font-size:12px;font-weight:600;color:var(--mut);text-transform:none;letter-spacing:0;cursor:pointer"><input type="checkbox" ${f.ret?'checked':''} onchange="S.bF.ret=this.checked;rView()" style="width:auto;border:none;accent-color:var(--navy)"/>Show returned bookings</label>
-    <div style="margin-left:auto;font-size:12px;color:var(--mut)">${active.length} active · ${ret.length} returned</div>
-  </div>
-  <div style="padding:4px 0">
-    ${active.length?`<div class="sec-lbl">Active (${active.length})</div>${active.map(b=>card(b)).join('')}`:''}
-    ${f.ret&&ret.length?`<div class="sec-lbl">Returned (${ret.length})</div>${ret.map(b=>card(b,false)).join('')}`:''}
-    ${!active.length&&(!f.ret||!ret.length)?`<div style="text-align:center;padding:60px 20px;color:var(--mut)"><div style="font-size:40px;margin-bottom:12px">📋</div><div style="font-weight:700">No bookings</div></div>`:''}
-  </div>`;
+  ${myActiveCards?`<div class="sec-lbl" style="margin-top:16px">Active bookings</div>${myActiveCards}`:''}
+  ${histList.length?`
+  <div class="sec-lbl" style="margin-top:${myActiveCards?'8':'16'}px">${f.userId?'History':'All bookings'}</div>
+  <div style="background:#fff;border:1px solid var(--bdr);border-radius:14px;margin:0 18px 14px;overflow:hidden">${histList.map((b,i,a)=>row(b,i,a)).join('')}</div>`
+  :(myActiveCards?'':`<div style="text-align:center;padding:60px 20px;color:var(--mut)"><div style="font-size:32px;margin-bottom:12px">📋</div><div style="font-weight:700;font-size:14px">No bookings</div></div>`)}
+  `;
 }
 function expBk(){
   const rows=[['Booking ID','Unit ID','SN','Brand','Model','Dept','Cat','Location','Station','Booked By','Email','Position','Deploy Location','Project','Book Date','Book Time','Return Date','Notes','Status','Checked Out','Checked Out At','Checked In At']];
@@ -909,7 +1226,7 @@ function vAdmin(){
   const units=Object.values(S.units);
   const oIss=Object.values(S.issues).filter(i=>i.status==='Open');
   const cIss=Object.values(S.issues).filter(i=>i.status==='Resolved').sort((a,b)=>(b.date||'').localeCompare(a.date||''));
-  const byS={Available:0,Booked:0,'Checked Out':0,'Out of Service':0};
+  const byS={Available:0,'Under Maintenance':0,Booked:0,'Checked Out':0,'Out of Service':0};
   units.forEach(u=>{byS[u.status]=(byS[u.status]||0)+1});
   const iCard=(iss,isOpen)=>{
     const u=gU(iss.unitId);
@@ -925,48 +1242,61 @@ function vAdmin(){
       ${isOpen?`<button class="btn-ok" style="margin-top:10px;padding:8px 16px;font-size:12px;width:auto" onclick="resIss('${iss.id}')">✓ Mark Resolved</button>`:`<div style="font-size:11px;color:var(--g2);margin-top:6px;font-weight:600">✓ Resolved ${fD(iss.resolvedDate)} by ${iss.resolvedBy}</div>`}
     </div>`;
   };
+  const secHdr=(id,lbl,badge,extra='')=>`<div onclick="togAdmin('${id}')" style="display:flex;justify-content:space-between;align-items:center;padding:14px 0 6px;cursor:pointer;user-select:none;border-top:1px solid var(--bdr);margin-top:4px"><div style="display:flex;align-items:center;gap:8px"><span style="font-size:10px;font-weight:700;color:var(--mut);text-transform:uppercase;letter-spacing:1px">${lbl}</span>${badge!==undefined&&badge!==''?`<span style="background:var(--sky);color:#fff;border-radius:10px;padding:1px 7px;font-size:10px;font-weight:800;line-height:1.6">${badge}</span>`:''}</div><div style="display:flex;align-items:center;gap:8px">${extra}<svg id="arr-${id}" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="transition:transform .2s;flex-shrink:0;color:var(--mut)"><path d="M6 9l6 6 6-6"/></svg></div></div>`;
+  const allBkRows=Object.values(S.users).map(user=>{
+    const userBks=Object.values(S.bookings).filter(b=>b.userId===user.id).sort((a,b)=>(b.createdAt||'').localeCompare(a.createdAt||''));
+    if(!userBks.length)return'';
+    const activeCnt=userBks.filter(b=>b.status==='Active').length;
+    return`<div style="margin-bottom:4px"><div style="display:flex;align-items:center;gap:8px;padding:10px 0;border-bottom:1px solid var(--bdr)"><div style="width:28px;height:28px;border-radius:50%;background:var(--navy);color:#fff;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;flex-shrink:0">${(user.firstName||'?')[0]}${(user.lastName||'')[0]||''}</div><span style="flex:1;font-weight:700;font-size:13px">${fn(user)}</span>${activeCnt?`<span class="chip c-bk">${activeCnt} active</span>`:''}</div>${userBks.map(b=>{const u=gU(b.unitId);if(!u)return'';const chip=b.status==='Active'?(b.checkedOut?'<span class="chip c-co">Out</span>':'<span class="chip c-bk">Booked</span>'):'<span class="chip c-av">Returned</span>';return`<div style="display:flex;align-items:center;justify-content:space-between;padding:8px 0 8px 36px;border-bottom:1px solid #f8fafc;cursor:pointer" onclick="openUnit('${u.id}')"><div><div style="font-family:monospace;font-size:11px;font-weight:700;color:var(--sky)">${u.id}</div><div style="font-size:11px;color:var(--mut)">${fD(b.bookDate)} → ${fD(b.returnDate)}</div></div>${chip}</div>`;}).join('')}</div>`;
+  }).filter(Boolean).join('');
   return`
   <div class="tb"><div class="tb-h">Admin</div><div class="tb-s">Issues, calibration, users & reports</div></div>
-  <div style="padding:0 12px">
-    <div style="background:#fff3e0;border:1px solid #ffcc80;border-radius:var(--rad);padding:14px;margin:14px 0 4px;display:flex;justify-content:space-between;align-items:center;gap:12px">
+  <div style="padding:0 18px">
+    <div style="background:#fff3e0;border:1px solid #ffcc80;border-radius:var(--rad);padding:16px;margin:16px 0 4px;display:flex;justify-content:space-between;align-items:center;gap:12px">
       <div><div style="font-weight:700;font-size:13px;color:var(--a2)">⚠ System Reset</div><div style="font-size:11px;color:var(--mut);margin-top:2px">Clear bookings & issues, restore all units to Available.</div></div>
       <button onclick="confReset()" style="background:var(--a2);color:#fff;border-radius:10px;padding:9px 14px;font-size:12px;font-weight:700;flex-shrink:0">Reset</button>
     </div>
-    <div class="sec-lbl">Unit Status</div>
-    <div style="background:#fff;border:1px solid var(--bdr);border-radius:var(--rad);padding:4px 16px;margin-bottom:4px">
-      ${Object.entries(byS).map(([k,v])=>`<div style="display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid #f0f4f8"><span style="font-size:13px">${sChip(k)} ${k}</span><span style="font-family:monospace;font-weight:800">${v}</span></div>`).join('')}
+
+    ${secHdr('adm-us','Unit Status')}
+    <div id="adm-us" style="display:none;background:#fff;border:1px solid var(--bdr);border-radius:var(--rad);padding:6px 18px;margin-bottom:4px">
+      ${Object.entries(byS).map(([k,v])=>`<div style="display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid #f0f4f8"><span>${sChip(k)}</span><span style="font-family:monospace;font-weight:800">${v}</span></div>`).join('')}
       <div style="display:flex;justify-content:space-between;padding:10px 0;font-weight:800;font-size:13px"><span>Total Units</span><span style="font-family:monospace">${units.length}</span></div>
     </div>
-    <div style="display:flex;justify-content:space-between;align-items:center;margin:16px 0 8px"><div class="sec-lbl" style="margin:0">Calibration Report</div><button onclick="expCal()" style="background:#f0f4f8;border:none;border-radius:8px;padding:4px 10px;font-size:11px;font-weight:700;cursor:pointer">⬇ CSV</button></div>
-    <div style="background:#fff;border:1px solid var(--bdr);border-radius:var(--rad);padding:4px 16px;margin-bottom:4px">
-      ${units.slice().sort((a,b)=>{const da=cDue(a.calDate,a.calInterval)||'9999';const db2=cDue(b.calDate,b.calInterval)||'9999';return da.localeCompare(db2);}).map(u=>{
-        const due=cDue(u.calDate,u.calInterval);const d=due?dTo(due):null;
-        const col=d===null?'var(--mut)':d<0?'var(--r2)':d<=30?'var(--a2)':'var(--g2)';
-        return`<div style="display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid #f0f4f8;cursor:pointer" onclick="openUnit('${u.id}')">
-          <div><div style="font-weight:700;font-size:12px">${u.brand} ${u.model}</div><div style="font-family:monospace;font-size:10px;color:var(--sky)">${u.id} · SN ${u.sn}</div><div style="font-size:11px;color:var(--mut)">Last: ${fD(u.calDate)} · Every ${u.calInterval}mo</div></div>
-          <div style="text-align:right;flex-shrink:0;margin-left:8px"><div style="font-weight:700;font-size:12px;color:${col}">${fD(due||'')}</div><div style="font-size:10px;color:${col};font-weight:600">${d===null?'No date':d<0?Math.abs(d)+'d over':d<=30?d+'d left':'OK'}</div></div>
-        </div>`;}).join('')}
+
+    ${secHdr('adm-cal','Calibration Report','',`<button onclick="event.stopPropagation();expCal()" style="background:#f0f4f8;border:none;border-radius:8px;padding:4px 10px;font-size:11px;font-weight:700;cursor:pointer">⬇ CSV</button>`)}
+    <div id="adm-cal" style="display:none;background:#fff;border:1px solid var(--bdr);border-radius:var(--rad);padding:6px 18px;margin-bottom:4px">
+      ${units.slice().sort((a,b)=>{const da=cDue(a.calDate,a.calInterval)||'9999';const db2=cDue(b.calDate,b.calInterval)||'9999';return da.localeCompare(db2);}).map(u=>{const due=cDue(u.calDate,u.calInterval);const d=due?dTo(due):null;const col=d===null?'var(--mut)':d<0?'var(--r2)':d<=30?'var(--a2)':'var(--g2)';return`<div style="display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid #f0f4f8;cursor:pointer" onclick="openUnit('${u.id}')"><div><div style="font-weight:700;font-size:12px">${u.brand} ${u.model}</div><div style="font-family:monospace;font-size:10px;color:var(--sky)">${u.id} · SN ${u.sn}</div><div style="font-size:11px;color:var(--mut)">Last: ${fD(u.calDate)} · Every ${u.calInterval}mo</div></div><div style="text-align:right;flex-shrink:0;margin-left:8px"><div style="font-weight:700;font-size:12px;color:${col}">${fD(due||'')}</div><div style="font-size:10px;color:${col};font-weight:600">${d===null?'No date':d<0?Math.abs(d)+'d over':d<=30?d+'d left':'OK'}</div></div></div>`;}).join('')}
     </div>
-    <div class="sec-lbl">🔴 Open Issues (${oIss.length})</div>
-    ${oIss.length?oIss.map(i=>iCard(i,true)).join(''):`<div style="text-align:center;padding:16px;color:var(--mut);font-size:13px;background:#fff;border:1px solid var(--bdr);border-radius:var(--rad);margin-bottom:4px">✓ No open issues</div>`}
-    <div style="display:flex;justify-content:space-between;align-items:center;margin:16px 0 8px"><div class="sec-lbl" style="margin:0">✓ Resolved (${cIss.length})</div>${cIss.length?`<button id="rb" onclick="togRes()" style="background:#f0f4f8;border:none;border-radius:8px;padding:4px 10px;font-size:11px;font-weight:700;cursor:pointer">Show</button>`:''}</div>
-    <div id="rl" style="display:none">${cIss.map(i=>iCard(i,false)).join('')}</div>
-    <div class="sec-lbl">Registered Users (${Object.values(S.users).length})</div>
-    <div style="background:#fff;border:1px solid var(--bdr);border-radius:var(--rad);padding:4px 16px;margin-bottom:4px">
-      ${Object.values(S.users).map(u=>`<div style="display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid #f0f4f8">
-        <div style="width:34px;height:34px;border-radius:50%;background:var(--sky);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;font-size:13px;flex-shrink:0">${u.firstName[0]}${u.lastName[0]}</div>
-        <div style="flex:1;min-width:0"><div style="font-weight:700;font-size:13px">${fn(u)}</div><div style="font-size:11px;color:var(--mut);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${u.email} · ${u.position}</div><div style="font-size:11px;color:var(--mut)">${u.phone}</div></div>
-        <button onclick="editUser('${u.id}')" style="background:#f0f4f8;border:none;border-radius:8px;padding:6px 10px;font-size:11px;font-weight:700;cursor:pointer;flex-shrink:0">Edit</button>
-      </div>`).join('')}
+
+    ${secHdr('adm-oi','Open Issues',oIss.length)}
+    <div id="adm-oi" style="display:none;margin-bottom:4px">
+      ${oIss.length?oIss.map(i=>iCard(i,true)).join(''):`<div style="text-align:center;padding:16px;color:var(--mut);font-size:13px;background:#fff;border:1px solid var(--bdr);border-radius:var(--rad)">✓ No open issues</div>`}
     </div>
-    <div class="brow" style="margin-bottom:4px"><button class="btn-s" onclick="expBk()">⬇ Bookings</button><button class="btn-s" onclick="expIss()">⬇ Issues</button></div>
+
+    ${secHdr('adm-ri','Resolved Issues',cIss.length)}
+    <div id="adm-ri" style="display:none;margin-bottom:4px">
+      ${cIss.length?cIss.map(i=>iCard(i,false)).join(''):`<div style="text-align:center;padding:16px;color:var(--mut);font-size:13px;background:#fff;border:1px solid var(--bdr);border-radius:var(--rad)">No resolved issues</div>`}
+    </div>
+
+    ${secHdr('adm-bk','All User Bookings',Object.values(S.bookings).length)}
+    <div id="adm-bk" style="display:none;background:#fff;border:1px solid var(--bdr);border-radius:var(--rad);padding:6px 18px;margin-bottom:4px">
+      ${allBkRows||`<div style="text-align:center;padding:16px;color:var(--mut);font-size:13px">No bookings yet</div>`}
+    </div>
+
+    ${secHdr('adm-usr','Users ('+Object.values(S.users).length+')','',`<button onclick="event.stopPropagation();addUser()" style="background:var(--navy);color:#fff;border:none;border-radius:8px;padding:5px 12px;font-size:11px;font-weight:700;cursor:pointer">+ Add</button>`)}
+    <div id="adm-usr" style="display:none;background:#fff;border:1px solid var(--bdr);border-radius:var(--rad);padding:6px 18px;margin-bottom:4px">
+      ${Object.values(S.users).map(u=>`<div style="display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid #f0f4f8"><div style="width:36px;height:36px;border-radius:50%;background:var(--navy);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;font-size:13px;flex-shrink:0">${(u.firstName||'?')[0]}${(u.lastName||'')[0]||''}</div><div style="flex:1;min-width:0"><div style="font-weight:700;font-size:13px">${fn(u)}</div><div style="font-size:12px;color:var(--mut);margin-top:1px">${u.position||''}</div>${u.email?`<div style="font-size:11px;color:var(--sky);margin-top:1px">${u.email}</div>`:''}</div><button onclick="editUser('${u.id}')" style="background:#f0f4f8;border:none;border-radius:8px;padding:6px 10px;font-size:11px;font-weight:700;cursor:pointer;flex-shrink:0">Edit</button></div>`).join('')}
+    </div>
+
+    <div class="brow" style="margin:16px 0 4px"><button class="btn-s" onclick="expBk()">⬇ Bookings CSV</button><button class="btn-s" onclick="expIss()">⬇ Issues CSV</button></div>
     <div style="height:16px"></div>
   </div>`;
 }
 function togRes(){const l=document.getElementById('rl'),b=document.getElementById('rb');if(!l)return;const s=l.style.display==='none';l.style.display=s?'block':'none';if(b)b.textContent=s?'Hide':'Show';}
+function togAdmin(id){const el=document.getElementById(id),arr=document.getElementById('arr-'+id);if(!el)return;const open=el.style.display!=='none';el.style.display=open?'none':'block';if(arr)arr.style.transform=open?'rotate(0deg)':'rotate(180deg)';}
 function resIss(id){
   const iss=S.issues[id];if(!iss)return;
-  iss.status='Resolved';iss.resolvedDate=today();iss.resolvedBy=fn(S.currentUser);
+  iss.status='Resolved';iss.resolvedDate=today();iss.resolvedBy=fn(S.currentUser||{firstName:'Admin',lastName:''});
   if(iss.unitId){const u=gU(iss.unitId);if(u&&u.status==='Out of Service'){const still=Object.values(S.issues).some(x=>x.unitId===iss.unitId&&x.status==='Open'&&x.id!==id);if(!still)u.status='Available';}}
   saveLS();render();pushData().then(()=>toast('Issue resolved ✓'));
 }
@@ -978,10 +1308,8 @@ function editUser(uid){
       <div class="fg">
         <div class="fld"><label>First Name</label><input id="uu-fn" value="${u.firstName}"/></div>
         <div class="fld"><label>Last Name</label><input id="uu-ln" value="${u.lastName}"/></div>
-        <div class="ff fld"><label>SA Water Email</label><input id="uu-em" type="email" value="${u.email}"/></div>
-        <div class="fld"><label>Phone</label><input id="uu-ph" value="${u.phone}"/></div>
-        <div class="fld"><label>Position</label><select id="uu-pos">${POSITIONS.map(p=>`<option ${p===u.position?'selected':''}>${p}</option>`).join('')}</select></div>
-        <div class="ff fld"><label>New Password (blank = keep)</label><input id="uu-pw" type="password" placeholder="Leave blank to keep current"/></div>
+        <div class="ff fld"><label>Email</label><input id="uu-em" type="email" value="${u.email||(u.firstName+'.'+u.lastName+'@sawater.com.au').toLowerCase()}" placeholder="firstname.lastname@sawater.com.au"/></div>
+        <div class="ff fld"><label>Position</label><select id="uu-pos">${POSITIONS.map(p=>`<option ${p===u.position?'selected':''}>${p}</option>`).join('')}</select></div>
       </div>
       <button class="btn-p" onclick="saveUser('${uid}')">SAVE CHANGES</button>
       <button class="btn-d" style="margin-top:9px" onclick="confDelUser('${uid}')">Delete User</button>
@@ -990,15 +1318,44 @@ function editUser(uid){
 }
 function saveUser(uid){
   const u=gUser(uid);if(!u)return;
-  const fn2=gv('uu-fn'),ln=gv('uu-ln'),em=gv('uu-em').toLowerCase(),ph=gv('uu-ph'),pos=gv('uu-pos'),pw=gv('uu-pw');
-  if(!fn2||!ln||!em||!ph||!pos)return toast('All fields required','err');
-  if(!em.endsWith('@sawater.com.au'))return toast('Must use @sawater.com.au email','err');
-  if(pw&&pw.length<6)return toast('Password must be ≥ 6 characters','err');
-  Object.assign(u,{firstName:fn2,lastName:ln,email:em,phone:ph,position:pos});
-  if(pw)u.pw=pw;
+  const fn2=gv('uu-fn'),ln=gv('uu-ln'),em=gv('uu-em'),pos=gv('uu-pos');
+  if(!fn2||!ln||!pos)return toast('All fields required','err');
+  Object.assign(u,{firstName:fn2,lastName:ln,email:em,position:pos});
   if(S.currentUser?.id===uid){S.currentUser=u;saveSession();}
   saveLS();render();
   pushData().then(()=>{popSh();toast('User updated ✓');});
+}
+function addUser(){
+  pushSh(`<div class="ov" onclick="closeSh(event)"><div class="sh">
+    <div class="sh-han"></div><div class="sh-hdr"><div class="sh-ttl">Add User</div><button class="btn-x" onclick="popSh()">×</button></div>
+    <div class="sh-bd">
+      <div class="fg">
+        <div class="fld"><label>First Name</label><input id="nu-fn" placeholder="First" oninput="autoUserEmail()"/></div>
+        <div class="fld"><label>Last Name</label><input id="nu-ln" placeholder="Last" oninput="autoUserEmail()"/></div>
+        <div class="ff fld"><label>Email</label><input id="nu-em" type="email" placeholder="firstname.lastname@sawater.com.au"/></div>
+        <div class="ff fld"><label>Position</label><select id="nu-pos">${POSITIONS.map(p=>`<option>${p}</option>`).join('')}</select></div>
+      </div>
+      <button class="btn-p" onclick="saveAddUser()">ADD USER</button>
+    </div>
+  </div></div>`);
+}
+function saveAddUser(){
+  const fn2=gv('nu-fn'),ln=gv('nu-ln'),em=gv('nu-em'),pos=gv('nu-pos');
+  if(!fn2||!ln)return toast('Name is required','err');
+  const users=Object.values(S.users);
+  const nameDup=users.find(u=>u.firstName.toLowerCase()===fn2.toLowerCase()&&u.lastName.toLowerCase()===ln.toLowerCase());
+  if(nameDup)return toast(`${fn2} ${ln} already exists`,'err');
+  const emDup=em&&users.find(u=>u.email&&u.email.toLowerCase()===em.toLowerCase());
+  if(emDup)return toast('Email already in use','err');
+  const id='usr-'+Date.now();
+  const u={id,firstName:fn2,lastName:ln,email:em,position:pos,createdAt:new Date().toISOString()};
+  dbSet(`users/${id}`,u).then(()=>{popSh();toast(fn2+' added ✓');});
+}
+function autoUserEmail(){
+  const f=(gv('nu-fn')||'').trim().toLowerCase();
+  const l=(gv('nu-ln')||'').trim().toLowerCase();
+  const em=document.getElementById('nu-em');
+  if(em&&(f||l))em.value=(f&&l)?f+'.'+l+'@sawater.com.au':((f||l)+'@sawater.com.au');
 }
 function confDelUser(uid){
   if(uid===S.currentUser?.id)return toast('Cannot delete your own account','err');
@@ -1044,16 +1401,19 @@ function doReset(){
 //  BOOT
 // ══════════════════════════════════════════════════
 (function boot(){
-  // GAS URL hardcoded — no setup screen needed
-  // Auth removed — go straight to app
   loadLS();
   if(!Object.keys(S.units).length){ S.units={...SEED_UNITS}; saveLS(); }
+  if(!Object.keys(S.users).length){ S.users={...SEED_USERS}; saveLS(); }
+  loadSession();
   document.getElementById('ldmsg').textContent='Connecting…';
   setTimeout(async ()=>{
     hideLoading();
     render();
     const ok = await pullData();
-    if(ok){ saveLS(); render(); }
+    if(ok){
+      if(!Object.keys(S.users).length){ S.users={...SEED_USERS}; }
+      loadSession(); saveLS(); render();
+    }
     startPolling();
   }, 400);
 })();
